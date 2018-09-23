@@ -6,7 +6,7 @@ namespace jolly_pirate
     {
         public void TryRegister()
         {
-            
+            ///MODEL
         }
     }
 }
