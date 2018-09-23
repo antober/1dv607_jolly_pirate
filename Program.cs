@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _1dv607_jolly_pirate
+namespace jolly_pirate
 {
     class Program
     {
