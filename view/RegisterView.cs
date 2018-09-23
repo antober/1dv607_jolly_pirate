@@ -4,9 +4,21 @@ namespace jolly_pirate
 {
     class RegisterView
     {
-        public void RegView()
+        public string RegNumber()
         {
-            Console.WriteLine("Enter E-mail: ");     
+            Console.WriteLine("Enter Social security number: "); 
+            string inputNumber = Console.ReadLine();
+            
+
+            return inputNumber;
+        }
+
+        public string regPassword()
+        {
+            Console.WriteLine("Enter a password: ");
+            string inputPassword = Console.ReadLine();
+
+            return inputPassword;
         }
     }
 }

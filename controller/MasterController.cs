@@ -34,7 +34,8 @@ namespace jolly_pirate
                                     break;
                                 case 2:
                                     Console.WriteLine("Case: {0}",input);
-                                    rv.RegView();
+                                    RegisterModel rm = new RegisterModel();
+                                    rm.TryRegister(rv.RegNumber(), rv.regPassword());
                                     break;            
                             }
                         }
