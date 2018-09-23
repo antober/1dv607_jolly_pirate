@@ -4,22 +4,36 @@ namespace jolly_pirate
 {
     class RegisterModel
     {
+        private UserDAL _userDAL;
+        public RegisterModel(UserDAL uDAL)
+        {
+            this._userDAL = uDAL;
+        }
         public void TryRegister(string number, string password)
         {
-            if(number.Length != 10)
+            try
             {
-                throw new Exception("Social number must contain 10 digits!");
-            }
+                if(number.Length != 10)
+                {
+                    throw new Exception("Social number must contain 10 digits!");
+                }
 
-            if(password.Length < 6)
-            {
-                throw new Exception("Password must contain more than 6 characters");
+                if(password.Length < 6)
+                {
+                    throw new Exception("Password must contain more than 6 characters");
+                }
+                
+                else
+                {
+                    User user = new User(number, password, 1);
+                    //Console.WriteLine(user.getSocialSecurityNumber());
+                    this._userDAL.add(user);
+                }
             }
             
-            else
+            catch (Exception e)
             {
-                User user = new User(number, password, 1);
-                Console.WriteLine(user.getSocialSecurityNumber());
+                Console.WriteLine(e.Message);
             }
         }
     }

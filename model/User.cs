@@ -20,7 +20,7 @@ namespace jolly_pirate
         {
             throw new Exception("Not yet implemented");
         }
-
+/// i see dead people. 
         private void setPassword()
         {
             throw new Exception("Not yet implemented");

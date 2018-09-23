@@ -17,5 +17,4 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-2]: ");
         }
     }
-
 }

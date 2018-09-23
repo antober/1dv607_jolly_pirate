@@ -6,6 +6,7 @@ namespace jolly_pirate
     {
         public void initMasterController()
         {
+            UserDAL uDAL = new UserDAL();
             View v = new View();
             RegisterView rv = new RegisterView();
 
@@ -34,7 +35,7 @@ namespace jolly_pirate
                                     break;
                                 case 2:
                                     Console.WriteLine("Case: {0}",input);
-                                    RegisterModel rm = new RegisterModel();
+                                    RegisterModel rm = new RegisterModel(uDAL);
                                     rm.TryRegister(rv.RegNumber(), rv.regPassword());
                                     break;            
                             }
