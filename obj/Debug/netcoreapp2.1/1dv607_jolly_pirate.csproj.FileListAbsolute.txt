@@ -1,0 +1,11 @@
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/bin/Debug/netcoreapp2.1/1dv607_jolly_pirate.deps.json
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/bin/Debug/netcoreapp2.1/1dv607_jolly_pirate.runtimeconfig.json
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/bin/Debug/netcoreapp2.1/1dv607_jolly_pirate.runtimeconfig.dev.json
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/bin/Debug/netcoreapp2.1/1dv607_jolly_pirate.dll
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/bin/Debug/netcoreapp2.1/1dv607_jolly_pirate.pdb
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.csprojAssemblyReference.cache
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.csproj.CoreCompileInputs.cache
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.AssemblyInfoInputs.cache
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.AssemblyInfo.cs
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.dll
+/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/Debug/netcoreapp2.1/1dv607_jolly_pirate.pdb
