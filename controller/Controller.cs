@@ -2,7 +2,7 @@ using System;
  
 namespace jolly_pirate
 {
-    class MasterController
+    class Controller
     {
         public void initMasterController()
         {
@@ -29,8 +29,7 @@ namespace jolly_pirate
                                 
                                 Console.WriteLine("Case: {0}",input);
                                 // Call login method from LonginController
-                                
-                                
+
                                 break;
                             case 2:
                                 RegisterModel rm = new RegisterModel(uDAL, rv);
@@ -43,7 +42,7 @@ namespace jolly_pirate
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits       ");
+                        Console.WriteLine("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits ");
                         Console.ResetColor();
                         }
                     }

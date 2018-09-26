@@ -6,8 +6,8 @@ namespace jolly_pirate
     {
         static void Main(string[] args)
         {
-            MasterController ms = new MasterController();
-            ms.initMasterController();
+            Controller c = new Controller();
+            c.initMasterController();
         }
     }
 }

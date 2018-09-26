@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace jolly_pirate
 {
@@ -7,6 +8,9 @@ namespace jolly_pirate
         private string _socialSecurityNumber;
         private string _fullName;
         private int _id;
+
+        private List<Boat> _boatList;
+        //= new List<Boat>();
 
         // TODO: Have some type of way to Collect boats here.
         // TODO: Remove/ Add method as well.
@@ -18,48 +22,33 @@ namespace jolly_pirate
             this._id = id;
         }
 
-<<<<<<< HEAD
-        private void setSocialSecurityNumber()
+        public string getSocialSecurityNumber()
         {
-            throw new Exception("Not yet implemented");
+            return this._socialSecurityNumber;
         }
         
-        private void setPassword()
+        public string getFullName()
         {
-            throw new Exception("Not yet implemented");
+            return this._fullName;
         }
-=======
-/// i see dead people. 
->>>>>>> 2c17bd4866b219fb19e2ecfbfd1c6731ef0929df
-
-        private int Id
+        
+        public int getId()
         {
-            get { return _id; }
+            return this._id;
         }
 
-        public string SocialSecurityNumber
+        public List<Boat> getBoatList()
         {
-           get { return this._socialSecurityNumber; }
-           set 
-           { 
-               if(String.IsNullOrWhiteSpace(value) || value.Length != 10) 
-               {
-                   throw new Exception("Not valid social secirity number, enter 10 digits.");
-               }
-               _socialSecurityNumber = value;
-           }
+            return this._boatList;
         }
-         public string Name
+
+        public void addBoat(Boat boat)
         {
-           get { return this._fullName; }
-           set 
-           {
-               if(String.IsNullOrWhiteSpace(value)) 
-               {
-                   throw new Exception("No name given. Please enter a full name.");
-               }
-               _fullName = value;
-            }
-        } 
+            this._boatList.Add(boat);
+        }
+        //   public void removeBoat(/*ID*/)
+        // {
+        //     this._boatList.Remove(/*ID*/);
+        // }
     }
 }

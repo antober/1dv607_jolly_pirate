@@ -6,4 +6,8 @@
     <RootNamespace>_1dv607_jolly_pirate</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="newtonsoft.json" Version="11.0.2" />
+  </ItemGroup>
+
 </Project>

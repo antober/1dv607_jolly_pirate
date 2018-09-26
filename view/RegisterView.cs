@@ -11,15 +11,6 @@ namespace jolly_pirate
 
             return inputNumber;
         }
-
-        public string regPassword()
-        {
-            Console.WriteLine("Enter a password: ");
-            string inputPassword = Console.ReadLine();
-
-            return inputPassword;
-        }
-
         public void regSuccess()
         {
             Console.BackgroundColor = ConsoleColor.Green;

@@ -11,7 +11,7 @@ namespace jolly_pirate
             this._userDAL = uDAL;
             this._rv = rv;
         }
-        public void TryRegister(string number, string password)
+        public void TryRegister(string number)
         {
             try
             {
@@ -19,16 +19,12 @@ namespace jolly_pirate
                 {
                     throw new Exception("Social number must contain 10 digits!");
                 }
-
-                if(password.Length < 6)
-                {
-                    throw new Exception("Password must contain more than 6 characters");
-                }
                 
                 else
                 {
-                    User user = new User(number, password, 1);
-                    this._userDAL.add(user);
+                    User user = new User(number, "Joppe", 1);
+                    // user.addBoat();
+                    this._userDAL.addToFile(user);
                     this._rv.regSuccess();
                 }
             }
