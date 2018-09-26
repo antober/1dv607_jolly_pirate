@@ -20,9 +20,9 @@ namespace jolly_pirate
 
 /// i see dead people. 
 
-        private void setId()
+        private int Id
         {
-            throw new Exception("Not yet implemented");
+            get { return _id; }
         }
 
         public string SocialSecurityNumber
