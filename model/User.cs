@@ -34,6 +34,7 @@ namespace jolly_pirate
                {
                    throw new Exception("Not valid social secirity number, enter 10 digits.");
                }
+               _socialSecurityNumber = value;
            }
         }
          public string Name
@@ -48,6 +49,5 @@ namespace jolly_pirate
                _fullName = value;
             }
         } 
-
     }
 }
