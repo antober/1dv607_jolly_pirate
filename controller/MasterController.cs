@@ -10,36 +10,34 @@ namespace jolly_pirate
             View v = new View();
             RegisterView rv = new RegisterView();
 
+            do
             {
-                do
-                {
-                    Console.Clear();
-                    v.startMenu();
-                    int input;
-                    
-                    try
-                    {            
-                        if (int.TryParse(Console.ReadLine(), out input) && input >= 0 && input <= 2)
+                Console.Clear();
+                v.startMenu();
+                int input;
+                
+                try
+                {            
+                    if (int.TryParse(Console.ReadLine(), out input) && input >= 0 && input <= 2)
+                    {
+                        switch (input)
                         {
-                            switch (input)
-                            {
-                                case 0:
-                                    Console.WriteLine();
-                                    return;
-                                case 1:
-                                    
-                                    Console.WriteLine("Case: {0}",input);
-                                    // Call login method from LonginController
-                                    
-                                    
-                                    break;
-                                case 2:
-                                    Console.WriteLine("Case: {0}",input);
-                                    RegisterModel rm = new RegisterModel(uDAL);
-                                    rm.TryRegister(rv.RegNumber(), rv.regPassword());
-                                    break;            
-                            }
+                            case 0:
+                                Console.WriteLine();
+                                return;
+                            case 1:
+                                
+                                Console.WriteLine("Case: {0}",input);
+                                // Call login method from LonginController
+                                
+                                
+                                break;
+                            case 2:
+                                RegisterModel rm = new RegisterModel(uDAL, rv);
+                                rm.TryRegister(rv.RegNumber(), rv.regPassword());
+                                break;            
                         }
+                    }
 
                     else
                     {
@@ -50,16 +48,12 @@ namespace jolly_pirate
                         }
                     }
 
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("{0} Exception caught.", e);
-                    }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
                 }
-
-                while (Console.ReadKey(true).Key != ConsoleKey.Escape);
             }
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         } 
-        
     }
-
 }

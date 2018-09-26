@@ -5,9 +5,11 @@ namespace jolly_pirate
     class RegisterModel
     {
         private UserDAL _userDAL;
-        public RegisterModel(UserDAL uDAL)
+        private RegisterView _rv;
+        public RegisterModel(UserDAL uDAL, RegisterView rv)
         {
             this._userDAL = uDAL;
+            this._rv = rv;
         }
         public void TryRegister(string number, string password)
         {
@@ -26,8 +28,8 @@ namespace jolly_pirate
                 else
                 {
                     User user = new User(number, password, 1);
-                    //Console.WriteLine(user.getSocialSecurityNumber());
                     this._userDAL.add(user);
+                    this._rv.regSuccess();
                 }
             }
             

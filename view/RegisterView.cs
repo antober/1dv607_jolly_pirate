@@ -8,7 +8,6 @@ namespace jolly_pirate
         {
             Console.WriteLine("Enter Social security number: "); 
             string inputNumber = Console.ReadLine();
-            
 
             return inputNumber;
         }
@@ -19,6 +18,15 @@ namespace jolly_pirate
             string inputPassword = Console.ReadLine();
 
             return inputPassword;
+        }
+
+        public void regSuccess()
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("You are successfully registered!");
+            Console.ResetColor();
+            System.Console.WriteLine("Press Enter to return to previous menu");
         }
     }
 }
