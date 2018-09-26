@@ -23,9 +23,9 @@ namespace jolly_pirate
                 else
                 {
                     User user = new User(number, "Joppe", 1);
-                    // user.addBoat();
                     this._userDAL.addToFile(user);
                     this._rv.regSuccess();
+                    this._userDAL.getAllUsers();
                 }
             }
             

@@ -44,6 +44,5 @@ namespace jolly_pirate
                 _boatLength = value;
             }
         }
-
     }
 }
