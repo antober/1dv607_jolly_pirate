@@ -13,9 +13,9 @@ namespace jolly_pirate
 
             using (StreamWriter file = File.CreateText ("users.json")) {
                 
-                userInfo.Add(user.getId ().ToString ());
+                userInfo.Add(user.getId ().ToString());
                 userInfo.Add(user.getSocialSecurityNumber());
-                userInfo.Add(user.getFullName());
+                userInfo.Add(user.getFullName() + "\n}");
                 
                 JsonSerializer serializer = new JsonSerializer ();
                 serializer.Serialize (file, userInfo);
