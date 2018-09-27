@@ -8,8 +8,15 @@ namespace jolly_pirate
 // TODO: Filen nollställs efter omstart av program. Ända det.
     class UserDAL 
     {
-        public List<User> userInfo = new List<User>{};
+        public List<User> userInfo;
 
+        // contrsuctor to make oroginalfile read at start.
+        public UserDAL() {
+
+            string originalData = File.ReadAllText("users.json");
+            this.userInfo = JsonConvert.DeserializeObject<List<User>>(originalData);
+
+        }
         public void addToFile(User user) 
         {
             using (StreamWriter file = File.CreateText("users.json")) 
@@ -22,14 +29,6 @@ namespace jolly_pirate
                 
                 file.Write(json);
             }
-        }
-
-        public void getAllUsers()
-        {    
-            string json = File.ReadAllText("users.json");
-            List<string> deserializeUserInfo = JsonConvert.DeserializeObject<List<string>>(json);
-
-            Console.WriteLine(deserializeUserInfo);
         }
     }
 }

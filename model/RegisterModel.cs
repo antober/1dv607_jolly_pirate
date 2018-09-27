@@ -31,7 +31,7 @@ namespace jolly_pirate
                     
                     this._userDAL.addToFile(user);
                     this._v.RegSuccess();
-                    this._userDAL.getAllUsers();
+                    // this._userDAL.getAllUsers();
 
                     //System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
 

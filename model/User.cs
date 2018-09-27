@@ -21,6 +21,7 @@ namespace jolly_pirate
             this.socialSecurityNumber = socialSecurityNumber;
             this.fullName = fullName;
             this.id = id;
+            this.boatList = new List<Boat>();
         }
 
 
