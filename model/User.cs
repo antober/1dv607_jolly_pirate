@@ -7,7 +7,7 @@ namespace jolly_pirate
     {
         public string socialSecurityNumber;
         public string fullName;
-        public int id;
+        public string id;
 
         public List<Boat> boatList;
 
@@ -16,7 +16,7 @@ namespace jolly_pirate
         // TODO: Have some type of way to Collect boats here.
         // TODO: Remove/ Add method as well.
 
-        public User(string socialSecurityNumber, string fullName, int id)
+        public User(string socialSecurityNumber, string fullName, string id)
         {
             this.socialSecurityNumber = socialSecurityNumber;
             this.fullName = fullName;

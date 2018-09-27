@@ -27,7 +27,7 @@ namespace jolly_pirate
                 
                 else
                 {
-                    User user = new User(number, name, GenerateID(0));
+                    User user = new User(number, name, GenerateID());
                     
                     this._userDAL.addToFile(user);
                     this._v.RegSuccess();
@@ -47,20 +47,27 @@ namespace jolly_pirate
                 Console.WriteLine(e.Message);
             }
         }
-
-        private int GenerateID(int id)
+        private string GenerateID()
         {
-            if(id == 0)
-            {
-                id = 1;
-            }
-            else
-            {
-                id ++;
-            }
+            
+            string guid = System.Guid.NewGuid().ToString();
+            return guid;
 
-            return id;
         }
+
+        // private int GenerateID(int id)
+        // {
+        //     if(id == 0)
+        //     {
+        //         id = 1;
+        //     }
+        //     else
+        //     {
+        //         id ++;
+        //     }
+
+        //     return id;
+        // }
 
         public void SelectBoatType()
         {

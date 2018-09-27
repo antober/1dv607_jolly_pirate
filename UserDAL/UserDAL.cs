@@ -5,21 +5,21 @@ using Newtonsoft.Json;
 
 namespace jolly_pirate 
 {
-// TODO: Filen nollställs efter omstart av program. Ända det.
     class UserDAL 
     {
         public List<User> userInfo;
+        private string fileName = "users.json"; 
 
-        // contrsuctor to make oroginalfile read at start.
+        // Contrsuctor to make oroginalfile read at start.
         public UserDAL() {
 
-            string originalData = File.ReadAllText("users.json");
+            string originalData = File.ReadAllText(fileName);
             this.userInfo = JsonConvert.DeserializeObject<List<User>>(originalData);
 
         }
         public void addToFile(User user) 
         {
-            using (StreamWriter file = File.CreateText("users.json")) 
+            using (StreamWriter file = File.CreateText(fileName)) 
             {
                 
                 userInfo.Add(user);
