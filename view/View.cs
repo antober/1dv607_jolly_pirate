@@ -51,7 +51,13 @@ namespace jolly_pirate
 
         public void BoatType()
         {
-            Console.WriteLine("Enter boat name: ");
+
+            Console.WriteLine("Choose a boat type: ");
+            Console.WriteLine(" 0 - Kayak/Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
+            // string boatTypeChoise = Console.ReadLine();
+            
+            // Case enum.
+
         }
     }
 }
