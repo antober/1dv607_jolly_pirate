@@ -29,7 +29,7 @@ namespace jolly_pirate
             return this.boatList;
         }
 
-        public void addBoat(Boat boat)
+        public void AddBoat(Boat boat)
         {
             this.boatList.Add(boat);
         }

@@ -4,7 +4,7 @@ namespace jolly_pirate
 {
     class Controller
     {
-        public void initMasterController()
+        public void InitMasterController()
         {
             UserDAL uDAL = new UserDAL();
             View v = new View();
@@ -12,7 +12,7 @@ namespace jolly_pirate
             do
             {
                 Console.Clear();
-                v.startMenu();
+                v.StartMenu();
                 int input;
                 
                 try
@@ -32,7 +32,7 @@ namespace jolly_pirate
                                 break;
                             case 2:
                                 RegisterModel rm = new RegisterModel(uDAL, v);
-                                rm.TryRegister(v.RegNumber(),v.regFullName());
+                                rm.TryRegister(v.RegNumber(),v.RegFullName());
                                 break;            
                         }
                     }

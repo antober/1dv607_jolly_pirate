@@ -4,7 +4,7 @@ namespace jolly_pirate
 {
     class View
     {
-        public void startMenu()
+        public void StartMenu()
         {
             Console.WriteLine("╔════════════════════════════════════════════════╗");
             Console.WriteLine("║                                                ║");
@@ -25,20 +25,33 @@ namespace jolly_pirate
             return inputNumber;
         }
 
-        public string regFullName()
+        public string RegFullName()
         {
             Console.WriteLine("Enter fullname: ");
             string inputName = Console.ReadLine();
 
             return inputName;
         }
-        public void regSuccess()
+        public void RegSuccess()
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("You are successfully registered!");
             Console.ResetColor();
             System.Console.WriteLine("Press Enter to return to previous menu");
+        }
+
+        public string BoatName()
+        {
+            Console.WriteLine("Enter boat name: ");
+            string boatName = Console.ReadLine();
+
+            return boatName;
+        }
+
+        public void BoatType()
+        {
+            Console.WriteLine("Enter boat name: ");
         }
     }
 }

@@ -27,10 +27,10 @@ namespace jolly_pirate
                 
                 else
                 {
-                    User user = new User(number, name, generateID(0));
+                    User user = new User(number, name, GenerateID(0));
                     
                     this._userDAL.addToFile(user);
-                    this._v.regSuccess();
+                    this._v.RegSuccess();
                     this._userDAL.getAllUsers();
 
                     //System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
@@ -48,7 +48,7 @@ namespace jolly_pirate
             }
         }
 
-        private int generateID(int id)
+        private int GenerateID(int id)
         {
             if(id == 0)
             {
@@ -60,6 +60,11 @@ namespace jolly_pirate
             }
 
             return id;
+        }
+
+        public void SelectBoatType()
+        {
+            throw new Exception("Not yet implemented");
         }
     }
 }

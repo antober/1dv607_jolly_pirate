@@ -7,7 +7,7 @@ namespace jolly_pirate
         static void Main(string[] args)
         {
             Controller c = new Controller();
-            c.initMasterController();
+            c.InitMasterController();
         }
     }
 }
