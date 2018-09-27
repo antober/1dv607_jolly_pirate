@@ -8,7 +8,6 @@ namespace jolly_pirate
         {
             UserDAL uDAL = new UserDAL();
             View v = new View();
-            RegisterView rv = new RegisterView();
 
             do
             {
@@ -32,8 +31,8 @@ namespace jolly_pirate
 
                                 break;
                             case 2:
-                                RegisterModel rm = new RegisterModel(uDAL, rv);
-                                rm.TryRegister(rv.RegNumber(),rv.regFullName());
+                                RegisterModel rm = new RegisterModel(uDAL, v);
+                                rm.TryRegister(v.RegNumber(),v.regFullName());
                                 break;            
                         }
                     }

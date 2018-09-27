@@ -5,11 +5,11 @@ namespace jolly_pirate
     class RegisterModel
     {
         private UserDAL _userDAL;
-        private RegisterView _rv;
-        public RegisterModel(UserDAL uDAL, RegisterView rv)
+        private View _v;
+        public RegisterModel(UserDAL uDAL, View v)
         {
             this._userDAL = uDAL;
-            this._rv = rv;
+            this._v = v;
         }
         public void TryRegister(string number, string name)
         {
@@ -30,7 +30,7 @@ namespace jolly_pirate
                     User user = new User(number, name, generateID(0));
                     
                     this._userDAL.addToFile(user);
-                    this._rv.regSuccess();
+                    this._v.regSuccess();
                     this._userDAL.getAllUsers();
 
                     //System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
