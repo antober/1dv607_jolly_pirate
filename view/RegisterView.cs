@@ -11,6 +11,14 @@ namespace jolly_pirate
 
             return inputNumber;
         }
+
+        public string regFullName()
+        {
+            Console.WriteLine("Enter fullname: ");
+            string inputName = Console.ReadLine();
+
+            return inputName;
+        }
         public void regSuccess()
         {
             Console.BackgroundColor = ConsoleColor.Green;

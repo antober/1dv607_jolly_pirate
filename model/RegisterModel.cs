@@ -11,7 +11,7 @@ namespace jolly_pirate
             this._userDAL = uDAL;
             this._rv = rv;
         }
-        public void TryRegister(string number)
+        public void TryRegister(string number, string name)
         {
             try
             {
@@ -19,13 +19,26 @@ namespace jolly_pirate
                 {
                     throw new Exception("Social number must contain 10 digits!");
                 }
+
+                if(name.Length < 3)
+                {
+                    throw new Exception("Full name must have atleast 3 characters");
+                }
                 
                 else
                 {
-                    User user = new User(number, "Joppe", 1);
+                    User user = new User(number, name, generateID(this._userDAL.getAllUsers().ToArray().Length));
+                    
                     this._userDAL.addToFile(user);
                     this._rv.regSuccess();
                     this._userDAL.getAllUsers();
+
+                    System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
+
+                    // foreach (User u in this._userDAL.getAllUsers())
+                    // {
+                    //     System.Console.WriteLine(u.id);
+                    // }
                 }
             }
             
@@ -33,6 +46,20 @@ namespace jolly_pirate
             {
                 Console.WriteLine(e.Message);
             }
+        }
+
+        private int generateID(int id)
+        {
+            if(id == 0)
+            {
+                id = 1;
+            }
+            else
+            {
+                id ++;
+            }
+
+            return id;
         }
     }
 }

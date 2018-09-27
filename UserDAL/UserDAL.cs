@@ -5,28 +5,31 @@ using Newtonsoft.Json;
 
 namespace jolly_pirate 
 {
-
+// TODO: Filen nollställs efter omstart av program. Ända det.
     class UserDAL 
     {
-        private List<String> userInfo = new List<string> {};
-        public void addToFile(User user) {
+        public List<User> userInfo = new List<User>{};
 
-            using (StreamWriter file = File.CreateText ("users.json")) {
+        public void addToFile(User user) 
+        {
+            using (StreamWriter file = File.CreateText("users.json")) 
+            {
                 
-                userInfo.Add(user.getId ().ToString());
-                userInfo.Add(user.getSocialSecurityNumber());
-                userInfo.Add(user.getFullName() + "\n}");
+                userInfo.Add(user);
                 
-                JsonSerializer serializer = new JsonSerializer ();
-                serializer.Serialize (file, userInfo);
+                JsonConvert.SerializeObject(userInfo);               
+                string json = JsonConvert.SerializeObject(userInfo);
+                
+                file.Write(json);
             }
         }
 
-        public void getAllUsers() 
+        public List<User> getAllUsers()
         {    
             string json = File.ReadAllText("users.json");
-            List<string> userinfo = JsonConvert.DeserializeObject<List<string>>(json);
-            System.Console.WriteLine(string.Join(", ", userinfo));
+            List<User> userInfo = JsonConvert.DeserializeObject<List<User>>(json);
+
+            return userInfo;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace jolly_pirate
                                 break;
                             case 2:
                                 RegisterModel rm = new RegisterModel(uDAL, rv);
-                                rm.TryRegister(rv.RegNumber());
+                                rm.TryRegister(rv.RegNumber(),rv.regFullName());
                                 break;            
                         }
                     }
