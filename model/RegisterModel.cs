@@ -27,17 +27,17 @@ namespace jolly_pirate
                 
                 else
                 {
-                    User user = new User(number, name, generateID(this._userDAL.getAllUsers().ToArray().Length));
+                    User user = new User(number, name, generateID(0));
                     
                     this._userDAL.addToFile(user);
                     this._rv.regSuccess();
                     this._userDAL.getAllUsers();
 
-                    System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
+                    //System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
 
-                    // foreach (User u in this._userDAL.getAllUsers())
+                    // foreach (User u in this._userDAL.getAllUsers().ToArray())
                     // {
-                    //     System.Console.WriteLine(u.id);
+                    //     System.Console.WriteLine(u);
                     // }
                 }
             }

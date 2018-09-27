@@ -24,12 +24,12 @@ namespace jolly_pirate
             }
         }
 
-        public List<User> getAllUsers()
+        public void getAllUsers()
         {    
             string json = File.ReadAllText("users.json");
-            List<User> userInfo = JsonConvert.DeserializeObject<List<User>>(json);
+            List<string> deserializeUserInfo = JsonConvert.DeserializeObject<List<string>>(json);
 
-            return userInfo;
+            Console.WriteLine(deserializeUserInfo);
         }
     }
 }
