@@ -31,14 +31,14 @@ namespace jolly_pirate
                     
                     this._userDAL.addToFile(user);
                     this._v.RegSuccess();
-                    // this._userDAL.getAllUsers();
 
-                    //System.Console.WriteLine(this._userDAL.getAllUsers().ToArray().Length);
+                //     var item = this._userDAL.getAllUsers();
+                    
 
-                    // foreach (User u in this._userDAL.getAllUsers().ToArray())
-                    // {
-                    //     System.Console.WriteLine(u);
-                    // }
+                //     foreach (User u in this._userDAL.getAllUsers())
+                //     {
+                //         System.Console.WriteLine(u);
+                //     }
                 }
             }
             
@@ -49,25 +49,9 @@ namespace jolly_pirate
         }
         private string GenerateID()
         {
-            
             string guid = System.Guid.NewGuid().ToString();
             return guid;
-
         }
-
-        // private int GenerateID(int id)
-        // {
-        //     if(id == 0)
-        //     {
-        //         id = 1;
-        //     }
-        //     else
-        //     {
-        //         id ++;
-        //     }
-
-        //     return id;
-        // }
 
         public void SelectBoatType()
         {

@@ -11,11 +11,6 @@ namespace jolly_pirate
 
         public List<Boat> boatList;
 
-        //= new List<Boat>();
-
-        // TODO: Have some type of way to Collect boats here.
-        // TODO: Remove/ Add method as well.
-
         public User(string socialSecurityNumber, string fullName, string id)
         {
             this.socialSecurityNumber = socialSecurityNumber;

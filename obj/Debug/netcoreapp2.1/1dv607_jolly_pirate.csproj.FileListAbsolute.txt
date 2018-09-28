@@ -20,3 +20,14 @@ C:\Users\yasmi\1dv607\1dv607_jolly_pirate\obj\Debug\netcoreapp2.1\1dv607_jolly_p
 C:\Users\yasmi\1dv607\1dv607_jolly_pirate\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.AssemblyInfo.cs
 C:\Users\yasmi\1dv607\1dv607_jolly_pirate\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.dll
 C:\Users\yasmi\1dv607\1dv607_jolly_pirate\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.pdb
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\bin\Debug\netcoreapp2.1\1dv607_jolly_pirate.deps.json
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\bin\Debug\netcoreapp2.1\1dv607_jolly_pirate.runtimeconfig.json
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\bin\Debug\netcoreapp2.1\1dv607_jolly_pirate.runtimeconfig.dev.json
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\bin\Debug\netcoreapp2.1\1dv607_jolly_pirate.dll
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\bin\Debug\netcoreapp2.1\1dv607_jolly_pirate.pdb
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.csprojAssemblyReference.cache
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.csproj.CoreCompileInputs.cache
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.AssemblyInfoInputs.cache
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.AssemblyInfo.cs
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.dll
+C:\Users\yasmi\1dv607\1dv607_jolly_pirate - Copy\obj\Debug\netcoreapp2.1\1dv607_jolly_pirate.pdb
