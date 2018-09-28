@@ -7,11 +7,11 @@ namespace jolly_pirate
     {
         public string socialSecurityNumber;
         public string fullName;
-        public string id;
+        public int id;
 
         public List<Boat> boatList;
 
-        public User(string socialSecurityNumber, string fullName, string id)
+        public User(string socialSecurityNumber, string fullName, int id)
         {
             this.socialSecurityNumber = socialSecurityNumber;
             this.fullName = fullName;
@@ -29,6 +29,7 @@ namespace jolly_pirate
         {
             this.boatList.Add(boat);
         }
+
         //   public void removeBoat(/*ID*/)
         // {
         //     this.boatList.Remove(/*ID*/);

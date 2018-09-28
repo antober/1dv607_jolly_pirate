@@ -5,16 +5,18 @@ namespace jolly_pirate
     class RegisterModel
     {
         private UserDAL _userDAL;
-        private View _v;
-        public RegisterModel(UserDAL uDAL, View v)
+        private View _view;
+        public RegisterModel(UserDAL uDAL, View view)
         {
             this._userDAL = uDAL;
-            this._v = v;
+            this._view = view;
         }
         public void TryRegister(string number, string name)
         {
             try
             {
+                // Console.Write(numberOfDigits);
+
                 if(number.Length != 10)
                 {
                     throw new Exception("Social number must contain 10 digits!");
@@ -30,15 +32,8 @@ namespace jolly_pirate
                     User user = new User(number, name, GenerateID());
                     
                     this._userDAL.addToFile(user);
-                    this._v.RegSuccess();
+                    this._view.RegSuccess();
 
-                //     var item = this._userDAL.getAllUsers();
-                    
-
-                //     foreach (User u in this._userDAL.getAllUsers())
-                //     {
-                //         System.Console.WriteLine(u);
-                //     }
                 }
             }
             
@@ -47,10 +42,14 @@ namespace jolly_pirate
                 Console.WriteLine(e.Message);
             }
         }
-        private string GenerateID()
+        private int GenerateID()
         {
-            string guid = System.Guid.NewGuid().ToString();
-            return guid;
+            if(this._userDAL.userInfo.Count == 0) {
+               return 1;
+            } else {
+            int indexOfLast = this._userDAL.userInfo.Count - 1;
+            return this._userDAL.userInfo[indexOfLast].id + 1;
+            }
         }
 
         public void SelectBoatType()

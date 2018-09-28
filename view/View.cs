@@ -12,7 +12,7 @@ namespace jolly_pirate
             Console.WriteLine("║                                                ║");
             Console.WriteLine("╚════════════════════════════════════════════════╝");
             Console.ResetColor();
-            Console.WriteLine(" 0 - Exit\n 1 - Register\n 2 - View Members List");
+            Console.WriteLine(" 0 - Exit\n 1 - Register\n 2 - BoatAssignment \n 3 - View Members Compact List\n 4 - View Members Verbose List");
             Console.WriteLine("==================================================");
             Console.Write("Enter your choice [0-2]: ");
         }
@@ -40,6 +40,8 @@ namespace jolly_pirate
             Console.ResetColor();
             System.Console.WriteLine("Press Enter to return to previous menu");
         }
+
+
 
         public string BoatName()
         {

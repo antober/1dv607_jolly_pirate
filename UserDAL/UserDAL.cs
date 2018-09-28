@@ -14,7 +14,11 @@ namespace jolly_pirate
         // Contrsuctor to make oroginalfile read at start.
         public UserDAL() {
             string originalData = File.ReadAllText(fileName);
-            this.userInfo = JsonConvert.DeserializeObject<List<User>>(originalData);
+             if (originalData == "") {
+                this.userInfo = new List<User>();
+            } else {
+                this.userInfo = JsonConvert.DeserializeObject<List<User>>(originalData);
+            }
         }
 
 
@@ -25,24 +29,9 @@ namespace jolly_pirate
                 userInfo.Add(user);
                 JsonConvert.SerializeObject(userInfo);               
                 string json = JsonConvert.SerializeObject(userInfo);
-                
                 file.Write(json);
             }
         }
 
-        public List<User> getAllUsers(){
-
-            //string originalData2 = File.ReadAllText(fileName);
-
-            // var userInfo3 = JsonConvert.DeserializeObject<JArray>(originalData2);
-            int indexOfLast = this.userInfo.Count - 1;
-            // Console.WriteLine()
-
-
-            Console.WriteLine(this.userInfo[indexOfLast].id);
-            // return;
-            return this.userInfo;
-
-        }
     }
 }
