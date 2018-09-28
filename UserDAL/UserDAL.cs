@@ -35,14 +35,13 @@ namespace jolly_pirate
             //string originalData2 = File.ReadAllText(fileName);
 
             // var userInfo3 = JsonConvert.DeserializeObject<JArray>(originalData2);
-            // int indexOfLast = userInfo3.Count - 1;
+            int indexOfLast = this.userInfo.Count - 1;
+            // Console.WriteLine()
 
 
-            // Console.WriteLine(userInfo3[indexOfLast]["id"]);
+            Console.WriteLine(this.userInfo[indexOfLast].id);
             // return;
-            Console.WriteLine(this.userInfo);
             return this.userInfo;
-
 
         }
     }
