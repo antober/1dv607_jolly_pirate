@@ -30,8 +30,8 @@ namespace jolly_pirate
                 else
                 {
                     User user = new User(number, name, GenerateID());
-                    
-                    this._userDAL.addToFile(user);
+                    this._userDAL.addUser(user);
+                    this._userDAL.saveToFile();
                     this._view.RegSuccess();
 
                 }
@@ -52,9 +52,6 @@ namespace jolly_pirate
             }
         }
 
-        public void SelectBoatType()
-        {
-            throw new Exception("Not yet implemented");
-        }
+
     }
 }

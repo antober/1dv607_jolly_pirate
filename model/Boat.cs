@@ -18,7 +18,7 @@ namespace jolly_pirate
         {
             Kayak_or_Canoe,
             Motorsailer,
-            Salilboat,
+            Sailboat,
             Other
         }
 
