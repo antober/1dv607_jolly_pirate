@@ -5,7 +5,7 @@ namespace jolly_pirate
 {
     class User
     {
-        public string socialSecurityNumber;
+        public string SSN;
         public string fullName;
         public int id;
 
@@ -13,7 +13,7 @@ namespace jolly_pirate
 
         public User(string socialSecurityNumber, string fullName, int id)
         {
-            this.socialSecurityNumber = socialSecurityNumber;
+            this.SSN = socialSecurityNumber;
             this.fullName = fullName;
             this.id = id;
             this.boatList = new List<Boat>();

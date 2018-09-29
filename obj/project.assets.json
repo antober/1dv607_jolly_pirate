@@ -725,11 +725,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate - Copy\\1dv607_jolly_pirate.csproj",
+      "projectUniqueName": "C:\\Users\\yasmi\\1dv607\\NyJolly\\1dv607_jolly_pirate.csproj",
       "projectName": "1dv607_jolly_pirate",
-      "projectPath": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate - Copy\\1dv607_jolly_pirate.csproj",
+      "projectPath": "C:\\Users\\yasmi\\1dv607\\NyJolly\\1dv607_jolly_pirate.csproj",
       "packagesPath": "C:\\Users\\yasmi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate - Copy\\obj\\",
+      "outputPath": "C:\\Users\\yasmi\\1dv607\\NyJolly\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
