@@ -99,6 +99,7 @@ namespace jolly_pirate {
             if (member == null) {
                 throw new ArgumentException("No user with the gives ID.");
             } else {
+                view.MemberMenu();
                 return member;
             }
         }
