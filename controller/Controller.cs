@@ -15,53 +15,51 @@ namespace jolly_pirate {
             this.view = new View ();
             this.registerModel = new RegisterModel(userDAL, view);
         }
-        public void InitMasterController () {
-
-            // Just for testing methods:
-            // userDAL.compactListOfMembers();
-            // userDAL.verboseListOfMembers();
-
-
-            do {
+        public void InitMasterController () 
+        {
+            do 
+            {
                 Console.Clear ();
                 view.StartMenu ();
                 int input;
 
-                try {
-                    if (int.TryParse (Console.ReadLine (), out input) && input >= 0 && input <= 4) {
-                        switch (input) {
+                try 
+                {
+                    if (int.TryParse (Console.ReadLine (), out input) && input >= 0 && input <= 4) 
+                    {
+                        switch (input) 
+                        {
                             case 0: 
-                                     Console.WriteLine (); 
-                                     return;
+                                Console.WriteLine (); 
+                                return;
                             case 1:
                                 
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
-                                // this.TryRegister (view.RegNumber (), view.RegFullName ());
                                 break;
 
                             case 2:
-                                /// BoatAssignment
                                 this.FindUserByID(view.SelectMemberWirthID());
-                                /// Call login method from LonginController
                                 break;
 
                             case 3:
-
-                                CreateBoat();
+                                userDAL.CompactListOfMembers();
                                 break;
                             case 4:
 
-                                Console.WriteLine ("Case: {0}", input);
-                                // Call login method from LonginController
+                                this.registerModel.CreateBoat();
                                 break;
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine ("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits ");
                         Console.ResetColor();
                     }
-                } catch (Exception e) {
+                } 
+                catch (Exception e) 
+                {
                     Console.WriteLine ("{0} Exception caught.", e);
                 }
             }
@@ -96,27 +94,6 @@ namespace jolly_pirate {
                 view.MemberMenu();
                 return member;
             }
-        }
-
-        /*  1. Välj lägg till båt i Vy
-            2. Fyll i information till båtobjektet
-            3. Ta inputvärden till skapa-båt-objekt
-            4. Kör addBoat i user
-            5. Spara till filen.
-        */
-
-        public void CreateBoat() 
-        {
-            string name = this.view.BoatName();
-            Boat.BoatType boatType = this.registerModel.SelectBoatType(view.BoatTypes());
-            int length = this.view.BoatLength();
-
-            Boat boat = new Boat(name, boatType, length);
-            System.Console.WriteLine(boat.boatName);
-            System.Console.WriteLine(boat.boatType);
-            System.Console.WriteLine(boat.boatLength);
-
-            // return boat object;
-        }
+        }        
     }
 }

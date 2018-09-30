@@ -6,6 +6,7 @@ namespace jolly_pirate
     {
         private UserDAL _userDAL;
         private View _view;
+
         public RegisterModel(UserDAL uDAL, View view)
         {
             this._userDAL = uDAL;
@@ -64,6 +65,20 @@ namespace jolly_pirate
                 case 3: return Boat.BoatType.Other;
                 default: throw new Exception();
             }
-        }     
+        }
+
+        public Boat CreateBoat() 
+        {
+            string name = this._view.BoatName();
+            Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
+            int length = this._view.BoatLength();
+
+            Boat boat = new Boat(name, boatType, length);
+            System.Console.WriteLine(boat.boatName);
+            System.Console.WriteLine(boat.boatType);
+            System.Console.WriteLine(boat.boatLength);
+
+            return boat;
+        }    
     }
 }
