@@ -51,7 +51,7 @@ namespace jolly_pirate
         }
 
 
-////////////////////////////// Member Menu ////////////////////////////////////////////////////
+///////////////////////////////////// Member Menu ////////////////////////////////////////////////////
 
         public void MemberMenu()
         {
@@ -76,13 +76,10 @@ namespace jolly_pirate
 
         public void BoatTypes()
         {
-
             Console.WriteLine("Choose a boat type: ");
-            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
-            // string boatTypeChoise = Console.ReadLine();
+            Console.WriteLine(" 0 - Kayak or Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
             
             // Case enum.
-
         }
     }
 }

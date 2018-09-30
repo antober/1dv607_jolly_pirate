@@ -33,7 +33,6 @@ namespace jolly_pirate
                     this._userDAL.addUser(user);
                     this._userDAL.saveToFile();
                     this._view.RegSuccess();
-
                 }
             }
             
@@ -44,14 +43,15 @@ namespace jolly_pirate
         }
         private int GenerateID()
         {
-            if(this._userDAL.userInfo.Count == 0) {
+            if(this._userDAL.userInfo.Count == 0) 
+            {
                return 1;
-            } else {
+            } 
+            else 
+            {
             int indexOfLast = this._userDAL.userInfo.Count - 1;
             return this._userDAL.userInfo[indexOfLast].id + 1;
             }
         }
-
-
     }
 }

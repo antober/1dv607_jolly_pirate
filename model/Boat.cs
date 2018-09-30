@@ -44,5 +44,20 @@ namespace jolly_pirate
                 _boatLength = value;
             }
         }
+          public Boat.BoatType SelectBoatType (int input) 
+        {
+            switch (input) {
+                case 0:
+                    return Boat.BoatType.Kayak_or_Canoe;
+                case 1:
+                    return Boat.BoatType.Motorsailer;
+                case 2:
+                    return Boat.BoatType.Sailboat;
+                case 3:
+                    return Boat.BoatType.Other;
+                default:
+                    throw new ArgumentException ("Gandalf: YOUU SHALL NOT SAIL");
+            }
+        }
     }
 }
