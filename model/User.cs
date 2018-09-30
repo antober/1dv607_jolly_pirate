@@ -30,10 +30,24 @@ namespace jolly_pirate
             this.boatList.Add(boat);
         }
 
-        //   public void removeBoat(/*ID*/)
-        // {
-        //     this.boatList.Remove(/*ID*/);
-        // }
+        public void ChangeBoat()
+        {
+            throw new Exception();
+        }
 
+        public void DeleteBoat(int boatIndex)
+        {
+            this.boatList.RemoveAt(boatIndex);
+        }
+
+        public void ChangeMemberInfo()
+        {
+            throw new Exception();
+        }
+
+        public void DeleteMember()
+        {
+            throw new Exception();
+        }
     }
 }

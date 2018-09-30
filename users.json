@@ -16,5 +16,11 @@
     "fullName": "jolly mfffffff",
     "id": 3,
     "boatList": []
+  },
+  {
+    "SSN": "9999999999",
+    "fullName": "newUser",
+    "id": 4,
+    "boatList": []
   }
 ]
