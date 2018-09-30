@@ -8,9 +8,12 @@ namespace jolly_pirate {
         UserDAL userDAL;
         View view;
 
+        RegisterModel registerModel;
+
         public Controller () {
             this.userDAL = new UserDAL ();
             this.view = new View ();
+            this.registerModel = new RegisterModel(userDAL, view);
         }
         public void InitMasterController () {
 
@@ -31,21 +34,20 @@ namespace jolly_pirate {
                                      Console.WriteLine (); 
                                      return;
                             case 1:
-                                RegisterModel registerModel = new RegisterModel(userDAL, view);
+                                
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
                                 // this.TryRegister (view.RegNumber (), view.RegFullName ());
                                 break;
 
                             case 2:
                                 /// BoatAssignment
-                                this.findUserByID(view.SelectMemberWirthID());
+                                this.FindUserByID(view.SelectMemberWirthID());
                                 /// Call login method from LonginController
                                 break;
 
                             case 3:
 
-                                Console.WriteLine ("Case: {0}", input);
-                                // Call login method from LonginController
+                                CreateBoat();
                                 break;
                             case 4:
 
@@ -80,7 +82,7 @@ namespace jolly_pirate {
         }
 
         // UNDER CONSTUCTION !!!
-        public User findUserByID (int id) 
+        public User FindUserByID (int id) 
         {
 
             var member = this.userDAL.userInfo.Find (x => x.id == id);
@@ -102,5 +104,19 @@ namespace jolly_pirate {
             4. Kör addBoat i user
             5. Spara till filen.
         */
+
+        public void CreateBoat() 
+        {
+            string name = this.view.BoatName();
+            Boat.BoatType boatType = this.registerModel.SelectBoatType(view.BoatTypes());
+            int length = this.view.BoatLength();
+
+            Boat boat = new Boat(name, boatType, length);
+            System.Console.WriteLine(boat.boatName);
+            System.Console.WriteLine(boat.boatType);
+            System.Console.WriteLine(boat.boatLength);
+
+            // return boat object;
+        }
     }
 }

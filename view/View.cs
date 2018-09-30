@@ -46,7 +46,6 @@ namespace jolly_pirate
             Console.WriteLine("Enter your ID: ");
             int inputNumber = Convert.ToInt32(Console.ReadLine());
 
-
             return inputNumber;
         }
 
@@ -55,11 +54,6 @@ namespace jolly_pirate
 
         public void MemberMenu()
         {
-            Console.WriteLine("╔════════════════════════════════════════════════╗");
-            Console.WriteLine("║                                                ║");
-            Console.WriteLine("║             Jolly Pirate Boat Club             ║");
-            Console.WriteLine("║                                                ║");
-            Console.WriteLine("╚════════════════════════════════════════════════╝");
             Console.ResetColor();
             Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member");
             Console.WriteLine("==================================================");
@@ -74,12 +68,25 @@ namespace jolly_pirate
             return boatName;
         }
 
-        public void BoatTypes()
+        public int BoatTypes()
         {
             Console.WriteLine("Choose a boat type: ");
-            Console.WriteLine(" 0 - Kayak or Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
+            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
+            int input;
             
-            // Case enum.
+            int.TryParse(Console.ReadLine(), out input);
+            return input;
+            
+        }
+
+        public int BoatLength()
+        {
+            Console.WriteLine("Type boatlegnth: ");
+            
+            int input;
+            
+            int.TryParse(Console.ReadLine(), out input);
+            return input;
         }
     }
 }

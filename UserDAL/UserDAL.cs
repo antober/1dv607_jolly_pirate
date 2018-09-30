@@ -7,8 +7,7 @@ using Newtonsoft.Json.Linq;
 namespace jolly_pirate {
     class UserDAL {
         public List<User> userInfo;
-        private string fileName = "users.json";
-        private User user;
+        private static string fileName = "users.json";
 
         // Contrsuctor to make oroginalfile read at start.
         public UserDAL () 
@@ -26,7 +25,7 @@ namespace jolly_pirate {
 
         }
 
-        public void saveToFile () 
+        public void SaveToFile () 
         {
             using (StreamWriter file = File.CreateText (fileName)) 
             {
@@ -35,12 +34,12 @@ namespace jolly_pirate {
             }
         }
 
-        public void addUser (User user)
+        public void AddUser (User user)
         {
             this.userInfo.Add (user);
         }
 
-        public void compactListOfMembers () 
+        public void CompactListOfMembers () 
         {
             foreach (var item in this.userInfo) 
             {
@@ -48,7 +47,7 @@ namespace jolly_pirate {
                 Console.WriteLine ($"Name: {item.fullName}, Social security number: {item.SSN}, memberID: {item.id}, Number of boats: {item.boatList.Count}");
             }
         }
-        public void verboseListOfMembers () 
+        public void VerboseListOfMembers () 
         {
             string boats = "";
 

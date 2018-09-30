@@ -4,15 +4,15 @@ namespace jolly_pirate
 
     class Boat
     {
-        private BoatType _boatType;
-        private int _boatLength;
-        private string _boatName;
+        public BoatType boatType;
+        public int boatLength;
+        public string boatName;
         
-        public Boat(BoatType boatType, int boatLength, string boatName) 
+        public Boat(string boatName, BoatType boatType, int boatLength) 
         {
-            this._boatType = boatType;
-            this._boatLength = boatLength;
-            this._boatName = boatName;
+            this.boatType = boatType;
+            this.boatLength = boatLength;
+            this.boatName = boatName;
         }
         public enum BoatType
         {
@@ -20,44 +20,6 @@ namespace jolly_pirate
             Motorsailer,
             Sailboat,
             Other
-        }
-
-        public BoatType BoatTypeValidation
-        {
-            get { return _boatType; }
-            set {
-                //TODO: - Check if Enum has the type before setting.
-                _boatType = value;
-            }
-        }
-
-        public int BoatLengthInMeters 
-        {
-
-            get { return _boatLength; }
-            set {
-                if (value < 1 || value > 50) {
-
-                    throw new Exception("Boatlength is not valid.");
-
-                }
-                _boatLength = value;
-            }
-        }
-          public Boat.BoatType SelectBoatType (int input) 
-        {
-            switch (input) {
-                case 0:
-                    return Boat.BoatType.Kayak_or_Canoe;
-                case 1:
-                    return Boat.BoatType.Motorsailer;
-                case 2:
-                    return Boat.BoatType.Sailboat;
-                case 3:
-                    return Boat.BoatType.Other;
-                default:
-                    throw new ArgumentException ("Gandalf: YOUU SHALL NOT SAIL");
-            }
         }
     }
 }

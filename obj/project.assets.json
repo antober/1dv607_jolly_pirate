@@ -719,23 +719,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yasmi\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/antonoberg/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate\\1dv607_jolly_pirate.csproj",
+      "projectUniqueName": "/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/1dv607_jolly_pirate.csproj",
       "projectName": "1dv607_jolly_pirate",
-      "projectPath": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate\\1dv607_jolly_pirate.csproj",
-      "packagesPath": "C:\\Users\\yasmi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yasmi\\1dv607\\1dv607_jolly_pirate\\obj\\",
+      "projectPath": "/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/1dv607_jolly_pirate.csproj",
+      "packagesPath": "/Users/antonoberg/.nuget/packages/",
+      "outputPath": "/Users/antonoberg/Projects/1DV607/1dv607_jolly_pirate/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\yasmi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/antonoberg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

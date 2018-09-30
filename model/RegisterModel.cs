@@ -30,8 +30,8 @@ namespace jolly_pirate
                 else
                 {
                     User user = new User(number, name, GenerateID());
-                    this._userDAL.addUser(user);
-                    this._userDAL.saveToFile();
+                    this._userDAL.AddUser(user);
+                    this._userDAL.SaveToFile();
                     this._view.RegSuccess();
                 }
             }
@@ -53,5 +53,17 @@ namespace jolly_pirate
             return this._userDAL.userInfo[indexOfLast].id + 1;
             }
         }
+
+        public Boat.BoatType SelectBoatType(int input) 
+        {
+            switch (input)
+            {
+                case 0: return Boat.BoatType.Kayak_or_Canoe;
+                case 1: return Boat.BoatType.Motorsailer;
+                case 2: return Boat.BoatType.Sailboat;
+                case 3: return Boat.BoatType.Other;
+                default: throw new Exception();
+            }
+        }     
     }
 }
