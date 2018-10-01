@@ -17,6 +17,7 @@ namespace jolly_pirate {
         }
         public void InitMasterController () 
         {
+            // this.registerModel.addaboattomember();
             do 
             {
                 Console.Clear();
@@ -65,6 +66,11 @@ namespace jolly_pirate {
             }
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
+
+
+
+
+
 
         // private int GenerateID () 
         // {

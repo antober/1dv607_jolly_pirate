@@ -102,12 +102,13 @@ namespace jolly_pirate
             return boat;
         }
 
-        public void addaboattomember()
+
+        public void AddBoat()
         {
 
             int memberID = this._view.SelectMemberWirthID();
-            var owner = this._memberDAL.memberList.Where(x => x.id == memberID);
-            
+            Member owner = this._memberDAL.memberList.Find(x => x.id == memberID);
+             owner.boatList.Add(CreateBoat());
         }
         public void MemberMenuController(Member member)
         {
@@ -123,7 +124,9 @@ namespace jolly_pirate
                             Console.WriteLine();
                             return;
                         case 1:
-                            member.AddBoat(CreateBoat());
+                            this.AddBoat();
+                            // member.AddBoat(CreateBoat());
+                                this._memberDAL.SaveToFile();
                             
                             //Remove this temporary writeline.
                             foreach (Boat boat in member.boatList)
@@ -131,7 +134,6 @@ namespace jolly_pirate
                                 Console.WriteLine(boat.boatName, boat.boatType, boat.boatLength);  
                                 //TODO: saved to file.
                             }
-                                this._memberDAL.SaveToFile();
                             break;
 
                         case 2:

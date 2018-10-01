@@ -1,18 +1,24 @@
 [
   {
-    "snn": "1234567890",
+    "SSN": null,
     "fullName": "hej",
     "id": 1,
-    "boatList": []
+    "boatList": [
+      {
+        "boatType": 3,
+        "boatLength": 3,
+        "boatName": "fejkbåt"
+      }
+    ]
   },
   {
-    "snn": "1234567890",
+    "SSN": null,
     "fullName": "jolly mfffffff",
     "id": 3,
     "boatList": []
   },
   {
-    "snn": "9999999999",
+    "SSN": null,
     "fullName": "newUser",
     "id": 4,
     "boatList": []

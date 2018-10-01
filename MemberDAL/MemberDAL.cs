@@ -53,7 +53,7 @@ namespace jolly_pirate {
             foreach (var item in this.memberList) 
             {
 
-                Console.WriteLine ($"Name: {item.fullName}, Social security number: {item.SSN}, memberID: {item.id}, Number of boats: {item.boatList.Count}");
+                Console.WriteLine ($"Name: {item.fullName}, Social security number: {item.ssn}, memberID: {item.id}, Number of boats: {item.boatList.Count}");
             }
         }
         public void VerboseListOfMembers () 
@@ -67,7 +67,7 @@ namespace jolly_pirate {
                     boats += boat;
                 
                 }
-                Console.WriteLine ($"Name: {member.fullName}, Social security number: {member.SSN}, MemberID: {member.id}, Boat list: {boats}");
+                Console.WriteLine ($"Name: {member.fullName}, Social security number: {member.ssn}, MemberID: {member.id}, Boat list: {boats}");
             }
         }
     }

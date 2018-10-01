@@ -6,7 +6,7 @@ namespace jolly_pirate
 {
     class Member
     {
-        public string SSN;
+        public string ssn;
         public string fullName;
         public int id;
 
@@ -14,7 +14,7 @@ namespace jolly_pirate
 
         public Member(string socialSecurityNumber, string fullName, int id)
         {
-            this.SSN = socialSecurityNumber;
+            this.ssn = socialSecurityNumber;
             this.fullName = fullName;
             this.id = id;
             this.boatList = new List<Boat>();
