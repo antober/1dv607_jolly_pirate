@@ -5,32 +5,32 @@ using System.Linq;
 namespace jolly_pirate {
     class Controller {
 
-        UserDAL userDAL;
+        MemberDAL memberDAL;
         View view;
 
         RegisterModel registerModel;
 
         public Controller () {
-            this.userDAL = new UserDAL ();
-            this.view = new View ();
-            this.registerModel = new RegisterModel(userDAL, view);
+            this.memberDAL = new MemberDAL();
+            this.view = new View();
+            this.registerModel = new RegisterModel(memberDAL, view);
         }
         public void InitMasterController () 
         {
             do 
             {
-                Console.Clear ();
-                view.StartMenu ();
+                Console.Clear();
+                view.StartMenu();
                 int input;
 
                 try 
                 {
-                    if (int.TryParse (Console.ReadLine (), out input) && input >= 0 && input <= 4) 
+                    if (int.TryParse(Console.ReadLine(), out input) && input >= 0 && input <= 4) 
                     {
                         switch (input) 
                         {
                             case 0: 
-                                Console.WriteLine (); 
+                                Console.WriteLine(); 
                                 return;
                             case 1:
                                 
@@ -38,11 +38,11 @@ namespace jolly_pirate {
                                 break;
 
                             case 2:
-                                this.FindUserByID(view.SelectMemberWirthID());
+                                this.registerModel.FindMemberByID(view.SelectMemberWirthID());
                                 break;
 
                             case 3:
-                                userDAL.CompactListOfMembers();
+                                memberDAL.CompactListOfMembers();
                                 break;
                             case 4:
 
@@ -54,7 +54,7 @@ namespace jolly_pirate {
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine ("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits ");
+                        Console.WriteLine("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits ");
                         Console.ResetColor();
                     }
                 } 
@@ -66,33 +66,33 @@ namespace jolly_pirate {
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
 
-        private int GenerateID () 
-        {
-            if (this.userDAL.userInfo.Count == 0) 
-            {
-                return 1;
-            } 
-            else 
-            {
-                int indexOfLast = this.userDAL.userInfo.Count - 1;
-                return this.userDAL.userInfo[indexOfLast].id + 1;
-            }
-        }
+        // private int GenerateID () 
+        // {
+        //     if (this.memberDAL.memberList.Count == 0) 
+        //     {
+        //         return 1;
+        //     } 
+        //     else 
+        //     {
+        //         int indexOfLast = this.memberDAL.memberList.Count - 1;
+        //         return this.memberDAL.memberList[indexOfLast].id + 1;
+        //     }
+        // }
 
-        public void FindUserByID (int id) 
-        {
+        // public void FindMemberByID (int id) 
+        // {
 
-            User user = this.userDAL.userInfo.Find (x => x.id == id);
+        //     Member member = this.memberDAL.memberList.Find (x => x.id == id);
 
-            if (user == null)
-            {
-                throw new ArgumentException ("No user with the gives ID.");
-            } 
-            else 
-            {
-                view.MemberMenu();
-                registerModel.UserMenu(user);
-            }
-        }        
+        //     if (member == null)
+        //     {
+        //         throw new ArgumentException ("No member with the gives ID.");
+        //     } 
+        //     else 
+        //     {
+        //         view.MemberMenu();
+        //         registerModel.MemberMenu(member);
+        //     }
+        // }        
     }
 }

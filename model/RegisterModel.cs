@@ -1,16 +1,19 @@
 using System;
+using System.Linq;
 
 namespace jolly_pirate
 {
     class RegisterModel
     {
-        private UserDAL _userDAL;
+        private MemberDAL _memberDAL;
         private View _view;
 
-        public RegisterModel(UserDAL uDAL, View view)
+
+        public RegisterModel(MemberDAL mDAL, View view)
         {
-            this._userDAL = uDAL;
+            this._memberDAL = mDAL;
             this._view = view;
+            
         }
         public void TryRegister(string number, string name)
         {
@@ -30,9 +33,9 @@ namespace jolly_pirate
                 
                 else
                 {
-                    User user = new User(number, name, GenerateID());
-                    this._userDAL.AddUser(user);
-                    this._userDAL.SaveToFile();
+                    Member member = new Member(number, name, GenerateID());
+                    this._memberDAL.AddMember(member);
+                    this._memberDAL.SaveToFile();
                     this._view.RegSuccess();
                 }
             }
@@ -42,19 +45,37 @@ namespace jolly_pirate
                 Console.WriteLine(e.Message);
             }
         }
+
         private int GenerateID()
         {
-            if(this._userDAL.userInfo.Count == 0) 
+            if(this._memberDAL.memberList.Count == 0) 
             {
                return 1;
             } 
             else 
             {
-            int indexOfLast = this._userDAL.userInfo.Count - 1;
-            return this._userDAL.userInfo[indexOfLast].id + 1;
+            int indexOfLast = this._memberDAL.memberList.Count - 1;
+            return this._memberDAL.memberList[indexOfLast].id + 1;
             }
         }
 
+        // TODO: Göra om, DELA upp metoden.
+          public void FindMemberByID (int id) 
+        {
+            Member member = this._memberDAL.memberList.Find(x => x.id == id);
+
+            if (member == null)
+            {
+                throw new ArgumentException ("No member with the gives ID.");
+            } 
+            else 
+            {
+                _view.MemberMenu();
+                this.MemberMenuController(member);
+            }
+        }  
+
+        // TODO: Validering för "Invalid input"
         public Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
@@ -74,35 +95,43 @@ namespace jolly_pirate
             int length = this._view.BoatLength();
 
             Boat boat = new Boat(name, boatType, length);
-            System.Console.WriteLine(boat.boatName);
-            System.Console.WriteLine(boat.boatType);
-            System.Console.WriteLine(boat.boatLength);
+            System.Console.Write(boat.boatName + " | ");
+            System.Console.Write(boat.boatType + " | ");
+            System.Console.Write(boat.boatLength);
 
             return boat;
         }
 
-        public void UserMenu(User user)
+        public void addaboattomember()
         {
-            int userMenuInput;
+
+            int memberID = this._view.SelectMemberWirthID();
+            var owner = this._memberDAL.memberList.Where(x => x.id == memberID);
+            
+        }
+        public void MemberMenuController(Member member)
+        {
+            int memberMenuInput;
 
             try 
             {
-                if (int.TryParse (Console.ReadLine (), out userMenuInput) && userMenuInput >= 0 && userMenuInput <= 5) 
+                if (int.TryParse (Console.ReadLine(), out memberMenuInput) && memberMenuInput >= 0 && memberMenuInput <= 5) 
                 {
-                    switch (userMenuInput) 
+                    switch (memberMenuInput) 
                     {
                         case 0: 
                             Console.WriteLine();
                             return;
                         case 1:
-                            user.AddBoat(CreateBoat());
+                            member.AddBoat(CreateBoat());
                             
                             //Remove this temporary writeline.
-                            foreach (Boat boat in user.boatList)
+                            foreach (Boat boat in member.boatList)
                             {
                                 Console.WriteLine(boat.boatName, boat.boatType, boat.boatLength);  
                                 //TODO: saved to file.
                             }
+                                this._memberDAL.SaveToFile();
                             break;
 
                         case 2:
@@ -111,10 +140,10 @@ namespace jolly_pirate
 
                         case 3:
                             //Extract to separate method?
-                            user.getBoatList();
+                            member.getBoatList();
                             int removeBoatInput;
                             int.TryParse(Console.ReadLine(), out removeBoatInput);
-                            user.DeleteBoat(removeBoatInput);
+                            member.DeleteBoat(removeBoatInput);
                             // TODO: save to file.
 
                             break;
@@ -123,7 +152,8 @@ namespace jolly_pirate
                             
                             break;
                         case 5:
-
+                            _memberDAL.DeleteMember(_view.DeleteMember());
+                            _memberDAL.SaveToFile();
                             
                             break;
                     }

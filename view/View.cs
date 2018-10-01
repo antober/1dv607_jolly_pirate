@@ -14,12 +14,12 @@ namespace jolly_pirate
             Console.ResetColor();
             Console.WriteLine(" 0 - Exit\n 1 - Register\n 2 - Select Member \n 3 - View Members List (Compact)\n 4 - View Members List (Verbose)");
             Console.WriteLine("==================================================");
-            Console.Write("Enter your choice [0-4]: ");
+            Console.Write("Enter your choice [0-4]:");
         }
 
         public string RegNumber()
         {
-            Console.WriteLine("Enter Social security number: "); 
+            Console.WriteLine("Enter Social security number:"); 
             string inputNumber = Console.ReadLine();
 
             return inputNumber;
@@ -27,7 +27,7 @@ namespace jolly_pirate
 
         public string RegFullName()
         {
-            Console.WriteLine("Enter fullname: ");
+            Console.WriteLine("Enter fullname:");
             string inputName = Console.ReadLine();
 
             return inputName;
@@ -43,7 +43,7 @@ namespace jolly_pirate
 
         public int SelectMemberWirthID()
         {
-            Console.WriteLine("Enter your ID: ");
+            Console.WriteLine("Enter your ID:");
             int inputNumber = Convert.ToInt32(Console.ReadLine());
 
             return inputNumber;
@@ -57,12 +57,12 @@ namespace jolly_pirate
             Console.ResetColor();
             Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member");
             Console.WriteLine("==================================================");
-            Console.Write("Enter your choice [0-5]: ");
+            Console.Write("Enter your choice [0-5]:");
         }
 
         public string BoatName()
         {
-            Console.WriteLine("Enter boat name: ");
+            Console.WriteLine("Enter boat name:");
             string boatName = Console.ReadLine();
 
             return boatName;
@@ -70,22 +70,47 @@ namespace jolly_pirate
 
         public int BoatTypes()
         {
-            Console.WriteLine("Choose a boat type: ");
+            Console.WriteLine("Choose a boat type:");
             Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
             int input;
             
             int.TryParse(Console.ReadLine(), out input);
+
             return input;
             
         }
 
         public int BoatLength()
         {
-            Console.WriteLine("Type boatlegnth: ");
-            
+            Console.WriteLine("Type boatlegnth:");
             int input;
             
             int.TryParse(Console.ReadLine(), out input);
+            
+            return input;
+        }
+
+        public void ChangeBoatInfo()
+        {
+            throw new Exception("Not implemented."); 
+        }
+
+        public void DeleteBoat()
+        {
+            throw new Exception("Not implemented."); 
+        }
+
+        public void ChangeMemberInfo()
+        {
+            throw new Exception("Not implemented."); 
+        }
+
+        public int DeleteMember()
+        {
+            Console.WriteLine("Choose your memberID:");
+            int input;
+            int.TryParse(Console.ReadLine(), out input);
+
             return input;
         }
     }

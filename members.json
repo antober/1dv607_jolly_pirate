@@ -1,24 +1,18 @@
 [
   {
-    "SSN": "1234567890",
+    "snn": "1234567890",
     "fullName": "hej",
     "id": 1,
     "boatList": []
   },
   {
-    "SSN": "1234567890",
-    "fullName": "hhehehe",
-    "id": 2,
-    "boatList": []
-  },
-  {
-    "SSN": "1234567890",
+    "snn": "1234567890",
     "fullName": "jolly mfffffff",
     "id": 3,
     "boatList": []
   },
   {
-    "SSN": "9999999999",
+    "snn": "9999999999",
     "fullName": "newUser",
     "id": 4,
     "boatList": []

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace jolly_pirate
 {
-    class User
+    class Member
     {
         public string SSN;
         public string fullName;
@@ -11,7 +12,7 @@ namespace jolly_pirate
 
         public List<Boat> boatList;
 
-        public User(string socialSecurityNumber, string fullName, int id)
+        public Member(string socialSecurityNumber, string fullName, int id)
         {
             this.SSN = socialSecurityNumber;
             this.fullName = fullName;
@@ -29,7 +30,7 @@ namespace jolly_pirate
         }
 
         public void AddBoat(Boat boat)
-        {
+        { 
             this.boatList.Add(boat);
         }
 
@@ -44,11 +45,6 @@ namespace jolly_pirate
         }
 
         public void ChangeMemberInfo()
-        {
-            throw new Exception();
-        }
-
-        public void DeleteMember()
         {
             throw new Exception();
         }
