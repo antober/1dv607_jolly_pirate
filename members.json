@@ -1,26 +1,14 @@
 [
   {
-    "SSN": null,
-    "fullName": "hej",
+    "ssn": "1234567890",
+    "fullName": "ruu",
     "id": 1,
     "boatList": [
       {
-        "boatType": 3,
-        "boatLength": 3,
-        "boatName": "fejkbåt"
+        "boatType": 0,
+        "boatLength": 5,
+        "id": 1
       }
     ]
-  },
-  {
-    "SSN": null,
-    "fullName": "jolly mfffffff",
-    "id": 3,
-    "boatList": []
-  },
-  {
-    "SSN": null,
-    "fullName": "newUser",
-    "id": 4,
-    "boatList": []
   }
 ]

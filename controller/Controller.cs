@@ -31,7 +31,7 @@ namespace jolly_pirate {
                         switch (input) 
                         {
                             case 0: 
-                                Console.WriteLine(); 
+                                // Console.WriteLine(); 
                                 return;
                             case 1:
                                 
@@ -47,7 +47,7 @@ namespace jolly_pirate {
                                 break;
                             case 4:
 
-                                this.registerModel.CreateBoat();
+                                // this.registerModel.CreateBoat();
                                 break;
                         }
                     } 

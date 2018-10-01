@@ -95,8 +95,13 @@ namespace jolly_pirate
             throw new Exception("Not implemented."); 
         }
 
-        public void DeleteBoat()
+        public int DeleteBoat()
         {
+            Console.WriteLine("Enter the ID of boat:");
+            int input;
+            int.TryParse(Console.ReadLine(), out input);
+
+            return input;
             throw new Exception("Not implemented."); 
         }
 

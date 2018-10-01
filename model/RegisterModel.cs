@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace jolly_pirate
@@ -33,7 +34,7 @@ namespace jolly_pirate
                 
                 else
                 {
-                    Member member = new Member(number, name, GenerateID());
+                    Member member = new Member(number, name, GenerateID(_memberDAL.memberList, m => m.id));
                     this._memberDAL.AddMember(member);
                     this._memberDAL.SaveToFile();
                     this._view.RegSuccess();
@@ -46,16 +47,18 @@ namespace jolly_pirate
             }
         }
 
-        private int GenerateID()
+
+        private int GenerateID<T>(List<T> aList, Func<T,int> getID)
         {
-            if(this._memberDAL.memberList.Count == 0) 
+
+            if(aList.Count() == 0) 
             {
                return 1;
             } 
             else 
             {
-            int indexOfLast = this._memberDAL.memberList.Count - 1;
-            return this._memberDAL.memberList[indexOfLast].id + 1;
+            int indexOfLast = aList.Count() - 1;
+            return getID(aList[indexOfLast]) + 1;
             }
         }
 
@@ -88,14 +91,13 @@ namespace jolly_pirate
             }
         }
 
-        public Boat CreateBoat() 
+        public Boat CreateBoat(Member member) 
         {
             string name = this._view.BoatName();
             Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
             int length = this._view.BoatLength();
 
-            Boat boat = new Boat(name, boatType, length);
-            System.Console.Write(boat.boatName + " | ");
+            Boat boat = new Boat(GenerateID(member.boatList, b => b.id), boatType, length);
             System.Console.Write(boat.boatType + " | ");
             System.Console.Write(boat.boatLength);
 
@@ -108,7 +110,7 @@ namespace jolly_pirate
 
             int memberID = this._view.SelectMemberWirthID();
             Member owner = this._memberDAL.memberList.Find(x => x.id == memberID);
-             owner.boatList.Add(CreateBoat());
+             owner.boatList.Add(CreateBoat(owner));
         }
         public void MemberMenuController(Member member)
         {
@@ -121,19 +123,13 @@ namespace jolly_pirate
                     switch (memberMenuInput) 
                     {
                         case 0: 
-                            Console.WriteLine();
+                            // Console.WriteLine();
                             return;
                         case 1:
+                    
                             this.AddBoat();
-                            // member.AddBoat(CreateBoat());
-                                this._memberDAL.SaveToFile();
+                            this._memberDAL.SaveToFile();
                             
-                            //Remove this temporary writeline.
-                            foreach (Boat boat in member.boatList)
-                            {
-                                Console.WriteLine(boat.boatName, boat.boatType, boat.boatLength);  
-                                //TODO: saved to file.
-                            }
                             break;
 
                         case 2:
