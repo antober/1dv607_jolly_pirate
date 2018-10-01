@@ -83,13 +83,13 @@ namespace jolly_pirate
 
         public void UserMenu(User user)
         {
-            int input;
+            int userMenuInput;
 
             try 
             {
-                if (int.TryParse (Console.ReadLine (), out input) && input >= 0 && input <= 5) 
+                if (int.TryParse (Console.ReadLine (), out userMenuInput) && userMenuInput >= 0 && userMenuInput <= 5) 
                 {
-                    switch (input) 
+                    switch (userMenuInput) 
                     {
                         case 0: 
                             Console.WriteLine();
@@ -97,10 +97,11 @@ namespace jolly_pirate
                         case 1:
                             user.AddBoat(CreateBoat());
                             
+                            //Remove this temporary writeline.
                             foreach (Boat boat in user.boatList)
                             {
                                 Console.WriteLine(boat.boatName, boat.boatType, boat.boatLength);  
-                                //TODO: needs to be saved to file.
+                                //TODO: saved to file.
                             }
                             break;
 
@@ -109,7 +110,13 @@ namespace jolly_pirate
                             break;
 
                         case 3:
-                            
+                            //Extract to separate method?
+                            user.getBoatList();
+                            int removeBoatInput;
+                            int.TryParse(Console.ReadLine(), out removeBoatInput);
+                            user.DeleteBoat(removeBoatInput);
+                            // TODO: save to file.
+
                             break;
                         case 4:
 

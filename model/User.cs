@@ -20,9 +20,12 @@ namespace jolly_pirate
         }
 
 
-        public List<Boat> getBoatList()
+        public void getBoatList()
         {
-            return this.boatList;
+            foreach (Boat boat in this.boatList)
+            {
+                Console.WriteLine("{0}" + "{1}",boatList.IndexOf(boat), boat);
+            }
         }
 
         public void AddBoat(Boat boat)
