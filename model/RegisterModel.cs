@@ -63,7 +63,7 @@ namespace jolly_pirate
                 case 1: return Boat.BoatType.Motorsailer;
                 case 2: return Boat.BoatType.Sailboat;
                 case 3: return Boat.BoatType.Other;
-                default: throw new Exception();
+                default: throw new Exception("Invalid input.");
             }
         }
 
@@ -79,6 +79,60 @@ namespace jolly_pirate
             System.Console.WriteLine(boat.boatLength);
 
             return boat;
-        }    
+        }
+
+        public void UserMenu(User user)
+        {
+            int input;
+
+            try 
+            {
+                if (int.TryParse (Console.ReadLine (), out input) && input >= 0 && input <= 5) 
+                {
+                    switch (input) 
+                    {
+                        case 0: 
+                            Console.WriteLine();
+                            return;
+                        case 1:
+                            user.AddBoat(CreateBoat());
+                            
+                            foreach (Boat boat in user.boatList)
+                            {
+                                Console.WriteLine(boat.boatName, boat.boatType, boat.boatLength);  
+                                //TODO: needs to be saved to file.
+                            }
+                            break;
+
+                        case 2:
+                            
+                            break;
+
+                        case 3:
+                            
+                            break;
+                        case 4:
+
+                            
+                            break;
+                        case 5:
+
+                            
+                            break;
+                    }
+                } 
+                else 
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine ("You need to enter a number between 0 and 5!\nPress any key to continue, ESC exits ");
+                    Console.ResetColor();
+                }
+            } 
+            catch (Exception e) 
+            {
+                Console.WriteLine ("{0} Exception caught.", e);
+            }
+        }  
     }
 }

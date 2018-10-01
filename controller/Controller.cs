@@ -79,20 +79,19 @@ namespace jolly_pirate {
             }
         }
 
-        // UNDER CONSTUCTION !!!
-        public User FindUserByID (int id) 
+        public void FindUserByID (int id) 
         {
 
-            var member = this.userDAL.userInfo.Find (x => x.id == id);
+            User user = this.userDAL.userInfo.Find (x => x.id == id);
 
-            if (member == null) 
+            if (user == null)
             {
                 throw new ArgumentException ("No user with the gives ID.");
             } 
             else 
             {
                 view.MemberMenu();
-                return member;
+                registerModel.UserMenu(user);
             }
         }        
     }
