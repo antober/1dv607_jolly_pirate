@@ -1,30 +1,25 @@
 [
   {
     "ssn": "1234567890",
-    "fullName": "ruu",
+    "fullName": "hhekel",
     "id": 1,
     "boatList": [
       {
-        "boatType": 0,
-        "length": 5,
+        "boatType": 2,
+        "length": 4,
         "id": 1
       }
     ]
   },
   {
     "ssn": "1234567890",
-    "fullName": "nils",
+    "fullName": "lisa",
     "id": 2,
     "boatList": [
       {
-        "boatType": 2,
-        "length": 5,
-        "id": 1
-      },
-      {
-        "boatType": 1,
+        "boatType": 3,
         "length": 2,
-        "id": 2
+        "id": 1
       }
     ]
   }

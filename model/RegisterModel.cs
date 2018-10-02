@@ -20,7 +20,6 @@ namespace jolly_pirate
         {
             try
             {
-                // Console.Write(numberOfDigits);
 
                 if(number.Length != 10)
                 {
@@ -47,7 +46,8 @@ namespace jolly_pirate
             }
         }
 
-
+        /* Generates new ID by counting the id of the last index.
+            Used for bort member and boat*/
         private int GenerateID<T>(List<T> aList, Func<T,int> getID)
         {
 
@@ -62,7 +62,7 @@ namespace jolly_pirate
             }
         }
 
-
+    
         // TODO: Göra om, DELA upp metoden.
           public void FindMemberByID (int id) 
         {
@@ -78,7 +78,8 @@ namespace jolly_pirate
                 this.MemberMenuController(member);
             }
         }  
-
+        /* Under construction: Should take both 
+            MemberList and BoatList */
         // public void DeleteByID<T>(List<T> aList, Func<T,int> getID)
         // {
         //     var item = aList.SingleOrDefault(x => x = ?);
@@ -110,7 +111,6 @@ namespace jolly_pirate
             System.Console.Write("type:  " + boat.boatType + " | ");
             System.Console.Write("length:  " + boat.length + " | ");
             System.Console.Write("id:  " + boat.id);
-
 
             return boat;
         }

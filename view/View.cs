@@ -71,7 +71,7 @@ namespace jolly_pirate
         public int BoatTypes()
         {
             Console.WriteLine("Choose a boat type:");
-            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Salilboat\n 3 - Other");
+            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Saillboat\n 3 - Other");
             int input;
             
             int.TryParse(Console.ReadLine(), out input);

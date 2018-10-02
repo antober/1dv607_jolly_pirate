@@ -10,7 +10,8 @@ namespace jolly_pirate {
         public List<Member> memberList;
         private static string fileName = "members.json";
 
-        // Contrsuctor to make oroginalfile read at start.
+        /* Contrsuctor to have read oroginalfile at start,
+            before inserting new data. */
         public MemberDAL () 
         {
             string originalData = File.ReadAllText (fileName);
@@ -63,10 +64,10 @@ namespace jolly_pirate {
             {
                 foreach(var boat in member.boatList) 
                 {
-                    boats += boat;
+                    boats += "  boat type: " + boat.boatType + "  length: " + boat.length + "  id: " + boat.id;
                 
                 }
-                Console.WriteLine ($"Name: {member.fullName}, Social security number: {member.ssn}, MemberID: {member.id}, Boat list: {boats}");
+                Console.WriteLine ($"name: {member.fullName}, social security number: {member.ssn}, memberID: {member.id},\nBoat list: {boats} \n");
             }
         }
     }

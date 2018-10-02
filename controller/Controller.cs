@@ -42,6 +42,7 @@ namespace jolly_pirate {
                                 memberDAL.CompactListOfMembers();
                                 break;
                             case 4:
+                                memberDAL.VerboseListOfMembers();
                                 break;
                         }
                     } 
