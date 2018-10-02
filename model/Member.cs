@@ -36,7 +36,7 @@ namespace jolly_pirate
 
         public void ChangeBoat()
         {
-            throw new Exception();
+            throw new Exception("Not yet implemented.");
         }
 
         public void DeleteBoat(int boatIndex)
@@ -46,7 +46,7 @@ namespace jolly_pirate
 
         public void ChangeMemberInfo()
         {
-            throw new Exception();
+            throw new Exception("Not yet implemented.");
         }
     }
 }

@@ -40,7 +40,6 @@ namespace jolly_pirate {
             this.memberList.Add(member);
         }
 
-        // EJ TESTAD!
         public void DeleteMember(int memberID)
         {
             var item = memberList.SingleOrDefault(x => x.id == memberID);

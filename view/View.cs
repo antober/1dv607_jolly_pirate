@@ -27,7 +27,7 @@ namespace jolly_pirate
 
         public string RegFullName()
         {
-            Console.WriteLine("Enter fullname:");
+            Console.WriteLine("Enter a full name:");
             string inputName = Console.ReadLine();
 
             return inputName;
@@ -60,13 +60,13 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-5]:");
         }
 
-        public string BoatName()
-        {
-            Console.WriteLine("Enter boat name:");
-            string boatName = Console.ReadLine();
+        // public string BoatName()
+        // {
+        //     Console.WriteLine("Enter boat name:");
+        //     string boatName = Console.ReadLine();
 
-            return boatName;
-        }
+        //     return boatName;
+        // }
 
         public int BoatTypes()
         {
@@ -82,7 +82,7 @@ namespace jolly_pirate
 
         public int BoatLength()
         {
-            Console.WriteLine("Type boatlegnth:");
+            Console.WriteLine("Type in legnth of boat:");
             int input;
             
             int.TryParse(Console.ReadLine(), out input);

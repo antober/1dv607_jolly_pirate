@@ -17,7 +17,6 @@ namespace jolly_pirate {
         }
         public void InitMasterController () 
         {
-            // this.registerModel.addaboattomember();
             do 
             {
                 Console.Clear();
@@ -31,13 +30,10 @@ namespace jolly_pirate {
                         switch (input) 
                         {
                             case 0: 
-                                // Console.WriteLine(); 
                                 return;
                             case 1:
-                                
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
                                 break;
-
                             case 2:
                                 this.registerModel.FindMemberByID(view.SelectMemberWirthID());
                                 break;
@@ -46,7 +42,6 @@ namespace jolly_pirate {
                                 memberDAL.CompactListOfMembers();
                                 break;
                             case 4:
-
                                 break;
                         }
                     } 
@@ -65,39 +60,5 @@ namespace jolly_pirate {
             }
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
-
-
-
-
-
-
-        // private int GenerateID () 
-        // {
-        //     if (this.memberDAL.memberList.Count == 0) 
-        //     {
-        //         return 1;
-        //     } 
-        //     else 
-        //     {
-        //         int indexOfLast = this.memberDAL.memberList.Count - 1;
-        //         return this.memberDAL.memberList[indexOfLast].id + 1;
-        //     }
-        // }
-
-        // public void FindMemberByID (int id) 
-        // {
-
-        //     Member member = this.memberDAL.memberList.Find (x => x.id == id);
-
-        //     if (member == null)
-        //     {
-        //         throw new ArgumentException ("No member with the gives ID.");
-        //     } 
-        //     else 
-        //     {
-        //         view.MemberMenu();
-        //         registerModel.MemberMenu(member);
-        //     }
-        // }        
     }
 }

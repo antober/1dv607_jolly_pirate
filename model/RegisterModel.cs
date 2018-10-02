@@ -62,6 +62,7 @@ namespace jolly_pirate
             }
         }
 
+
         // TODO: Göra om, DELA upp metoden.
           public void FindMemberByID (int id) 
         {
@@ -78,7 +79,15 @@ namespace jolly_pirate
             }
         }  
 
-        // TODO: Validering för "Invalid input"
+        // public void DeleteByID<T>(List<T> aList, Func<T,int> getID)
+        // {
+        //     var item = aList.SingleOrDefault(x => x = ?);
+        //     if (item != null)
+        //     aList.Remove(item);
+        //     // SELECT MEMBER WHERE ID : get index 
+        // }
+
+        // TODO: Validating input."
         public Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
@@ -93,17 +102,18 @@ namespace jolly_pirate
 
         public Boat CreateBoat(Member member) 
         {
-            string name = this._view.BoatName();
             Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
             int length = this._view.BoatLength();
 
             Boat boat = new Boat(GenerateID(member.boatList, b => b.id), boatType, length);
-            System.Console.Write(boat.boatType + " | ");
-            System.Console.Write(boat.length);
+            System.Console.WriteLine("Saved:");
+            System.Console.Write("type:  " + boat.boatType + " | ");
+            System.Console.Write("length:  " + boat.length + " | ");
+            System.Console.Write("id:  " + boat.id);
+
 
             return boat;
         }
-
 
         public void AddBoat()
         {
@@ -150,7 +160,7 @@ namespace jolly_pirate
                             
                             break;
                         case 5:
-                            _memberDAL.DeleteMember(_view.DeleteMember());
+                            this._memberDAL.DeleteMember(_view.DeleteMember());
                             _memberDAL.SaveToFile();
                             
                             break;

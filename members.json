@@ -10,5 +10,22 @@
         "id": 1
       }
     ]
+  },
+  {
+    "ssn": "1234567890",
+    "fullName": "nils",
+    "id": 2,
+    "boatList": [
+      {
+        "boatType": 2,
+        "length": 5,
+        "id": 1
+      },
+      {
+        "boatType": 1,
+        "length": 2,
+        "id": 2
+      }
+    ]
   }
 ]
