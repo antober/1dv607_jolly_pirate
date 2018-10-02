@@ -47,7 +47,6 @@ namespace jolly_pirate {
                                 break;
                             case 4:
 
-                                // this.registerModel.CreateBoat();
                                 break;
                         }
                     } 

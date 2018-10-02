@@ -6,7 +6,7 @@
     "boatList": [
       {
         "boatType": 0,
-        "boatLength": 5,
+        "length": 5,
         "id": 1
       }
     ]

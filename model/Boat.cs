@@ -5,13 +5,13 @@ namespace jolly_pirate
     class Boat
     {
         public BoatType boatType;
-        public int boatLength;
+        public int length;
         public int id;
         
-        public Boat(int id, BoatType boatType, int boatLength) 
+        public Boat(int id, BoatType boatType, int length) 
         {
             this.boatType = boatType;
-            this.boatLength = boatLength;
+            this.length = length;
             this.id = id;
         }
         public enum BoatType

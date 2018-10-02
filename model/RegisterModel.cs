@@ -99,7 +99,7 @@ namespace jolly_pirate
 
             Boat boat = new Boat(GenerateID(member.boatList, b => b.id), boatType, length);
             System.Console.Write(boat.boatType + " | ");
-            System.Console.Write(boat.boatLength);
+            System.Console.Write(boat.length);
 
             return boat;
         }
