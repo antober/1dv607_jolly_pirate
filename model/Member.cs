@@ -34,19 +34,30 @@ namespace jolly_pirate
             this.boatList.Add(boat);
         }
 
-        public void ChangeBoat()
+        public void DeleteBoat(int boatId)
         {
-            throw new Exception("Not yet implemented.");
+            var item = boatList.SingleOrDefault(x => x.id == boatId);
+            if (item != null)
+            boatList.Remove(item);
         }
 
-        public void DeleteBoat(int boatIndex)
+// Pick a boat ID and 
+        public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
         {
-            this.boatList.RemoveAt(boatIndex);
+            boatToUpdate = newBoat;
         }
 
-        public void ChangeMemberInfo()
+
+        public override string ToString()
         {
-            throw new Exception("Not yet implemented.");
+            string boats = "";
+
+            foreach(Boat boat in this.boatList)
+            {
+                 boats += "  boat type: " + boat.boatType + "  length: " + boat.length + "  id: " + boat.id;
+            }
+            Console.WriteLine(boats);
+            return boats;
         }
     }
 }

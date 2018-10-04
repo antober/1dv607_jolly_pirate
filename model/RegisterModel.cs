@@ -48,47 +48,21 @@ namespace jolly_pirate
 
         /* Generates new ID by counting the id of the last index.
             Used for bort member and boat*/
-        private int GenerateID<T>(List<T> aList, Func<T,int> getID)
+        private int GenerateID<T>(List<T> anyList, Func<T,int> getID)
         {
 
-            if(aList.Count() == 0) 
+            if(anyList.Count() == 0) 
             {
                return 1;
             } 
             else 
             {
-            int indexOfLast = aList.Count() - 1;
-            return getID(aList[indexOfLast]) + 1;
+            int indexOfLast = anyList.Count() - 1;
+            return getID(anyList[indexOfLast]) + 1;
             }
         }
 
-    
-        // TODO: Göra om, DELA upp metoden.
-          public void FindMemberByID (int id) 
-        {
-            Member member = this._memberDAL.memberList.Find(x => x.id == id);
-
-            if (member == null)
-            {
-                throw new ArgumentException ("No member with the gives ID.");
-            } 
-            else 
-            {
-                _view.MemberMenu();
-                this.MemberMenuController(member);
-            }
-        }  
-        /* Under construction: Should take both 
-            MemberList and BoatList */
-        // public void DeleteByID<T>(List<T> aList, Func<T,int> getID)
-        // {
-        //     var item = aList.SingleOrDefault(x => x = ?);
-        //     if (item != null)
-        //     aList.Remove(item);
-        //     // SELECT MEMBER WHERE ID : get index 
-        // }
-
-        // TODO: Validating input."
+          
         public Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
@@ -117,18 +91,20 @@ namespace jolly_pirate
 
         public void AddBoat()
         {
-
-            int memberID = this._view.SelectMemberWirthID();
-            Member owner = this._memberDAL.memberList.Find(x => x.id == memberID);
+            //  TODO: get value from view in another way. this way renders the string.
+            int memberID = this._view.SelectMemberWithID();
+            Member owner = _memberDAL.GetMemberByID(memberID);
              owner.boatList.Add(CreateBoat(owner));
         }
+
+
         public void MemberMenuController(Member member)
         {
             int memberMenuInput;
 
             try 
             {
-                if (int.TryParse (Console.ReadLine(), out memberMenuInput) && memberMenuInput >= 0 && memberMenuInput <= 5) 
+                if (int.TryParse(Console.ReadLine(), out memberMenuInput) && memberMenuInput >= 0 && memberMenuInput <= 5) 
                 {
                     switch (memberMenuInput) 
                     {
@@ -143,21 +119,38 @@ namespace jolly_pirate
                             break;
 
                         case 2:
-                            
+                            // TODO : Overwrite old boat, inte bara lägg till ny
+                            var oldBoatID = _view.ChangeBoatInfoByID();
+                            var boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
+
+
+                            Console.WriteLine("Enter information about new boat.");
+
+                            boatToUpdate = CreateBoat(member);
+
+                            // TODO: FEL HÄR.
+                            // member.UpdateBoat(boatToUpdate, newBoat);
+                            member.AddBoat(boatToUpdate);
+                            this._memberDAL.SaveToFile();
+
+                            // Change Boat
                             break;
 
                         case 3:
-                            //Extract to separate method?
-                            member.getBoatList();
-                            int removeBoatInput;
-                            int.TryParse(Console.ReadLine(), out removeBoatInput);
-                            member.DeleteBoat(removeBoatInput);
-                            // TODO: save to file.
+                            //TODO : let view return values from Readline
+                            // member.ToString();
+
+                            int boatID = _view.DeleteBoatByID();
+                            member.DeleteBoat(boatID);
+                            this._memberDAL.SaveToFile();
 
                             break;
                         case 4:
 
-                            
+                            return;
+
+
+                            // Change member info
                             break;
                         case 5:
                             this._memberDAL.DeleteMember(_view.DeleteMember());

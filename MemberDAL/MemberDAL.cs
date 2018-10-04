@@ -48,6 +48,11 @@ namespace jolly_pirate {
             memberList.Remove(item);
             // SELECT MEMBER WHERE ID : get index 
         }
+        public Member GetMemberByID(int id) 
+        {
+            return this.memberList.Find(x => x.id == id);
+        }
+
         public void CompactListOfMembers () 
         {
             foreach (var item in this.memberList) 
@@ -56,6 +61,7 @@ namespace jolly_pirate {
                 Console.WriteLine ($"Name: {item.fullName}, Social security number: {item.ssn}, memberID: {item.id}, Number of boats: {item.boatList.Count}");
             }
         }
+
         public void VerboseListOfMembers () 
         {
             string boats = "";

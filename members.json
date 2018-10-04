@@ -1,26 +1,42 @@
 [
   {
     "ssn": "1234567890",
-    "fullName": "hhekel",
-    "id": 1,
+    "fullName": "lisa",
+    "id": 2,
+    "boatList": [
+      {
+        "boatType": 3,
+        "length": 4,
+        "id": 1
+      },
+      {
+        "boatType": 3,
+        "length": 6,
+        "id": 2
+      },
+      {
+        "boatType": 2,
+        "length": 2,
+        "id": 3
+      }
+    ]
+  },
+  {
+    "ssn": "1234567890",
+    "fullName": "hejja mig",
+    "id": 3,
     "boatList": [
       {
         "boatType": 2,
-        "length": 4,
+        "length": 3,
         "id": 1
       }
     ]
   },
   {
     "ssn": "1234567890",
-    "fullName": "lisa",
-    "id": 2,
-    "boatList": [
-      {
-        "boatType": 3,
-        "length": 2,
-        "id": 1
-      }
-    ]
+    "fullName": "jams",
+    "id": 4,
+    "boatList": []
   }
 ]

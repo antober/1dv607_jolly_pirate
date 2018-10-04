@@ -41,7 +41,7 @@ namespace jolly_pirate
             System.Console.WriteLine("Press Enter to return to previous menu");
         }
 
-        public int SelectMemberWirthID()
+        public int SelectMemberWithID()
         {
             Console.WriteLine("Enter your ID:");
             int inputNumber = Convert.ToInt32(Console.ReadLine());
@@ -86,34 +86,53 @@ namespace jolly_pirate
             int input;
             
             int.TryParse(Console.ReadLine(), out input);
-            
+
             return input;
         }
 
-        public void ChangeBoatInfo()
+        public int ChangeBoatInfoByID()
         {
-            throw new Exception("Not implemented."); 
-        }
-
-        public int DeleteBoat()
-        {
-            Console.WriteLine("Enter the ID of boat:");
+          Console.WriteLine("Choose the ID of boat you would like to change:");
             int input;
+
             int.TryParse(Console.ReadLine(), out input);
 
             return input;
-            throw new Exception("Not implemented."); 
         }
 
-        public void ChangeMemberInfo()
+        public int DeleteBoatByID()
         {
-            throw new Exception("Not implemented."); 
+            Console.WriteLine("Enter the ID of boat:");
+            int input;
+
+            int.TryParse(Console.ReadLine(), out input);
+
+            return input;
+        }
+        // // Change member information
+        // public int ChangeMemberInfoType()
+        // {
+        //     Console.WriteLine("Choose the ID of boat you would like to change:");
+        //     int input;
+
+        //     int.TryParse(Console.ReadLine(), out input);
+
+        //     return input;
+        // }
+
+        public string ChangeToInput()
+        {
+            Console.WriteLine("Plese enter new information:");
+            string newInfo = Console.ReadLine();
+
+            return newInfo;
         }
 
         public int DeleteMember()
         {
             Console.WriteLine("Choose your memberID:");
             int input;
+
             int.TryParse(Console.ReadLine(), out input);
 
             return input;
