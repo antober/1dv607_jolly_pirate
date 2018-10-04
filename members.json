@@ -5,19 +5,19 @@
     "id": 2,
     "boatList": [
       {
-        "boatType": 3,
-        "length": 4,
-        "id": 1
-      },
-      {
-        "boatType": 3,
-        "length": 6,
-        "id": 2
-      },
-      {
         "boatType": 2,
         "length": 2,
-        "id": 3
+        "id": 4
+      },
+      {
+        "boatType": 3,
+        "length": 3,
+        "id": 4
+      },
+      {
+        "boatType": 1,
+        "length": 1,
+        "id": 4
       }
     ]
   },

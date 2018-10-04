@@ -119,21 +119,21 @@ namespace jolly_pirate
                             break;
 
                         case 2:
-                            // TODO : Overwrite old boat, inte bara lägg till ny
-                            var oldBoatID = _view.ChangeBoatInfoByID();
-                            var boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
+                            // Change Boat
+
+                            int oldBoatID = _view.ChangeBoatInfoByID();
+                            Boat boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
+
+                            int index = member.boatList.IndexOf(boatToUpdate);
 
 
                             Console.WriteLine("Enter information about new boat.");
 
-                            boatToUpdate = CreateBoat(member);
+                            Boat newboat = CreateBoat(member);
+                            member.boatList[index] = newboat;
 
-                            // TODO: FEL HÄR.
-                            // member.UpdateBoat(boatToUpdate, newBoat);
-                            member.AddBoat(boatToUpdate);
                             this._memberDAL.SaveToFile();
 
-                            // Change Boat
                             break;
 
                         case 3:
