@@ -33,7 +33,7 @@ namespace jolly_pirate
                 
                 else
                 {
-                    Member member = new Member(number, name, GenerateID(_memberDAL.memberList, m => m.id));
+                    Member member = new Member(number, name, GenerateID(_memberDAL.memberList, m => m.Id));
                     this._memberDAL.AddMember(member);
                     this._memberDAL.SaveToFile();
                     this._view.RegSuccess();
@@ -56,8 +56,8 @@ namespace jolly_pirate
             } 
             else 
             {
-            int indexOfLast = anyList.Count() - 1;
-            return getID(anyList[indexOfLast]) + 1;
+                int indexOfLast = anyList.Count() - 1;
+                return getID(anyList[indexOfLast]) + 1;
             }
         }
           
@@ -78,7 +78,7 @@ namespace jolly_pirate
             Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
             int length = this._view.BoatLength();
 
-            Boat boat = new Boat(GenerateID(member.boatList, b => b.id), boatType, length);
+            Boat boat = new Boat(GenerateID(member.boatList, b => b.Id), boatType, length);
             this._view.BoatIsSaved(boat);
 
             return boat;
@@ -95,7 +95,7 @@ namespace jolly_pirate
         private void ChangeBoat(Member member)
         {
             int oldBoatID = _view.ChangeBoatInfoByID();
-            Boat boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
+            Boat boatToUpdate = member.boatList.Find(x => x.Id == oldBoatID);
             int index = member.boatList.IndexOf(boatToUpdate);
 
             Console.WriteLine("Enter information about new boat.");
@@ -106,7 +106,7 @@ namespace jolly_pirate
             this._memberDAL.SaveToFile();
         }
 
-
+        //This is a Controller method and should be moved.
         public void MemberMenuController(Member member)
         {
             int memberMenuInput;
@@ -128,7 +128,7 @@ namespace jolly_pirate
 
                         case 2:
                             //Find a way to refer to the current user by comparing the actual object instead
-                            //of comparing a manual input.
+                            //of comparing a manual input with id.
                             //Defferent boats can have the same id.
                             member.getBoatList();
                             ChangeBoat(member);

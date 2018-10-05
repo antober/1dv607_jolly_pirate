@@ -60,19 +60,12 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-5]:");
         }
 
-        // public string BoatName()
-        // {
-        //     Console.WriteLine("Enter boat name:");
-        //     string boatName = Console.ReadLine();
-
-        //     return boatName;
-        // }
         public void BoatIsSaved(Boat boat)
         {
             System.Console.WriteLine("Saved:");
-            System.Console.Write("type:  " + boat.boatType + " | ");
-            System.Console.Write("length:  " + boat.length + " | ");
-            System.Console.Write("id:  " + boat.id);
+            System.Console.Write("type:  " + boat.Type + " | ");
+            System.Console.Write("length:  " + boat.Length + " | ");
+            System.Console.Write("id:  " + boat.Id);
         }
 
         public int BoatTypes()
@@ -116,16 +109,6 @@ namespace jolly_pirate
 
             return input;
         }
-        // // Change member information
-        // public int ChangeMemberInfoType()
-        // {
-        //     Console.WriteLine("Choose the ID of boat you would like to change:");
-        //     int input;
-
-        //     int.TryParse(Console.ReadLine(), out input);
-
-        //     return input;
-        // }
 
         public string ChangeToInput()
         {

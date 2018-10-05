@@ -1,13 +1,10 @@
 [
   {
-    "ssn": "1234567890",
-    "fullName": "lisa",
-    "id": 2,
     "boatList": [
       {
         "boatType": 2,
-        "length": 2,
-        "id": 4
+        "length": 44,
+        "id": 6
       },
       {
         "boatType": 3,
@@ -24,24 +21,33 @@
         "length": 22,
         "id": 5
       }
-    ]
+    ],
+    "SSN": "1234567890",
+    "Name": "lisa",
+    "Id": 2
   },
   {
-    "ssn": "1234567890",
-    "fullName": "hejja mig",
-    "id": 3,
     "boatList": [
       {
         "boatType": 2,
         "length": 3,
         "id": 1
       }
-    ]
+    ],
+    "SSN": "1234567890",
+    "Name": "hejja mig",
+    "Id": 3
   },
   {
-    "ssn": "1234567890",
-    "fullName": "jams",
-    "id": 4,
-    "boatList": []
+    "boatList": [],
+    "SSN": "1234567890",
+    "Name": "jams",
+    "Id": 4
+  },
+  {
+    "boatList": [],
+    "SSN": "2222222222",
+    "Name": "steve",
+    "Id": 5
   }
 ]

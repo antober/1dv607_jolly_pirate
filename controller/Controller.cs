@@ -35,10 +35,9 @@ namespace jolly_pirate {
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
                                 break;
                             case 2:
-                              var member = this.memberDAL.GetMemberByID(view.SelectMemberWithID());
+                                Member member = this.memberDAL.GetMemberByID(view.SelectMemberWithID());
                                 view.MemberMenu();
                                 registerModel.MemberMenuController(member);
-                                // this.registerModel.FindMemberByID(view.SelectMemberWithID());
                                 break;
 
                             case 3:

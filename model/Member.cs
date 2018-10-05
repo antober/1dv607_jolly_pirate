@@ -6,27 +6,44 @@ namespace jolly_pirate
 {
     class Member
     {
-        public string ssn;
-        public string fullName;
-        public int id;
+        private string _ssn;
+        private string _name;
+        private int _id;
 
         public List<Boat> boatList;
 
         public Member(string socialSecurityNumber, string fullName, int id)
         {
-            this.ssn = socialSecurityNumber;
-            this.fullName = fullName;
-            this.id = id;
+            SSN = socialSecurityNumber;
+            Name = fullName;
+            Id = id;
             this.boatList = new List<Boat>();
         }
 
+        public string SSN
+        {
+            get { return _ssn; }
+            set { _ssn = value; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
 
         public void getBoatList()
         {
             foreach (Boat boat in this.boatList)
             {
                 Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
-                boatList.IndexOf(boat), boat.id, boat.boatType, boat.length);
+                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
             }
         }
 
@@ -37,12 +54,11 @@ namespace jolly_pirate
 
         public void DeleteBoat(int boatId)
         {
-            var item = boatList.SingleOrDefault(x => x.id == boatId);
-            if (item != null)
-            boatList.Remove(item);
+            Boat boat = boatList.SingleOrDefault(x => x.Id == boatId);
+            if (boat != null)
+            boatList.Remove(boat);
         }
-
-// Pick a boat ID and 
+        
         public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
         {
             boatToUpdate = newBoat;
@@ -55,7 +71,7 @@ namespace jolly_pirate
 
             foreach(Boat boat in this.boatList)
             {
-                 boats += "  boat type: " + boat.boatType + "  length: " + boat.length + "  id: " + boat.id;
+                 boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  id: " + boat.Id;
             }
             Console.WriteLine(boats);
             return boats;

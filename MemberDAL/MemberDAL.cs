@@ -43,14 +43,14 @@ namespace jolly_pirate {
 
         public void DeleteMember(int memberID)
         {
-            var item = memberList.SingleOrDefault(x => x.id == memberID);
+            var item = memberList.SingleOrDefault(x => x.Id == memberID);
             if (item != null)
             memberList.Remove(item);
             // SELECT MEMBER WHERE ID : get index 
         }
-        public Member GetMemberByID(int id) 
+        public Member GetMemberByID(int Id) 
         {
-            return this.memberList.Find(x => x.id == id);
+            return this.memberList.Find(x => x.Id == Id);
         }
 
         public void CompactListOfMembers () 
@@ -58,7 +58,7 @@ namespace jolly_pirate {
             foreach (var item in this.memberList) 
             {
 
-                Console.WriteLine ($"Name: {item.fullName}, Social security number: {item.ssn}, memberID: {item.id}, Number of boats: {item.boatList.Count}");
+                Console.WriteLine ($"Name: {item.Name}, Social security number: {item.SSN}, memberID: {item.Id}, Number of boats: {item.boatList.Count}");
             }
         }
 
@@ -70,10 +70,10 @@ namespace jolly_pirate {
             {
                 foreach(var boat in member.boatList) 
                 {
-                    boats += "  boat type: " + boat.boatType + "  length: " + boat.length + "  id: " + boat.id;
+                    boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  Id: " + boat.Id;
                 
                 }
-                Console.WriteLine ($"name: {member.fullName}, social security number: {member.ssn}, memberID: {member.id},\nBoat list: {boats} \n");
+                Console.WriteLine ($"name: {member.Name}, social security number: {member.SSN}, memberID: {member.Id},\nBoat list: {boats} \n");
             }
         }
     }
