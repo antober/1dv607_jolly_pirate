@@ -78,7 +78,7 @@ namespace jolly_pirate
             Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
             int length = this._view.BoatLength();
 
-            Boat boat = new Boat(GenerateID(member.boatList, b => b.Id), boatType, length);
+            Boat boat = new Boat(GenerateID(member.BoatList, b => b.Id), boatType, length);
             this._view.BoatIsSaved(boat);
 
             return boat;
@@ -89,19 +89,19 @@ namespace jolly_pirate
             //  TODO: get value from view in another way. this way renders the string.
             int memberID = this._view.SelectMemberWithID();
             Member owner = _memberDAL.GetMemberByID(memberID);
-            owner.boatList.Add(CreateBoat(owner));
+            owner.BoatList.Add(CreateBoat(owner));
         }
 
         private void ChangeBoat(Member member)
         {
             int oldBoatID = _view.ChangeBoatInfoByID();
-            Boat boatToUpdate = member.boatList.Find(x => x.Id == oldBoatID);
-            int index = member.boatList.IndexOf(boatToUpdate);
+            Boat boatToUpdate = member.BoatList.Find(x => x.Id == oldBoatID);
+            int index = member.BoatList.IndexOf(boatToUpdate);
 
             Console.WriteLine("Enter information about new boat.");
 
             Boat newboat = CreateBoat(member);
-            member.boatList[index] = newboat;
+            member.BoatList[index] = newboat;
 
             this._memberDAL.SaveToFile();
         }

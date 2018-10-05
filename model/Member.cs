@@ -10,14 +10,14 @@ namespace jolly_pirate
         private string _name;
         private int _id;
 
-        public List<Boat> boatList;
+        private List<Boat> _boatList;
 
         public Member(string socialSecurityNumber, string fullName, int id)
         {
             SSN = socialSecurityNumber;
             Name = fullName;
             Id = id;
-            this.boatList = new List<Boat>();
+            BoatList = new List<Boat>();
         }
 
         public string SSN
@@ -38,25 +38,31 @@ namespace jolly_pirate
             set { _id = value; }
         }
 
+        public List<Boat> BoatList
+        {
+            get { return _boatList; }
+            set { _boatList = value; }
+        }
+
         public void getBoatList()
         {
-            foreach (Boat boat in this.boatList)
+            foreach (Boat boat in BoatList)
             {
                 Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
-                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
+                BoatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
             }
         }
 
         public void AddBoat(Boat boat)
         { 
-            this.boatList.Add(boat);
+            this.BoatList.Add(boat);
         }
 
         public void DeleteBoat(int boatId)
         {
-            Boat boat = boatList.SingleOrDefault(x => x.Id == boatId);
+            Boat boat = BoatList.SingleOrDefault(x => x.Id == boatId);
             if (boat != null)
-            boatList.Remove(boat);
+            BoatList.Remove(boat);
         }
         
         public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
@@ -69,7 +75,7 @@ namespace jolly_pirate
         {
             string boats = "";
 
-            foreach(Boat boat in this.boatList)
+            foreach(Boat boat in this.BoatList)
             {
                  boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  id: " + boat.Id;
             }
