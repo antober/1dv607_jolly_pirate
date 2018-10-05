@@ -50,7 +50,6 @@ namespace jolly_pirate
             Used for bort member and boat*/
         private int GenerateID<T>(List<T> anyList, Func<T,int> getID)
         {
-
             if(anyList.Count() == 0) 
             {
                return 1;
@@ -61,9 +60,8 @@ namespace jolly_pirate
             return getID(anyList[indexOfLast]) + 1;
             }
         }
-
           
-        public Boat.BoatType SelectBoatType(int input) 
+        private Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
             {
@@ -75,26 +73,37 @@ namespace jolly_pirate
             }
         }
 
-        public Boat CreateBoat(Member member) 
+        private Boat CreateBoat(Member member) 
         {
             Boat.BoatType boatType = SelectBoatType(this._view.BoatTypes());
             int length = this._view.BoatLength();
 
             Boat boat = new Boat(GenerateID(member.boatList, b => b.id), boatType, length);
-            System.Console.WriteLine("Saved:");
-            System.Console.Write("type:  " + boat.boatType + " | ");
-            System.Console.Write("length:  " + boat.length + " | ");
-            System.Console.Write("id:  " + boat.id);
+            this._view.BoatIsSaved(boat);
 
             return boat;
         }
 
-        public void AddBoat()
+        private void AddBoat()
         {
             //  TODO: get value from view in another way. this way renders the string.
             int memberID = this._view.SelectMemberWithID();
             Member owner = _memberDAL.GetMemberByID(memberID);
-             owner.boatList.Add(CreateBoat(owner));
+            owner.boatList.Add(CreateBoat(owner));
+        }
+
+        private void ChangeBoat(Member member)
+        {
+            int oldBoatID = _view.ChangeBoatInfoByID();
+            Boat boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
+            int index = member.boatList.IndexOf(boatToUpdate);
+
+            Console.WriteLine("Enter information about new boat.");
+
+            Boat newboat = CreateBoat(member);
+            member.boatList[index] = newboat;
+
+            this._memberDAL.SaveToFile();
         }
 
 
@@ -109,7 +118,6 @@ namespace jolly_pirate
                     switch (memberMenuInput) 
                     {
                         case 0: 
-                            // Console.WriteLine();
                             return;
                         case 1:
                     
@@ -119,43 +127,28 @@ namespace jolly_pirate
                             break;
 
                         case 2:
-                            // Change Boat
-
-                            int oldBoatID = _view.ChangeBoatInfoByID();
-                            Boat boatToUpdate = member.boatList.Find(x => x.id == oldBoatID);
-
-                            int index = member.boatList.IndexOf(boatToUpdate);
-
-
-                            Console.WriteLine("Enter information about new boat.");
-
-                            Boat newboat = CreateBoat(member);
-                            member.boatList[index] = newboat;
-
-                            this._memberDAL.SaveToFile();
-
+                            //Find a way to refer to the current user by comparing the actual object instead
+                            //of comparing a manual input.
+                            //Defferent boats can have the same id.
+                            member.getBoatList();
+                            ChangeBoat(member);
                             break;
 
                         case 3:
                             //TODO : let view return values from Readline
                             // member.ToString();
-
+                            member.getBoatList();
                             int boatID = _view.DeleteBoatByID();
                             member.DeleteBoat(boatID);
                             this._memberDAL.SaveToFile();
 
                             break;
                         case 4:
-
-                            return;
-
-
                             // Change member info
                             break;
                         case 5:
                             this._memberDAL.DeleteMember(_view.DeleteMember());
-                            _memberDAL.SaveToFile();
-                            
+                            this._memberDAL.SaveToFile();    
                             break;
                     }
                 } 

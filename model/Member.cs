@@ -25,7 +25,8 @@ namespace jolly_pirate
         {
             foreach (Boat boat in this.boatList)
             {
-                Console.WriteLine("{0}" + "{1}",boatList.IndexOf(boat), boat);
+                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
+                boatList.IndexOf(boat), boat.id, boat.boatType, boat.length);
             }
         }
 

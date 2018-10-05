@@ -18,6 +18,11 @@
         "boatType": 1,
         "length": 1,
         "id": 4
+      },
+      {
+        "boatType": 1,
+        "length": 22,
+        "id": 5
       }
     ]
   },

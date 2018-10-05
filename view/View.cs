@@ -67,6 +67,13 @@ namespace jolly_pirate
 
         //     return boatName;
         // }
+        public void BoatIsSaved(Boat boat)
+        {
+            System.Console.WriteLine("Saved:");
+            System.Console.Write("type:  " + boat.boatType + " | ");
+            System.Console.Write("length:  " + boat.length + " | ");
+            System.Console.Write("id:  " + boat.id);
+        }
 
         public int BoatTypes()
         {
