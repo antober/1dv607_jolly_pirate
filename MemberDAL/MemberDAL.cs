@@ -18,11 +18,11 @@ namespace jolly_pirate {
 
             if (originalData == "") 
             {
-                this.memberList = new List<Member> ();
+                memberList = new List<Member> ();
             } 
             else 
             {
-                this.memberList = JsonConvert.DeserializeObject<List<Member>> (originalData);
+                memberList = JsonConvert.DeserializeObject<List<Member>> (originalData);
             }
 
         }
@@ -31,34 +31,34 @@ namespace jolly_pirate {
         {
             using (StreamWriter file = File.CreateText (fileName)) 
             {
-                string json = JsonConvert.SerializeObject (this.memberList, Formatting.Indented);
+                string json = JsonConvert.SerializeObject (memberList, Formatting.Indented);
                 file.Write (json);
             }
         }
 
         public void AddMember (Member member)
         {
-            this.memberList.Add(member);
+            memberList.Add(member);
         }
 
         public void DeleteMember(int memberID)
         {
-            var item = memberList.SingleOrDefault(x => x.Id == memberID);
-            if (item != null)
-            memberList.Remove(item);
+            Member member = memberList.SingleOrDefault(x => x.Id == memberID);
+            if (member != null)
+            memberList.Remove(member);
             // SELECT MEMBER WHERE ID : get index 
         }
         public Member GetMemberByID(int Id) 
         {
-            return this.memberList.Find(x => x.Id == Id);
+            return memberList.Find(x => x.Id == Id);
         }
 
         public void CompactListOfMembers () 
         {
-            foreach (var item in this.memberList) 
+            foreach (Member member in memberList) 
             {
 
-                Console.WriteLine ($"Name: {item.Name}, Social security number: {item.SSN}, memberID: {item.Id}, Number of boats: {item.boatList.Count}");
+                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, memberID: {member.Id}, Number of boats: {member.BoatList.Count}");
             }
         }
 
@@ -66,9 +66,9 @@ namespace jolly_pirate {
         {
             string boats = "";
 
-            foreach (var member in this.memberList) 
+            foreach (Member member in memberList) 
             {
-                foreach(var boat in member.boatList) 
+                foreach(Boat boat in member.BoatList) 
                 {
                     boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  Id: " + boat.Id;
                 
