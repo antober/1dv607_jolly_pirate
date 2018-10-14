@@ -38,9 +38,16 @@ namespace jolly_pirate
             }
         }
 
+
         public void AddMember (Member member)
         {
             memberList.Add(member);
+        }
+
+        public void UpdateMember(Member memberToUpdate, string newMemberName, string newSsn)
+        {
+            memberToUpdate.Name = newMemberName;
+            memberToUpdate.SSN = newSsn;
         }
 
         public void DeleteMember(int memberID)
@@ -48,7 +55,6 @@ namespace jolly_pirate
             Member member = memberList.SingleOrDefault(x => x.Id == memberID);
             if (member != null)
             memberList.Remove(member);
-            // SELECT MEMBER WHERE ID : get index 
         }
         public Member GetMemberByID(int Id) 
         {

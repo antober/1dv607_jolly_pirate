@@ -36,9 +36,10 @@ namespace jolly_pirate
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
                                 break;
                             case 2:
+                                view.ShowEnterID();
                                 Member member = memberDAL.GetMemberByID(view.SelectMemberWithID());
                                 view.MemberMenu();
-                                registerModel.MemberMenuController(member);
+                                MemberMenuController(member);
                                 break;
                             case 3:
                                 view.ShowCompactListOfMembers(memberDAL.GetMemberList());
@@ -50,10 +51,7 @@ namespace jolly_pirate
                     } 
                     else 
                     {
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("You need to enter a number between 0 and 2!\nPress any key to continue, ESC exits ");
-                        Console.ResetColor();
+                        view.ErrorMessageMenu();
                     }
                 } 
                 catch (Exception e) 
@@ -62,6 +60,62 @@ namespace jolly_pirate
                 }
             }
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+        }
+
+
+        public void MemberMenuController(Member member)
+        {
+            int memberMenuInput;
+
+            try 
+            {
+                if (int.TryParse(Console.ReadLine(), out memberMenuInput) && memberMenuInput >= 0 && memberMenuInput <= 5) 
+                {
+                    switch (memberMenuInput) 
+                    {
+                        case 0: 
+                            return;
+
+                        case 1:
+                            registerModel.AddBoat();
+                            memberDAL.SaveToFile();
+                            break;
+
+                        case 2:
+                            view.ShowBoatList(member.BoatList);
+                            registerModel.ChangeBoat(member);
+                            break;
+
+                        case 3:
+                            view.ShowBoatList(member.BoatList);
+                            int boatID = view.DeleteBoatByID();
+                            member.DeleteBoat(boatID);
+                            memberDAL.SaveToFile();
+
+                            break;
+                        case 4:
+                            int oldMemberID = this.view.SelectMemberWithID();
+                            Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
+                            memberDAL.UpdateMember(member,this.view.RegFullName(), this.view.RegNumber());
+                            memberDAL.SaveToFile();
+
+                            break;
+                        case 5:
+                            memberDAL.DeleteMember(view.DeleteMember());
+                            memberDAL.SaveToFile();   
+
+                            break;
+                    }
+                } 
+                else 
+                {
+                    view.ErrorMessageMenu();
+                }
+            } 
+            catch (Exception e) 
+            {
+                Console.WriteLine ("{0} Exception caught.", e);
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ namespace jolly_pirate
         //Not yet implemented
         public void AddBoat(Boat boat)
         { 
-            this.BoatList.Add(boat);
+            BoatList.Add(boat);
         }
 
         public void DeleteBoat(int boatId)
@@ -67,7 +67,7 @@ namespace jolly_pirate
         {
             string boats = "";
 
-            foreach(Boat boat in this.BoatList)
+            foreach(Boat boat in BoatList)
             {
                  boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  id: " + boat.Id;
             }

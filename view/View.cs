@@ -43,12 +43,23 @@ namespace jolly_pirate
             System.Console.WriteLine("Press Enter to return to previous menu");
         }
 
-        public int SelectMemberWithID()
+        public void EnterIDConsoleString()
         {
             Console.WriteLine("Enter your ID:");
+        }
+        
+        public int SelectMemberWithID()
+        {
             int inputNumber = Convert.ToInt32(Console.ReadLine());
-
             return inputNumber;
+        }
+
+        public void ErrorMessageMenu()
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("You need to enter a number between the given options!\nPress any key to continue, ESC exits ");
+            Console.ResetColor();
         }
 
 
