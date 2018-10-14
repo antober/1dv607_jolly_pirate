@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace jolly_pirate
 {
@@ -68,6 +70,15 @@ namespace jolly_pirate
             System.Console.Write("id:  " + boat.Id);
         }
 
+        public void MemberIsSaved(Member member)
+        {
+            System.Console.WriteLine("Saved:");
+            System.Console.Write("Name:  " + member.Name + " | ");
+            System.Console.Write("Social security number:  " + member.SSN + " | ");
+            System.Console.Write("id:  " + member.Id);
+            System.Console.WriteLine();
+        }
+
         public int BoatTypes()
         {
             Console.WriteLine("Choose a boat type:");
@@ -126,6 +137,39 @@ namespace jolly_pirate
             int.TryParse(Console.ReadLine(), out input);
 
             return input;
+        }
+
+        public void ShowVerboseListOfMembers (List<Member> memberList) 
+        {
+            string boats = "";
+
+            foreach (Member member in memberList) 
+            {
+                foreach(Boat boat in member.BoatList) 
+                {
+                    boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  Id: " + boat.Id;
+                
+                }
+                Console.WriteLine ($"name: {member.Name}, social security number: {member.SSN}, memberID: {member.Id},\nBoat list: {boats} \n");
+            }
+        }
+
+        public void ShowCompactListOfMembers (List<Member> memberList) 
+        {
+            foreach (Member member in memberList) 
+            {
+
+                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, memberID: {member.Id}, Number of boats: {member.BoatList.Count}");
+            }
+        }
+
+        public void ShowBoatList(List<Boat> boatList)
+        {
+            foreach (Boat boat in boatList)
+            {
+                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
+                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
+            }
         }
     }
 }

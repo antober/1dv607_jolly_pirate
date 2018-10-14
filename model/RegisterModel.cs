@@ -36,6 +36,7 @@ namespace jolly_pirate
                     Member member = new Member(number, name, GenerateID(_memberDAL.memberList, m => m.Id));
                     this._memberDAL.AddMember(member);
                     this._memberDAL.SaveToFile();
+                    this._view.MemberIsSaved(member);
                     this._view.RegSuccess();
                 }
             }
@@ -120,24 +121,22 @@ namespace jolly_pirate
                         case 0: 
                             return;
                         case 1:
-                    
                             this.AddBoat();
                             this._memberDAL.SaveToFile();
-                            
                             break;
 
                         case 2:
                             //Find a way to refer to the current user by comparing the actual object instead
                             //of comparing a manual input with id.
                             //Defferent boats can have the same id.
-                            member.getBoatList();
+                            _view.ShowBoatList(member.BoatList);
                             ChangeBoat(member);
                             break;
 
                         case 3:
                             //TODO : let view return values from Readline
                             // member.ToString();
-                            member.getBoatList();
+                            _view.ShowBoatList(member.BoatList);
                             int boatID = _view.DeleteBoatByID();
                             member.DeleteBoat(boatID);
                             this._memberDAL.SaveToFile();

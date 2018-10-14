@@ -5,8 +5,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace jolly_pirate {
-    class MemberDAL {
+namespace jolly_pirate 
+{
+    class MemberDAL 
+    {
         public List<Member> memberList;
         private static string fileName = "members.json";
 
@@ -53,28 +55,9 @@ namespace jolly_pirate {
             return memberList.Find(x => x.Id == Id);
         }
 
-        public void CompactListOfMembers () 
+        public List<Member> GetMemberList()
         {
-            foreach (Member member in memberList) 
-            {
-
-                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, memberID: {member.Id}, Number of boats: {member.BoatList.Count}");
-            }
-        }
-
-        public void VerboseListOfMembers () 
-        {
-            string boats = "";
-
-            foreach (Member member in memberList) 
-            {
-                foreach(Boat boat in member.BoatList) 
-                {
-                    boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  Id: " + boat.Id;
-                
-                }
-                Console.WriteLine ($"name: {member.Name}, social security number: {member.SSN}, memberID: {member.Id},\nBoat list: {boats} \n");
-            }
+            return memberList;
         }
     }
 }

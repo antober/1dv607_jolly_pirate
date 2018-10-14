@@ -2,27 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace jolly_pirate {
-    class Controller {
-
+namespace jolly_pirate 
+{
+    class Controller 
+    {
         MemberDAL memberDAL;
         View view;
 
         RegisterModel registerModel;
 
-        public Controller () {
-            this.memberDAL = new MemberDAL();
-            this.view = new View();
-            this.registerModel = new RegisterModel(memberDAL, view);
+        public Controller () 
+        {
+            memberDAL = new MemberDAL();
+            view = new View();
+            registerModel = new RegisterModel(memberDAL, view);
         }
-        public void InitMasterController () 
+        public void InitController () 
         {
             do 
             {
                 Console.Clear();
                 view.StartMenu();
                 int input;
-
                 try 
                 {
                     if (int.TryParse(Console.ReadLine(), out input) && input >= 0 && input <= 4) 
@@ -35,16 +36,15 @@ namespace jolly_pirate {
                                 registerModel.TryRegister(view.RegNumber(), view.RegFullName());
                                 break;
                             case 2:
-                                Member member = this.memberDAL.GetMemberByID(view.SelectMemberWithID());
+                                Member member = memberDAL.GetMemberByID(view.SelectMemberWithID());
                                 view.MemberMenu();
                                 registerModel.MemberMenuController(member);
                                 break;
-
                             case 3:
-                                memberDAL.CompactListOfMembers();
+                                view.ShowCompactListOfMembers(memberDAL.GetMemberList());
                                 break;
                             case 4:
-                                memberDAL.VerboseListOfMembers();
+                                view.ShowVerboseListOfMembers(memberDAL.GetMemberList());
                                 break;
                         }
                     } 

@@ -1,53 +1,70 @@
 [
   {
-    "boatList": [
-      {
-        "boatType": 2,
-        "length": 44,
-        "id": 6
-      },
-      {
-        "boatType": 3,
-        "length": 3,
-        "id": 4
-      },
-      {
-        "boatType": 1,
-        "length": 1,
-        "id": 4
-      },
-      {
-        "boatType": 1,
-        "length": 22,
-        "id": 5
-      }
-    ],
     "SSN": "1234567890",
     "Name": "lisa",
-    "Id": 2
+    "Id": 2,
+    "BoatList": [
+      {
+        "_id": 6,
+        "Id": 6,
+        "Type": 2,
+        "Length": 44
+      },
+      {
+        "_id": 4,
+        "Id": 4,
+        "Type": 3,
+        "Length": 3
+      },
+      {
+        "_id": 4,
+        "Id": 4,
+        "Type": 1,
+        "Length": 1
+      },
+      {
+        "_id": 5,
+        "Id": 5,
+        "Type": 1,
+        "Length": 22
+      }
+    ]
   },
   {
-    "boatList": [
-      {
-        "boatType": 2,
-        "length": 3,
-        "id": 1
-      }
-    ],
     "SSN": "1234567890",
     "Name": "hejja mig",
-    "Id": 3
+    "Id": 3,
+    "BoatList": [
+      {
+        "_id": 2,
+        "Id": 2,
+        "Type": 0,
+        "Length": 33
+      }
+    ]
   },
   {
-    "boatList": [],
     "SSN": "1234567890",
     "Name": "jams",
-    "Id": 4
+    "Id": 4,
+    "BoatList": []
   },
   {
-    "boatList": [],
     "SSN": "2222222222",
     "Name": "steve",
-    "Id": 5
+    "Id": 5,
+    "BoatList": []
+  },
+  {
+    "SSN": "4444444444",
+    "Name": "Mujaffa",
+    "Id": 6,
+    "BoatList": []
+  },
+  {
+    "SSN": "2222222222",
+    "Name": "Mujaffa1",
+    "Id": 7,
+    "BoatList": []
   }
 ]

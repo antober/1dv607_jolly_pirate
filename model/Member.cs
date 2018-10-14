@@ -44,15 +44,7 @@ namespace jolly_pirate
             set { _boatList = value; }
         }
 
-        public void getBoatList()
-        {
-            foreach (Boat boat in BoatList)
-            {
-                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
-                BoatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
-            }
-        }
-
+        //Not yet implemented
         public void AddBoat(Boat boat)
         { 
             this.BoatList.Add(boat);
@@ -65,11 +57,11 @@ namespace jolly_pirate
             BoatList.Remove(boat);
         }
         
+        //Not yet implemented
         public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
         {
             boatToUpdate = newBoat;
         }
-
 
         public override string ToString()
         {
