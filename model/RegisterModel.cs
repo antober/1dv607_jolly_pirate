@@ -46,21 +46,13 @@ namespace jolly_pirate
 
         public Boat CreateBoat(Member member) 
         {
-            Boat.BoatType boatType = SelectBoatType(view.BoatTypes());
-            int length = this.view.BoatLength();
+            Boat.BoatType boatType = SelectBoatType(view.GetBoatTypes());
+            int length = this.view.GetBoatLength();
 
             Boat boat = new Boat(GenerateID(member.BoatList, b => b.Id), boatType, length);
-            this.view.BoatIsSaved(boat);
+            this.view.ShowBoatIsSaved(boat);
 
             return boat;
-        }
-
-        public void AddBoat()
-        {
-            //  TODO: get value from view in another way. this way renders the string.
-            int memberID = this.view.SelectMemberWithID();
-            Member owner = memberDAL.GetMemberByID(memberID);
-            owner.BoatList.Add(CreateBoat(owner));
         }
 
         public void ChangeBoat(Member member)
@@ -76,9 +68,6 @@ namespace jolly_pirate
 
             this.memberDAL.SaveToFile();
         }
-
-        //This is a Controller method and should be moved.
-        
 
         public void TryRegister(string number, string name)
         {
@@ -100,14 +89,14 @@ namespace jolly_pirate
                     Member member = new Member(number, name, GenerateID(memberDAL.memberList, m => m.Id));
                     memberDAL.AddMember(member);
                     memberDAL.SaveToFile();
-                    view.MemberIsSaved(member);
-                    view.RegSuccess();
+                    view.ShowSavedMember(member);
+                    view.ShowSuccessMessage();
                 }
             }
             
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                view.ShowRegisterError(e.Message);
             }
         }  
     }

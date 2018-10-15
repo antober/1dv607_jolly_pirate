@@ -6,7 +6,7 @@ namespace jolly_pirate
 {
     class View
     {
-        public void StartMenu()
+        public void ShowStartMenu()
         {
             Console.WriteLine("╔════════════════════════════════════════════════╗");
             Console.WriteLine("║                                                ║");
@@ -19,7 +19,7 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-4]:");
         }
 
-        public string RegNumber()
+        public string GetInputSSN()
         {
             Console.WriteLine("Enter Social security number:"); 
             string inputNumber = Console.ReadLine();
@@ -27,34 +27,34 @@ namespace jolly_pirate
             return inputNumber;
         }
 
-        public string RegFullName()
+        public string GetInputName()
         {
             Console.WriteLine("Enter a full name:");
             string inputName = Console.ReadLine();
 
             return inputName;
         }
-        public void RegSuccess()
+        public void ShowSuccessMessage()
         {
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("You are successfully registered!");
+            Console.WriteLine("You are successfully saved!");
             Console.ResetColor();
             System.Console.WriteLine("Press Enter to return to previous menu");
         }
 
-        public void EnterIDConsoleString()
+        public void ShowEnterID()
         {
             Console.WriteLine("Enter your ID:");
         }
-        
-        public int SelectMemberWithID()
+
+        public int GetMemberByID()
         {
             int inputNumber = Convert.ToInt32(Console.ReadLine());
             return inputNumber;
         }
 
-        public void ErrorMessageMenu()
+        public void ShowErrorMessageMenu()
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.White;
@@ -62,10 +62,17 @@ namespace jolly_pirate
             Console.ResetColor();
         }
 
+        public void ShowRegisterError(string error)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(error);
+            Console.ResetColor();
+        }
 
 ///////////////////////////////////// Member Menu ////////////////////////////////////////////////////
 
-        public void MemberMenu()
+        public void ShowMemberMenu()
         {
             Console.ResetColor();
             Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member");
@@ -73,7 +80,7 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-5]:");
         }
 
-        public void BoatIsSaved(Boat boat)
+        public void ShowBoatIsSaved(Boat boat)
         {
             System.Console.WriteLine("Saved:");
             System.Console.Write("type:  " + boat.Type + " | ");
@@ -81,7 +88,7 @@ namespace jolly_pirate
             System.Console.Write("id:  " + boat.Id);
         }
 
-        public void MemberIsSaved(Member member)
+        public void ShowSavedMember(Member member)
         {
             System.Console.WriteLine("Saved:");
             System.Console.Write("Name:  " + member.Name + " | ");
@@ -90,10 +97,10 @@ namespace jolly_pirate
             System.Console.WriteLine();
         }
 
-        public int BoatTypes()
+        public int GetBoatTypes()
         {
             Console.WriteLine("Choose a boat type:");
-            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Saillboat\n 3 - Other");
+            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
             int input;
             
             int.TryParse(Console.ReadLine(), out input);
@@ -102,7 +109,7 @@ namespace jolly_pirate
             
         }
 
-        public int BoatLength()
+        public int GetBoatLength()
         {
             Console.WriteLine("Type in legnth of boat:");
             int input;
@@ -140,7 +147,7 @@ namespace jolly_pirate
             return newInfo;
         }
 
-        public int DeleteMember()
+        public int DeleteMemberByID()
         {
             Console.WriteLine("Choose your memberID:");
             int input;
@@ -158,10 +165,9 @@ namespace jolly_pirate
             {
                 foreach(Boat boat in member.BoatList) 
                 {
-                    boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  Id: " + boat.Id;
-                
+                    boats += "  Boat type: " + boat.Type + "  Length: " + boat.Length + "  Id: " + boat.Id;
                 }
-                Console.WriteLine ($"name: {member.Name}, social security number: {member.SSN}, memberID: {member.Id},\nBoat list: {boats} \n");
+                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, MemberID: {member.Id},\nBoat list: {boats} \n");
             }
         }
 
@@ -170,7 +176,7 @@ namespace jolly_pirate
             foreach (Member member in memberList) 
             {
 
-                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, memberID: {member.Id}, Number of boats: {member.BoatList.Count}");
+                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, MemberID: {member.Id}, Number of boats: {member.BoatList.Count}");
             }
         }
 

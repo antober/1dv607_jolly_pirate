@@ -44,7 +44,6 @@ namespace jolly_pirate
             set { _boatList = value; }
         }
 
-        //Not yet implemented
         public void AddBoat(Boat boat)
         { 
             BoatList.Add(boat);
@@ -57,7 +56,6 @@ namespace jolly_pirate
             BoatList.Remove(boat);
         }
         
-        //Not yet implemented
         public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
         {
             boatToUpdate = newBoat;

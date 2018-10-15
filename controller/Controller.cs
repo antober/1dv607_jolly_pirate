@@ -22,7 +22,7 @@ namespace jolly_pirate
             do 
             {
                 Console.Clear();
-                view.StartMenu();
+                view.ShowStartMenu();
                 int input;
                 try 
                 {
@@ -33,12 +33,12 @@ namespace jolly_pirate
                             case 0: 
                                 return;
                             case 1:
-                                registerModel.TryRegister(view.RegNumber(), view.RegFullName());
+                                registerModel.TryRegister(view.GetInputSSN(), view.GetInputName());
                                 break;
                             case 2:
                                 view.ShowEnterID();
-                                Member member = memberDAL.GetMemberByID(view.SelectMemberWithID());
-                                view.MemberMenu();
+                                Member member = memberDAL.GetMemberByID(view.GetMemberByID());
+                                view.ShowMemberMenu();
                                 MemberMenuController(member);
                                 break;
                             case 3:
@@ -51,7 +51,7 @@ namespace jolly_pirate
                     } 
                     else 
                     {
-                        view.ErrorMessageMenu();
+                        view.ShowErrorMessageMenu();
                     }
                 } 
                 catch (Exception e) 
@@ -77,7 +77,7 @@ namespace jolly_pirate
                             return;
 
                         case 1:
-                            registerModel.AddBoat();
+                            member.AddBoat(registerModel.CreateBoat(member));
                             memberDAL.SaveToFile();
                             break;
 
@@ -94,14 +94,16 @@ namespace jolly_pirate
 
                             break;
                         case 4:
-                            int oldMemberID = this.view.SelectMemberWithID();
+                            view.ShowEnterID();
+                            int oldMemberID = this.view.GetMemberByID();
                             Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
-                            memberDAL.UpdateMember(member,this.view.RegFullName(), this.view.RegNumber());
+                            memberDAL.UpdateMember(member,this.view.GetInputName(), this.view.GetInputSSN());
                             memberDAL.SaveToFile();
+                            view.ShowSuccessMessage();
 
                             break;
                         case 5:
-                            memberDAL.DeleteMember(view.DeleteMember());
+                            memberDAL.DeleteMember(view.DeleteMemberByID());
                             memberDAL.SaveToFile();   
 
                             break;
@@ -109,7 +111,7 @@ namespace jolly_pirate
                 } 
                 else 
                 {
-                    view.ErrorMessageMenu();
+                    view.ShowErrorMessageMenu();
                 }
             } 
             catch (Exception e) 
