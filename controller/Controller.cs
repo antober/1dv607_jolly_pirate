@@ -17,7 +17,7 @@ namespace jolly_pirate
             view = new View();
             registerModel = new RegisterModel(memberDAL, view);
         }
-        public void InitController () 
+        public void InitStartMenu () 
         {
             do 
             {
@@ -39,7 +39,7 @@ namespace jolly_pirate
                                 view.ShowEnterID();
                                 Member member = memberDAL.GetMemberByID(view.GetMemberByID());
                                 view.ShowMemberMenu();
-                                MemberMenuController(member);
+                                InitMemberMenu(member);
                                 break;
                             case 3:
                                 view.ShowCompactListOfMembers(memberDAL.GetMemberList());
@@ -63,7 +63,7 @@ namespace jolly_pirate
         }
 
 
-        public void MemberMenuController(Member member)
+        public void InitMemberMenu(Member member)
         {
             int memberMenuInput;
 

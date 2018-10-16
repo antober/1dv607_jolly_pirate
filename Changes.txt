@@ -1,0 +1,27 @@
+** Source code **
+
+
+1. Move verbose, compact list to view, instead of icluding them in MemberDAL where the list
+    containing members are.
+
+2. Encapsulated private fields of Model classes, Member and Boat. The plan is to have some validation in the models as well.
+
+3. RegisterModel class was beginning to get cluttered as we added more functionality, so we moved InitMemberMenu(..) 
+    to the Controller class. Now we have two controller-like methods handling requests and calling methods accordingly.
+
+4. We have changed names to separate methods in View class from other class methods, as we noticed that a lot of methods 
+    did the same thing but differently, like GetMemberID() from view can also be a method name in MemberDAL where we fetch 
+    a member by given id.
+    Now methods in View class start with show as it is more appropriate to describe what the methods does.
+    In the future we could refine these methods and separate the collecting and returning of input-values from the printed 
+    message.
+
+
+
+
+** Diagram **
+
+1. Sequence diagrams were totally remade with the old ones used as a basis…
+
+2. The Class Diagram was also changed. We removed all fields and methods, and focused mainly on the field used as associations. 
+    We also needed to make changes after the source-code was modified.
