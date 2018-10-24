@@ -58,7 +58,7 @@ namespace jolly_pirate
             int oldBoatID = view.ChangeBoatInfoByID();
             Boat boatToUpdate = member.BoatList.Find(x => x.Id == oldBoatID);
             int index = member.BoatList.IndexOf(boatToUpdate);
-
+            // view method
             Console.WriteLine("Enter information about new boat.");
 
             Boat newboat = CreateBoat(member);
@@ -67,7 +67,7 @@ namespace jolly_pirate
             this.memberDAL.SaveToFile();
         }
 
-        public void TryRegister(string number, string name)
+        public void TryRegisterMember(string number, string name)
         {
             try
             {

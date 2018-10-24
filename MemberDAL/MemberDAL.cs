@@ -44,11 +44,13 @@ namespace jolly_pirate
             memberList.Add(member);
         }
 
+
         public void UpdateMember(Member memberToUpdate, string newMemberName, string newSsn)
         {
             memberToUpdate.Name = newMemberName;
             memberToUpdate.SSN = newSsn;
         }
+
 
         public void DeleteMember(int memberID)
         {
@@ -56,10 +58,13 @@ namespace jolly_pirate
             if (member != null)
             memberList.Remove(member);
         }
+
+        
         public Member GetMemberByID(int Id) 
         {
             return memberList.Find(x => x.Id == Id);
         }
+
 
         public List<Member> GetMemberList()
         {

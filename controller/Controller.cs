@@ -11,11 +11,11 @@ namespace jolly_pirate
 
         RegisterModel registerModel;
 
-        public Controller () 
+        public Controller (MemberDAL memberDAL, View view, RegisterModel registerModel) 
         {
-            memberDAL = new MemberDAL();
-            view = new View();
-            registerModel = new RegisterModel(memberDAL, view);
+            this.memberDAL = memberDAL;
+            this.view = view;
+            this.registerModel = registerModel;
         }
         public void InitStartMenu () 
         {
@@ -33,7 +33,7 @@ namespace jolly_pirate
                             case 0: 
                                 return;
                             case 1:
-                                registerModel.TryRegister(view.GetInputSSN(), view.GetInputName());
+                                registerModel.TryRegisterMember(view.GetInputSSN(), view.GetInputName());
                                 break;
                             case 2:
                                 view.ShowEnterID();
