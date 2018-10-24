@@ -12,11 +12,11 @@ namespace jolly_pirate
         public List<Member> memberList;
         private static string fileName = "members.json";
 
-        /* Contrsuctor to have read oroginalfile at start,
+        /* Constructor to have read originalfile at start,
             before inserting new data. */
         public MemberDAL () 
         {
-            string originalData = File.ReadAllText (fileName);
+            string originalData = File.ReadAllText(fileName);
 
             if (originalData == "") 
             {

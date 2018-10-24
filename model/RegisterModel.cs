@@ -14,12 +14,11 @@ namespace jolly_pirate
         {
             memberDAL = mDAL;
             this.view = view;
-            
         }
 
         /* Generates new ID by counting the id of the last index.
-            Used for bort member and boat*/
-        public int GenerateID<T>(List<T> anyList, Func<T,int> getID)
+            Used for both member and boat*/
+        public int GenerateUniqueID<T>(List<T> anyList, Func<T,int> getID)
         {
             if(anyList.Count() == 0) 
             {
@@ -31,7 +30,6 @@ namespace jolly_pirate
                 return getID(anyList[indexOfLast]) + 1;
             }
         }
-          
         private Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
@@ -49,7 +47,7 @@ namespace jolly_pirate
             Boat.BoatType boatType = SelectBoatType(view.GetBoatTypes());
             int length = this.view.GetBoatLength();
 
-            Boat boat = new Boat(GenerateID(member.BoatList, b => b.Id), boatType, length);
+            Boat boat = new Boat(GenerateUniqueID(member.BoatList, b => b.Id), boatType, length);
             this.view.ShowBoatIsSaved(boat);
 
             return boat;
@@ -78,22 +76,19 @@ namespace jolly_pirate
                 {
                     throw new Exception("Social number must contain 10 digits!");
                 }
-
                 if(name.Length < 3)
                 {
                     throw new Exception("Full name must have atleast 3 characters");
                 }
-                
                 else
                 {
-                    Member member = new Member(number, name, GenerateID(memberDAL.memberList, m => m.Id));
+                    Member member = new Member(number, name, GenerateUniqueID(memberDAL.memberList, m => m.Id));
                     memberDAL.AddMember(member);
                     memberDAL.SaveToFile();
                     view.ShowSavedMember(member);
                     view.ShowSuccessMessage();
                 }
             }
-            
             catch (Exception e)
             {
                 view.ShowRegisterError(e.Message);

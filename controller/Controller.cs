@@ -37,7 +37,7 @@ namespace jolly_pirate
                                 break;
                             case 2:
                                 view.ShowEnterID();
-                                Member member = memberDAL.GetMemberByID(view.GetMemberByID());
+                                Member member = memberDAL.GetMemberByID(view.GetMemberID());
                                 view.ShowMemberMenu();
                                 InitMemberMenu(member);
                                 break;
@@ -95,7 +95,7 @@ namespace jolly_pirate
                             break;
                         case 4:
                             view.ShowEnterID();
-                            int oldMemberID = this.view.GetMemberByID();
+                            int oldMemberID = this.view.GetMemberID();
                             Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
                             memberDAL.UpdateMember(member,this.view.GetInputName(), this.view.GetInputSSN());
                             memberDAL.SaveToFile();

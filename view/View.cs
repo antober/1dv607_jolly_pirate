@@ -48,7 +48,7 @@ namespace jolly_pirate
             Console.WriteLine("Enter your ID:");
         }
 
-        public int GetMemberByID()
+        public int GetMemberID()
         {
             int inputNumber = Convert.ToInt32(Console.ReadLine());
             return inputNumber;
