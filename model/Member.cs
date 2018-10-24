@@ -9,7 +9,6 @@ namespace jolly_pirate
         private string _ssn;
         private string _name;
         private int _id;
-
         private List<Boat> _boatList;
 
         public Member(string socialSecurityNumber, string fullName, int id)
@@ -54,23 +53,6 @@ namespace jolly_pirate
             Boat boat = BoatList.SingleOrDefault(x => x.Id == boatId);
             if (boat != null)
             BoatList.Remove(boat);
-        }
-        
-        public void UpdateBoat(Boat boatToUpdate, Boat newBoat)
-        {
-            boatToUpdate = newBoat;
-        }
-
-        public override string ToString()
-        {
-            string boats = "";
-
-            foreach(Boat boat in BoatList)
-            {
-                 boats += "  boat type: " + boat.Type + "  length: " + boat.Length + "  id: " + boat.Id;
-            }
-            Console.WriteLine(boats);
-            return boats;
         }
     }
 }
