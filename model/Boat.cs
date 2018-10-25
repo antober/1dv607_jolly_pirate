@@ -4,7 +4,7 @@ namespace jolly_pirate
 
     class Boat
     {
-        public int _id;
+        private int _id;
         private BoatType _type;
         private int _length;
         

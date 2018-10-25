@@ -41,6 +41,7 @@ namespace jolly_pirate
         }
 
         // TODO: SAVE BOATTYPE AND NOT INT.
+        // HIDDEN Dependency..boat
         public Boat CreateBoat(Member member, int boatTypeInput, int boatLegthInput) 
         {
             Boat.BoatType boatType = SelectBoatType(boatTypeInput);
@@ -59,7 +60,7 @@ namespace jolly_pirate
             member.BoatList[index] = newboat;
         }
 
-        public Member TryRegisterMember(string number, string name)
+        public Member createMember(string number, string name)
         {
             if(number.Length != 10)
             {

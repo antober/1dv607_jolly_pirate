@@ -16,6 +16,10 @@
     In the future we could refine these methods and separate the collecting and returning of input-values from the printed 
     message.
 
+// CHanges after final hand-in
+
+1. Separated View adn Model (RegisterModel).
+2. Changed some names.
 
 
 
@@ -25,3 +29,14 @@
 
 2. The Class Diagram was also changed. We removed all fields and methods, and focused mainly on the field used as associations. 
     We also needed to make changes after the source-code was modified.
+
+
+// Future changes
+
+1. In View: 
+a. Set fields to hold values, instead of functions.
+b. ..more to come.
+
+2. Change public memberlist to private, set to readonly, and private set metod. Add the read-only memberList in RegisterModel.
+
+3. 

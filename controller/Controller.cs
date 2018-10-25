@@ -33,7 +33,7 @@ namespace jolly_pirate
                             case 0: 
                                 return;
                             case 1:
-                                registerModel.TryRegisterMember(view.GetInputSSN(), view.GetInputName());
+                                registerModel.createMember(view.GetInputSSN(), view.GetInputName());
                                 // view.ShowSavedMember();
                                 memberDAL.SaveToFile();
                                 view.ShowSuccessMessage();

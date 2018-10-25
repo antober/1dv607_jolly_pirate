@@ -13,6 +13,7 @@
 *.userosscache
 *.sln.docstates
 
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -336,5 +337,5 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-
 # End of https://www.gitignore.io/api/csharp
+
