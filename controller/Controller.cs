@@ -34,6 +34,10 @@ namespace jolly_pirate
                                 return;
                             case 1:
                                 registerModel.TryRegisterMember(view.GetInputSSN(), view.GetInputName());
+                                // view.ShowSavedMember();
+                                memberDAL.SaveToFile();
+                                view.ShowSuccessMessage();
+
                                 break;
                             case 2:
                                 view.ShowEnterID();
@@ -77,13 +81,31 @@ namespace jolly_pirate
                             return;
 
                         case 1:
-                            member.AddBoat(registerModel.CreateBoat(member));
+                            view.ShowGetBoatTypes();
+                            int givenBoatType = view.GetBoatTypes();
+                            view.ShowGetBoatLentgh();
+                            int givenBoatLength = view.GetBoatLength();
+
+                            member.AddBoat(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
                             memberDAL.SaveToFile();
+                            view.ShowBoatIsSaved(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
+
                             break;
 
                         case 2:
+                            // Case Change Boat
                             view.ShowBoatList(member.BoatList);
-                            registerModel.ChangeBoat(member);
+                            view.ShowGetBoatByID();
+                            int givenBoatID = view.BoatID();
+                            view.ShowGetBoatTypes();
+                            int boatType = view.GetBoatTypes();
+                            view.ShowGetBoatLentgh();
+                            int boatLength = view.GetBoatLength();
+
+                            registerModel.ChangeBoat(member, givenBoatID, boatType, boatLength);
+                            memberDAL.SaveToFile();
+                            view.ShowBoatIsSaved(registerModel.CreateBoat(member, boatType, boatLength));
+
                             break;
 
                         case 3:
@@ -116,7 +138,7 @@ namespace jolly_pirate
             } 
             catch (Exception e) 
             {
-                Console.WriteLine ("{0} Exception caught.", e);
+                Console.WriteLine("{0} Exception caught.", e.Message);
             }
         }
     }

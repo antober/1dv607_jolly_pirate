@@ -7,13 +7,11 @@ namespace jolly_pirate
     class RegisterModel
     {
         private MemberDAL memberDAL;
-        private View view;
 
 
-        public RegisterModel(MemberDAL mDAL, View view)
+        public RegisterModel(MemberDAL memberDAL)
         {
-            memberDAL = mDAL;
-            this.view = view;
+            this.memberDAL = memberDAL;
         }
 
         /* Generates new ID by counting the id of the last index.
@@ -42,56 +40,40 @@ namespace jolly_pirate
             }
         }
 
-        public Boat CreateBoat(Member member) 
+        // TODO: SAVE BOATTYPE AND NOT INT.
+        public Boat CreateBoat(Member member, int boatTypeInput, int boatLegthInput) 
         {
-            Boat.BoatType boatType = SelectBoatType(view.GetBoatTypes());
-            int length = this.view.GetBoatLength();
-
+            Boat.BoatType boatType = SelectBoatType(boatTypeInput);
+            int length = boatLegthInput;
             Boat boat = new Boat(GenerateUniqueID(member.BoatList, b => b.Id), boatType, length);
-            this.view.ShowBoatIsSaved(boat);
-
             return boat;
         }
 
-        public void ChangeBoat(Member member)
+        // TODO: SAVE BOATTYPE AND NOT INT.
+        public void ChangeBoat(Member member, int boatID, int boatTypeInput, int BoatlengthInput)
         {
-            int oldBoatID = view.ChangeBoatInfoByID();
+            int oldBoatID = boatID;
             Boat boatToUpdate = member.BoatList.Find(x => x.Id == oldBoatID);
             int index = member.BoatList.IndexOf(boatToUpdate);
-            // view method
-            Console.WriteLine("Enter information about new boat.");
-
-            Boat newboat = CreateBoat(member);
+            Boat newboat = CreateBoat(member, boatTypeInput, BoatlengthInput);
             member.BoatList[index] = newboat;
-
-            this.memberDAL.SaveToFile();
         }
 
-        public void TryRegisterMember(string number, string name)
+        public Member TryRegisterMember(string number, string name)
         {
-            try
+            if(number.Length != 10)
             {
-
-                if(number.Length != 10)
-                {
-                    throw new Exception("Social number must contain 10 digits!");
-                }
-                if(name.Length < 3)
-                {
-                    throw new Exception("Full name must have atleast 3 characters");
-                }
-                else
-                {
-                    Member member = new Member(number, name, GenerateUniqueID(memberDAL.memberList, m => m.Id));
-                    memberDAL.AddMember(member);
-                    memberDAL.SaveToFile();
-                    view.ShowSavedMember(member);
-                    view.ShowSuccessMessage();
-                }
+                throw new Exception("Social number must contain 10 digits!");
             }
-            catch (Exception e)
+            if(name.Length < 3)
             {
-                view.ShowRegisterError(e.Message);
+                throw new Exception("Full name must have atleast 3 characters");
+            }
+            else
+            {
+                Member member = new Member(number, name, GenerateUniqueID(memberDAL.memberList, m => m.Id));
+                memberDAL.AddMember(member);
+                return member;
             }
         }  
     }

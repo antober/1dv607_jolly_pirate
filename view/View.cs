@@ -79,6 +79,15 @@ namespace jolly_pirate
             Console.WriteLine("==================================================");
             Console.Write("Enter your choice [0-5]:");
         }
+        public void ShowEnterBoatID()
+        {
+            Console.WriteLine("Enter the boat ID:");
+        }
+        public int GetBoatID()
+        {
+            int inputNumber = Convert.ToInt32(Console.ReadLine());
+            return inputNumber;
+        }
 
         public void ShowBoatIsSaved(Boat boat)
         {
@@ -96,36 +105,39 @@ namespace jolly_pirate
             System.Console.Write("id:  " + member.Id);
             System.Console.WriteLine();
         }
-
-        public int GetBoatTypes()
+        public void ShowGetBoatTypes() 
         {
             Console.WriteLine("Choose a boat type:");
             Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
+        }
+        public int GetBoatTypes()
+        {
             int input;
-            
             int.TryParse(Console.ReadLine(), out input);
-
             return input;
-            
+        }
+        
+
+        public void ShowGetBoatLentgh()
+        {
+            Console.WriteLine("Type in legnth of boat:");
         }
 
         public int GetBoatLength()
         {
-            Console.WriteLine("Type in legnth of boat:");
             int input;
-            
             int.TryParse(Console.ReadLine(), out input);
-
             return input;
         }
 
-        public int ChangeBoatInfoByID()
+        public void ShowGetBoatByID()
         {
           Console.WriteLine("Choose the ID of boat you would like to change:");
+        }
+        public int BoatID()
+        {
             int input;
-
             int.TryParse(Console.ReadLine(), out input);
-
             return input;
         }
 
