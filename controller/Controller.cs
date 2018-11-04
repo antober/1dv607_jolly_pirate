@@ -17,53 +17,39 @@ namespace jolly_pirate
             this.view = view;
             this.registerModel = registerModel;
         }
-        public void InitStartMenu () 
+        public bool InitStartMenu () 
         {
-            do 
+            Console.Clear();
+            view.ShowStartMenu();
+            View.StartMenuAction input = view.AskStartMenuAction();
+            
+            switch (input) 
             {
-                Console.Clear();
-                view.ShowStartMenu();
-                int input;
-                try 
-                {
-                    if (int.TryParse(Console.ReadLine(), out input) && input >= 0 && input <= 4) 
-                    {
-                        switch (input) 
-                        {
-                            case 0: 
-                                return;
-                            case 1:
-                                registerModel.createMember(view.GetInputSSN(), view.GetInputName());
-                                // view.ShowSavedMember();
-                                memberDAL.SaveToFile();
-                                view.ShowSuccessMessage();
-
-                                break;
-                            case 2:
-                                view.ShowEnterID();
-                                Member member = memberDAL.GetMemberByID(view.GetMemberID());
-                                view.ShowMemberMenu();
-                                InitMemberMenu(member);
-                                break;
-                            case 3:
-                                view.ShowCompactListOfMembers(memberDAL.GetMemberList());
-                                break;
-                            case 4:
-                                view.ShowVerboseListOfMembers(memberDAL.GetMemberList());
-                                break;
-                        }
-                    } 
-                    else 
-                    {
-                        view.ShowErrorMessageMenu();
-                    }
-                } 
-                catch (Exception e) 
-                {
-                    Console.WriteLine ("{0} Exception caught.", e);
-                }
+                case View.StartMenuAction.Exit: 
+                    return false;
+                case View.StartMenuAction.Register:
+                    registerModel.createMember(view.GetInputSSN(), view.GetInputName());
+                    //TODO: Show register confirm
+                    // view.ShowSavedMember();
+                    memberDAL.SaveToFile();
+                    view.ShowSuccessMessage();
+                     return true;
+                case View.StartMenuAction.SelectMember:
+                    view.ShowEnterID();
+                    Member member = memberDAL.GetMemberByID(view.GetMemberID());
+                    view.ShowMemberMenu();
+                    InitMemberMenu(member);
+                     return true;
+                case View.StartMenuAction.ViewCompactList:
+                    view.ShowCompactListOfMembers(memberDAL.GetMemberList());
+                     return true;
+                case View.StartMenuAction.ViewVerboseList:
+                    view.ShowVerboseListOfMembers(memberDAL.GetMemberList());
+                     return true;
+                default:
+                    return false;
             }
-            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
         }
 
 
@@ -82,9 +68,9 @@ namespace jolly_pirate
 
                         case 1:
                             view.ShowGetBoatTypes();
-                            int givenBoatType = view.GetBoatTypes();
-                            view.ShowGetBoatLentgh();
-                            int givenBoatLength = view.GetBoatLength();
+                            int givenBoatType = view.AskForIntBetween(0,3);
+                            view.ShowGetBoatLength();
+                            int givenBoatLength = view.AskForIntBetween(1,20);
 
                             member.AddBoat(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
                             memberDAL.SaveToFile();
@@ -96,11 +82,11 @@ namespace jolly_pirate
                             // Case Change Boat
                             view.ShowBoatList(member.BoatList);
                             view.ShowGetBoatByID();
-                            int givenBoatID = view.BoatID();
+                            int givenBoatID = view.AskForInt();
                             view.ShowGetBoatTypes();
-                            int boatType = view.GetBoatTypes();
-                            view.ShowGetBoatLentgh();
-                            int boatLength = view.GetBoatLength();
+                            int boatType = view.AskForIntBetween(0,3);
+                            view.ShowGetBoatLength();
+                            int boatLength = view.AskForIntBetween(1,20);
 
                             registerModel.ChangeBoat(member, givenBoatID, boatType, boatLength);
                             memberDAL.SaveToFile();

@@ -12,7 +12,10 @@ namespace jolly_pirate
             MemberDAL mD = new MemberDAL();
             RegisterModel rm = new RegisterModel(mD);
             Controller controller = new Controller(mD, v, rm);
-            controller.InitStartMenu();
+            while(controller.InitStartMenu()) 
+            {
+                Console.ReadKey(false);
+            };
         }
     }
 }

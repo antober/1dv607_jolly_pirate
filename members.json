@@ -5,7 +5,6 @@
     "Id": 1,
     "BoatList": [
       {
-        "_id": 1,
         "Id": 1,
         "Type": 2,
         "Length": 3
@@ -18,7 +17,6 @@
     "Id": 2,
     "BoatList": [
       {
-        "_id": 1,
         "Id": 1,
         "Type": 3,
         "Length": 3
@@ -29,7 +27,13 @@
     "SSN": "1234567890",
     "Name": "yasmin",
     "Id": 3,
-    "BoatList": []
+    "BoatList": [
+      {
+        "Id": 1,
+        "Type": 3,
+        "Length": 5
+      }
+    ]
   },
   {
     "SSN": "1234567890",
@@ -37,11 +41,40 @@
     "Id": 4,
     "BoatList": [
       {
-        "_id": 2,
         "Id": 2,
         "Type": 2,
         "Length": 3
       }
     ]
+  },
+  {
+    "SSN": "1234567890",
+    "Name": "jonte",
+    "Id": 5,
+    "BoatList": []
+  },
+  {
+    "SSN": "1234567890",
+    "Name": "hej",
+    "Id": 6,
+    "BoatList": []
+  },
+  {
+    "SSN": "1234567890",
+    "Name": "dusch",
+    "Id": 7,
+    "BoatList": []
+  },
+  {
+    "SSN": "1234567890",
+    "Name": "ysss",
+    "Id": 8,
+    "BoatList": []
+  },
+  {
+    "SSN": "1234567890",
+    "Name": "nej",
+    "Id": 9,
+    "BoatList": []
   }
 ]

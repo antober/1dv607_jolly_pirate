@@ -7,6 +7,9 @@ namespace jolly_pirate
         private int _id;
         private BoatType _type;
         private int _length;
+
+        public static readonly int MIN_LENGTH =  1;
+        public static readonly int MAX_LENGTH = 20;
         
         public Boat(int id, BoatType boatType, int length) 
         {

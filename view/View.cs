@@ -1,18 +1,60 @@
+using System.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace jolly_pirate
 {
     class View
     {
+
+
+        public enum StartMenuAction {
+            Exit,
+            Register,
+            SelectMember,
+            ViewCompactList,
+            ViewVerboseList
+        }
+
+        public StartMenuAction AskStartMenuAction() {
+        
+            const int min = 0;
+            const int max = 4;
+
+            int rawInput = AskForInt((input) => (input < min) || (input > max), (rawInputString) => "Try again.");
+
+            switch (rawInput) {
+                case 0: return StartMenuAction.Exit;
+                case 1: return StartMenuAction.Register;
+                case 2: return StartMenuAction.SelectMember;
+                case 3: return StartMenuAction.ViewCompactList;
+                case 4: return StartMenuAction.ViewVerboseList;
+                default: throw new ArgumentException("Invalid menu choice.");
+            }
+        }
+
+        public void sandbox()
+        {
+            // Action is a function that takes no parameters and returns nothing (like void f())
+            var MainMenu = new (string, Action)[]
+            {
+                ("Exit",                        () => {} ),
+                ("Register",                    () => {} ),
+                ("Select Member",               () => {} ),
+                ("View Members List (Compact)", () => {} ),
+                ("View Members List (Verbose)", () => {} )
+            };
+        }
+
         public void ShowStartMenu()
         {
-            Console.WriteLine("╔════════════════════════════════════════════════╗");
-            Console.WriteLine("║                                                ║");
-            Console.WriteLine("║             Jolly Pirate Boat Club             ║");
-            Console.WriteLine("║                                                ║");
-            Console.WriteLine("╚════════════════════════════════════════════════╝");
+            Console.WriteLine("╔════════════════════════════════════════════════╗\n" +
+                              "║                                                ║\n" +
+                              "║             Jolly Pirate Boat Club             ║\n" +
+                              "║                                                ║\n" +
+                              "╚════════════════════════════════════════════════╝");
             Console.ResetColor();
             Console.WriteLine(" 0 - Exit\n 1 - Register\n 2 - Select Member \n 3 - View Members List (Compact)\n 4 - View Members List (Verbose)");
             Console.WriteLine("==================================================");
@@ -40,7 +82,7 @@ namespace jolly_pirate
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("You are successfully saved!");
             Console.ResetColor();
-            System.Console.WriteLine("Press Enter to return to previous menu");
+            Console.WriteLine("Press Enter to return to previous menu");
         }
 
         public void ShowEnterID()
@@ -62,14 +104,6 @@ namespace jolly_pirate
             Console.ResetColor();
         }
 
-        public void ShowRegisterError(string error)
-        {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(error);
-            Console.ResetColor();
-        }
-
 ///////////////////////////////////// Member Menu ////////////////////////////////////////////////////
 
         public void ShowMemberMenu()
@@ -78,15 +112,6 @@ namespace jolly_pirate
             Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member");
             Console.WriteLine("==================================================");
             Console.Write("Enter your choice [0-5]:");
-        }
-        public void ShowEnterBoatID()
-        {
-            Console.WriteLine("Enter the boat ID:");
-        }
-        public int GetBoatID()
-        {
-            int inputNumber = Convert.ToInt32(Console.ReadLine());
-            return inputNumber;
         }
 
         public void ShowBoatIsSaved(Boat boat)
@@ -97,66 +122,53 @@ namespace jolly_pirate
             System.Console.Write("id:  " + boat.Id);
         }
 
-        public void ShowSavedMember(Member member)
-        {
-            System.Console.WriteLine("Saved:");
-            System.Console.Write("Name:  " + member.Name + " | ");
-            System.Console.Write("Social security number:  " + member.SSN + " | ");
-            System.Console.Write("id:  " + member.Id);
-            System.Console.WriteLine();
-        }
         public void ShowGetBoatTypes() 
         {
             Console.WriteLine("Choose a boat type:");
             Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
         }
-        public int GetBoatTypes()
+
+        public int AskForInt(Func<int,bool> IsInvalid, Func<string,string> GenerateErrorMessage)
         {
             int input;
-            int.TryParse(Console.ReadLine(), out input);
+            string rawStringInput = Console.ReadLine();
+            while (!int.TryParse(rawStringInput, out input) || IsInvalid(input))
+            {
+                Console.WriteLine(GenerateErrorMessage(rawStringInput));
+                rawStringInput = Console.ReadLine();
+            }
             return input;
         }
-        
 
-        public void ShowGetBoatLentgh()
-        {
-            Console.WriteLine("Type in legnth of boat:");
+        public int AskForIntBetween(int min, int max) {
+            return AskForInt(
+                (input) => (input < min) || (input > max), 
+                (rawString) => $"{rawString} is not valid. Please enter an integer between {min} and {max}");
         }
 
-        public int GetBoatLength()
+        public int AskForInt()
         {
-            int input;
-            int.TryParse(Console.ReadLine(), out input);
-            return input;
+            return AskForInt((input) => false, (rawString) => "Not an integer. Try again.");
+        }
+
+        public void ShowGetBoatLength()
+        {
+            Console.WriteLine("Type in length of boat, between 1-20 m :");
         }
 
         public void ShowGetBoatByID()
         {
           Console.WriteLine("Choose the ID of boat you would like to change:");
         }
-        public int BoatID()
-        {
-            int input;
-            int.TryParse(Console.ReadLine(), out input);
-            return input;
-        }
+
 
         public int DeleteBoatByID()
         {
             Console.WriteLine("Enter the ID of boat:");
+
             int input;
-
             int.TryParse(Console.ReadLine(), out input);
-
             return input;
-        }
-
-        public string ChangeToInput()
-        {
-            Console.WriteLine("Plese enter new information:");
-            string newInfo = Console.ReadLine();
-
-            return newInfo;
         }
 
         public int DeleteMemberByID()
@@ -183,13 +195,27 @@ namespace jolly_pirate
             }
         }
 
-        public void ShowCompactListOfMembers (List<Member> memberList) 
+        public void ShowCompactListOfMembers (List<Member> members) 
         {
-            foreach (Member member in memberList) 
-            {
+            var rows = new List<string[]>(new [] {
+                new [] { "NAME", "SSN", "ID", "BOATS" },
+            });
 
-                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, MemberID: {member.Id}, Number of boats: {member.BoatList.Count}");
+            foreach (Member member in members) {
+                rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), member.BoatList.Count.ToString() });
+            };
+
+            var rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
+
+            Console.WriteLine(rendered[0]);
+
+            Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
+            
+            for (int i = 1; i < rendered.Count(); i++)
+            {
+                Console.WriteLine(rendered[i]);
             }
+
         }
 
         public void ShowBoatList(List<Boat> boatList)
