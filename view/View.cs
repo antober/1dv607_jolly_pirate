@@ -197,7 +197,7 @@ namespace jolly_pirate
 
         public void ShowCompactListOfMembers (List<Member> members) 
         {
-            var rows = new List<string[]>(new [] {
+            List<string[]> rows = new List<string[]>(new [] {
                 new [] { "NAME", "SSN", "ID", "BOATS" },
             });
 
@@ -205,7 +205,7 @@ namespace jolly_pirate
                 rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), member.BoatList.Count.ToString() });
             };
 
-            var rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
+            string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
 
             Console.WriteLine(rendered[0]);
 
