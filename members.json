@@ -1,23 +1,11 @@
 [
   {
-    "SSN": "1234567890",
+    "SSN": "1111111111",
     "Name": "yasmin",
     "Id": 1,
     "BoatList": [
       {
         "Id": 1,
-        "Type": 2,
-        "Length": 3
-      }
-    ]
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "yass",
-    "Id": 2,
-    "BoatList": [
-      {
-        "Id": 1,
         "Type": 3,
         "Length": 3
       }
@@ -25,56 +13,20 @@
   },
   {
     "SSN": "1234567890",
-    "Name": "yasmin",
+    "Name": "yee",
+    "Id": 2,
+    "BoatList": []
+  },
+  {
+    "SSN": "1234555555",
+    "Name": "yaaassseeeeeee",
     "Id": 3,
     "BoatList": [
       {
         "Id": 1,
-        "Type": 3,
+        "Type": 1,
         "Length": 5
       }
     ]
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "niiiisssseeee",
-    "Id": 4,
-    "BoatList": [
-      {
-        "Id": 2,
-        "Type": 2,
-        "Length": 3
-      }
-    ]
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "jonte",
-    "Id": 5,
-    "BoatList": []
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "hej",
-    "Id": 6,
-    "BoatList": []
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "dusch",
-    "Id": 7,
-    "BoatList": []
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "ysss",
-    "Id": 8,
-    "BoatList": []
-  },
-  {
-    "SSN": "1234567890",
-    "Name": "nej",
-    "Id": 9,
-    "BoatList": []
   }
 ]

@@ -28,15 +28,14 @@ namespace jolly_pirate
                 case View.StartMenuAction.Exit: 
                     return false;
                 case View.StartMenuAction.Register:
-                    registerModel.createMember(view.GetInputSSN(), view.GetInputName());
+                    registerModel.CreateMember(view.GetInputSSN(), view.GetInputName());
                     //TODO: Show register confirm
-                    // view.ShowSavedMember();
                     memberDAL.SaveToFile();
                     view.ShowSuccessMessage();
                      return true;
                 case View.StartMenuAction.SelectMember:
                     view.ShowEnterID();
-                    Member member = memberDAL.GetMemberByID(view.GetMemberID());
+                    Member member = memberDAL.GetMemberByID(view.AskForInt());
                     view.ShowMemberMenu();
                     InitMemberMenu(member);
                      return true;
@@ -82,6 +81,7 @@ namespace jolly_pirate
                             // Case Change Boat
                             view.ShowBoatList(member.BoatList);
                             view.ShowGetBoatByID();
+
                             int givenBoatID = view.AskForInt();
                             view.ShowGetBoatTypes();
                             int boatType = view.AskForIntBetween(0,3);
@@ -96,14 +96,15 @@ namespace jolly_pirate
 
                         case 3:
                             view.ShowBoatList(member.BoatList);
-                            int boatID = view.DeleteBoatByID();
+                            view.ShowDeleteBoatByID();
+                            int boatID = view.AskForInt();
                             member.DeleteBoat(boatID);
                             memberDAL.SaveToFile();
 
                             break;
                         case 4:
                             view.ShowEnterID();
-                            int oldMemberID = this.view.GetMemberID();
+                            int oldMemberID = view.AskForInt();
                             Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
                             memberDAL.UpdateMember(member,this.view.GetInputName(), this.view.GetInputSSN());
                             memberDAL.SaveToFile();
@@ -111,7 +112,8 @@ namespace jolly_pirate
 
                             break;
                         case 5:
-                            memberDAL.DeleteMember(view.DeleteMemberByID());
+                            view.ShowDeleteMemberByID();
+                            memberDAL.DeleteMember(view.AskForInt());
                             memberDAL.SaveToFile();   
 
                             break;

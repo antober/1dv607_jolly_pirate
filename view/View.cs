@@ -9,6 +9,8 @@ namespace jolly_pirate
     class View
     {
 
+        private int min;
+        private int max;
 
         public enum StartMenuAction {
             Exit,
@@ -63,7 +65,7 @@ namespace jolly_pirate
 
         public string GetInputSSN()
         {
-            Console.WriteLine("Enter Social security number:"); 
+            Console.WriteLine("Enter Social security number (yymmddxxxx):"); 
             string inputNumber = Console.ReadLine();
 
             return inputNumber;
@@ -71,7 +73,7 @@ namespace jolly_pirate
 
         public string GetInputName()
         {
-            Console.WriteLine("Enter a full name:");
+            Console.WriteLine("Enter a full name, between 3-16 charecters:");
             string inputName = Console.ReadLine();
 
             return inputName;
@@ -90,12 +92,6 @@ namespace jolly_pirate
             Console.WriteLine("Enter your ID:");
         }
 
-        public int GetMemberID()
-        {
-            int inputNumber = Convert.ToInt32(Console.ReadLine());
-            return inputNumber;
-        }
-
         public void ShowErrorMessageMenu()
         {
             Console.BackgroundColor = ConsoleColor.Red;
@@ -109,23 +105,23 @@ namespace jolly_pirate
         public void ShowMemberMenu()
         {
             Console.ResetColor();
-            Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member");
-            Console.WriteLine("==================================================");
-            Console.Write("Enter your choice [0-5]:");
+            Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member\n" +
+                              "==================================================\n" +
+                              "Enter your choice [0-5]:");
         }
 
         public void ShowBoatIsSaved(Boat boat)
         {
-            System.Console.WriteLine("Saved:");
-            System.Console.Write("type:  " + boat.Type + " | ");
-            System.Console.Write("length:  " + boat.Length + " | ");
-            System.Console.Write("id:  " + boat.Id);
+            Console.WriteLine("Saved:\n" +
+                                "type:  " + boat.Type + " | " +
+                                "length:  " + boat.Length + " | " +
+                                "id:  " + boat.Id);
         }
 
         public void ShowGetBoatTypes() 
         {
-            Console.WriteLine("Choose a boat type:");
-            Console.WriteLine(" 0 - Kayak_or_Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
+            Console.WriteLine("Choose a boat type:\n" +
+                              " 0 - Kayak/Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
         }
 
         public int AskForInt(Func<int,bool> IsInvalid, Func<string,string> GenerateErrorMessage)
@@ -140,7 +136,8 @@ namespace jolly_pirate
             return input;
         }
 
-        public int AskForIntBetween(int min, int max) {
+        public int AskForIntBetween(int min, int max) 
+        {
             return AskForInt(
                 (input) => (input < min) || (input > max), 
                 (rawString) => $"{rawString} is not valid. Please enter an integer between {min} and {max}");
@@ -158,40 +155,56 @@ namespace jolly_pirate
 
         public void ShowGetBoatByID()
         {
-          Console.WriteLine("Choose the ID of boat you would like to change:");
+            Console.WriteLine("Choose the ID of boat you would like to change:");
         }
 
-
-        public int DeleteBoatByID()
+        public void ShowDeleteBoatByID()
         {
-            Console.WriteLine("Enter the ID of boat:");
-
-            int input;
-            int.TryParse(Console.ReadLine(), out input);
-            return input;
+            Console.WriteLine("Enter the ID of the boat to delete it:");
         }
 
-        public int DeleteMemberByID()
+        public void ShowDeleteMemberByID()
         {
             Console.WriteLine("Choose your memberID:");
-            int input;
+        }
 
-            int.TryParse(Console.ReadLine(), out input);
-
-            return input;
+        public void ShowBoatList(List<Boat> boatList)
+        {
+            foreach (Boat boat in boatList)
+            {
+                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
+                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
+            }
         }
 
         public void ShowVerboseListOfMembers (List<Member> memberList) 
         {
-            string boats = "";
+
+              List<string[]> rows = new List<string[]>(new [] {
+                new [] { "NAME", "SSN", "ID", "BOATS" },
+            });
 
             foreach (Member member in memberList) 
             {
+                string boats = "";
+
                 foreach(Boat boat in member.BoatList) 
                 {
-                    boats += "  Boat type: " + boat.Type + "  Length: " + boat.Length + "  Id: " + boat.Id;
+                    // TODO : redo
+                    boats += "  Type: " + boat.Type + "  Length: " + boat.Length + "  Id: " + boat.Id;
                 }
-                Console.WriteLine ($"Name: {member.Name}, Social security number: {member.SSN}, MemberID: {member.Id},\nBoat list: {boats} \n");
+                // TODO : boat shows up on user with no boat.
+                rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), boats.ToString() });
+            }
+
+            string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-35}|").ToArray();
+                        Console.WriteLine(rendered[0]);
+
+            Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
+            
+            for (int i = 1; i < rendered.Count(); i++)
+            {
+                Console.WriteLine(rendered[i]);
             }
         }
 
@@ -214,16 +227,6 @@ namespace jolly_pirate
             for (int i = 1; i < rendered.Count(); i++)
             {
                 Console.WriteLine(rendered[i]);
-            }
-
-        }
-
-        public void ShowBoatList(List<Boat> boatList)
-        {
-            foreach (Boat boat in boatList)
-            {
-                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
-                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
             }
         }
     }

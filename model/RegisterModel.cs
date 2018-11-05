@@ -7,6 +7,8 @@ namespace jolly_pirate
     class RegisterModel
     {
         private MemberDAL memberDAL;
+        private Boat boat;
+        private Member member;
 
 
         public RegisterModel(MemberDAL memberDAL)
@@ -28,7 +30,8 @@ namespace jolly_pirate
                 return getID(anyList[indexOfLast]) + 1;
             }
         }
-        private Boat.BoatType SelectBoatType(int input) 
+
+        public Boat.BoatType SelectBoatType(int input) 
         {
             switch (input)
             {
@@ -41,7 +44,6 @@ namespace jolly_pirate
         }
 
         // TODO: SAVE BOATTYPE AND NOT INT.
-        // HIDDEN Dependency..boat
         public Boat CreateBoat(Member member, int boatTypeInput, int boatLegthInput) 
         {
             Boat.BoatType boatType = SelectBoatType(boatTypeInput);
@@ -60,19 +62,19 @@ namespace jolly_pirate
             member.BoatList[index] = newboat;
         }
 
-        public Member createMember(string number, string name)
+        public Member CreateMember(string SSN, string memberName)
         {
-            if(number.Length != 10)
+            if(SSN.Length != 10)
             {
                 throw new Exception("Social number must contain 10 digits!");
             }
-            if(name.Length < 3)
+            if(memberName.Length < 3 || memberName.Length > 16)
             {
-                throw new Exception("Full name must have atleast 3 characters");
+                throw new Exception("Full name must be between 3-16 characters long.");
             }
             else
             {
-                Member member = new Member(number, name, GenerateUniqueID(memberDAL.memberList, m => m.Id));
+                Member member = new Member(SSN, memberName, GenerateUniqueID(memberDAL.memberList, m => m.Id));
                 memberDAL.AddMember(member);
                 return member;
             }
