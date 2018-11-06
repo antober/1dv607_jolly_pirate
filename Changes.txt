@@ -1,7 +1,7 @@
 ** Source code **
 
 
-1. Move verbose, compact list to view, instead of icluding them in MemberDAL where the list
+1. Move verbose, compact list to view, instead of including them in MemberDAL where the list
     containing members are.
 
 2. Encapsulated private fields of Model classes, Member and Boat. The plan is to have some validation in the models as well.
@@ -18,8 +18,9 @@
 
 // CHanges after final hand-in
 
-1. Separated View adn Model (RegisterModel).
-2. Changed some names.
+1. Separated View and Model (RegisterModel).
+2. Changed names on methods and parameternames in RegisterModel.cs.
+3. Refactored a few methods in View.cs to handle userinput in a restricted way. Now there is only 2 methods handling integers given by a user. 
 
 
 
@@ -33,10 +34,6 @@
 
 // Future changes
 
-1. In View: 
-a. Set fields to hold values, instead of functions.
-b. ..more to come.
+1. Change public memberlist to private, set to readonly, and private set method. Add the read-only memberList in RegisterModel.
 
-2. Change public memberlist to private, set to readonly, and private set metod. Add the read-only memberList in RegisterModel.
-
-3. 
+2. Change action choice in member menu to enums. 
