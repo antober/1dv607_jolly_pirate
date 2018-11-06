@@ -34,13 +34,13 @@ namespace jolly_pirate
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
+            private set { _id = value; }
         }
 
         public List<Boat> BoatList
         {
             get { return _boatList; }
-            set { _boatList = value; }
+            private set { _boatList = value; }
         }
 
         public void AddBoat(Boat boat)

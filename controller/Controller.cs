@@ -8,8 +8,13 @@ namespace jolly_pirate
     {
         MemberDAL memberDAL;
         View view;
-
         RegisterModel registerModel;
+
+        private static int MIN_OPTION = 0;
+        private static int MAX_OPTION = 3;
+
+        private static int MIN_LENGTH = 1;
+        private static int MAX_LENGTH = 20;
 
         public Controller (MemberDAL memberDAL, View view, RegisterModel registerModel) 
         {
@@ -30,7 +35,6 @@ namespace jolly_pirate
 
                 case View.StartMenuAction.Register:
                     registerModel.CreateMember(view.GetInputSSN(), view.GetInputName());
-                    //TODO: Show register confirm
                     memberDAL.SaveToFile();
                     view.ShowSuccessMessage();
 
@@ -39,8 +43,6 @@ namespace jolly_pirate
                 case View.StartMenuAction.SelectMember:
                     view.ShowEnterID();
                     Member member = memberDAL.GetMemberByID(view.AskForInt());
-                    // view.ShowMemberMenu();
-                    //InitMemberMenu(member);
                     while(InitMemberMenu(member)) 
                     {
                         Console.ReadKey(false);
@@ -74,9 +76,9 @@ namespace jolly_pirate
 
                 case View.MemberMenuAction.AddBoat:
                     view.ShowGetBoatTypes();
-                    int givenBoatType = view.AskForIntBetween(0,3);
+                    int givenBoatType = view.AskForIntBetween(MIN_OPTION, MAX_OPTION);
                     view.ShowGetBoatLength();
-                    int givenBoatLength = view.AskForIntBetween(1,20);
+                    int givenBoatLength = view.AskForIntBetween(MIN_LENGTH, MAX_OPTION);
 
                     member.AddBoat(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
                     memberDAL.SaveToFile();
@@ -90,9 +92,9 @@ namespace jolly_pirate
 
                     int givenBoatID = view.AskForInt();
                     view.ShowGetBoatTypes();
-                    int boatType = view.AskForIntBetween(0,3);
+                    int boatType = view.AskForIntBetween(MIN_OPTION, MAX_OPTION);
                     view.ShowGetBoatLength();
-                    int boatLength = view.AskForIntBetween(1,20);
+                    int boatLength = view.AskForIntBetween(MIN_LENGTH, MAX_LENGTH);
 
                     registerModel.ChangeBoat(member, givenBoatID, boatType, boatLength);
                     memberDAL.SaveToFile();

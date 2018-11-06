@@ -10,6 +10,11 @@ namespace jolly_pirate
         private Boat boat;
         private Member member;
 
+        private static int MEMBERNAME_MINLENGTH = 3;
+        private static int MEMBERNAME_MAXLENGTH = 16;
+        private static int SSN_LENGTH = 10;
+
+        private static int DEFAULT_ID = 1;
 
         public RegisterModel(MemberDAL memberDAL)
         {
@@ -20,14 +25,14 @@ namespace jolly_pirate
             Used for both member and boat*/
         public int GenerateUniqueID<T>(List<T> anyList, Func<T,int> getID)
         {
-            if(anyList.Count() == 0) 
+            if(!anyList.Any()) 
             {
-               return 1;
+               return DEFAULT_ID;
             } 
             else 
             {
-                int indexOfLast = anyList.Count() - 1;
-                return getID(anyList[indexOfLast]) + 1;
+                int indexOfLast = anyList.Count() - DEFAULT_ID;
+                return getID(anyList[indexOfLast]) + DEFAULT_ID;
             }
         }
 
@@ -39,11 +44,10 @@ namespace jolly_pirate
                 case 1: return Boat.BoatType.Motorsailer;
                 case 2: return Boat.BoatType.Sailboat;
                 case 3: return Boat.BoatType.Other;
-                default: throw new Exception("Invalid input.");
+                default: throw new ArgumentOutOfRangeException("Invalid input.");
             }
         }
 
-        // TODO: SAVE BOATTYPE AND NOT INT.
         public Boat CreateBoat(Member member, int boatTypeInput, int boatLegthInput) 
         {
             Boat.BoatType boatType = SelectBoatType(boatTypeInput);
@@ -52,7 +56,6 @@ namespace jolly_pirate
             return boat;
         }
 
-        // TODO: SAVE BOATTYPE AND NOT INT.
         public void ChangeBoat(Member member, int boatID, int boatTypeInput, int BoatlengthInput)
         {
             int oldBoatID = boatID;
@@ -64,13 +67,13 @@ namespace jolly_pirate
 
         public Member CreateMember(string SSN, string memberName)
         {
-            if(SSN.Length != 10)
+            if(SSN.Length != SSN_LENGTH)
             {
-                throw new Exception("Social number must contain 10 digits!");
+                throw new ArgumentOutOfRangeException("Social number must contain 10 digits!");
             }
-            if(memberName.Length < 3 || memberName.Length > 16)
+            if(memberName.Length < MEMBERNAME_MINLENGTH || memberName.Length > MEMBERNAME_MAXLENGTH)
             {
-                throw new Exception("Full name must be between 3-16 characters long.");
+                throw new ArgumentOutOfRangeException("Full name must be between 3-16 characters long.");
             }
             else
             {

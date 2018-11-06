@@ -45,7 +45,7 @@ namespace jolly_pirate
                 case 2: return StartMenuAction.SelectMember;
                 case 3: return StartMenuAction.ViewCompactList;
                 case 4: return StartMenuAction.ViewVerboseList;
-                default: throw new ArgumentException("Invalid menu choice.");
+                default: throw new ArgumentOutOfRangeException("Invalid menu choice.");
             }
         }
 
@@ -64,21 +64,8 @@ namespace jolly_pirate
                 case 3: return MemberMenuAction.DeleteBoat;
                 case 4: return MemberMenuAction.ChangeMemberInfo;
                 case 5: return MemberMenuAction.DeleteMember;
-                default: throw new ArgumentException("Invalid menu choice.");
+                default: throw new ArgumentOutOfRangeException("Invalid menu choice.");
             }
-        }
-
-        public void sandbox()
-        {
-            // Action is a function that takes no parameters and returns nothing (like void f())
-            var MainMenu = new (string, Action)[]
-            {
-                ("Exit",                        () => {} ),
-                ("Register",                    () => {} ),
-                ("Select Member",               () => {} ),
-                ("View Members List (Compact)", () => {} ),
-                ("View Members List (Verbose)", () => {} )
-            };
         }
 
         public void ShowStartMenu()
@@ -221,10 +208,9 @@ namespace jolly_pirate
 
                 foreach(Boat boat in member.BoatList) 
                 {
-                    // TODO : redo
                     boats += "  Type: " + boat.Type + "  Length: " + boat.Length + "  Id: " + boat.Id;
                 }
-                // TODO : boat shows up on user with no boat.
+        
                 rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), boats.ToString() });
             }
 
@@ -247,24 +233,18 @@ namespace jolly_pirate
 
             foreach (Member member in members) {
                 rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), member.BoatList.Count.ToString() });
-                // System.Console.WriteLine(member.Name.GetType());
-                // System.Console.WriteLine(member.SSN.GetType());
-                // System.Console.WriteLine(member.Id.ToString().GetType());
-                // System.Console.WriteLine(member.BoatList.Count.ToString().GetType());
-                //System.Console.WriteLine(rows);
-                string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
-                Console.WriteLine(rendered[0]);
             };
 
+            string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
 
+            Console.WriteLine(rendered[0]);
 
-
-            // Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
+            Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
             
-            // for (int i = 1; i < rendered.Count(); i++)
-            // {
-            //     Console.WriteLine(rendered[i]);
-            // }
+            for (int i = 1; i < rendered.Count(); i++)
+            {
+                Console.WriteLine(rendered[i]);
+            }
         }
     }
 }
