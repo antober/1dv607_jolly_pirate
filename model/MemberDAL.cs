@@ -65,7 +65,6 @@ namespace jolly_pirate
             return memberList.Find(x => x.Id == Id);
         }
 
-
         public List<Member> GetMemberList()
         {
             return memberList;

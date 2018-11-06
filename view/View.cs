@@ -1,5 +1,5 @@
-using System.Collections;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,12 +12,23 @@ namespace jolly_pirate
         private int min;
         private int max;
 
-        public enum StartMenuAction {
+        public enum StartMenuAction 
+        {
             Exit,
             Register,
             SelectMember,
             ViewCompactList,
             ViewVerboseList
+        }
+
+        public enum MemberMenuAction 
+        {
+            Exit,
+            AddBoat,
+            ChangeBoat,
+            DeleteBoat,
+            ChangeMemberInfo,
+            DeleteMember
         }
 
         public StartMenuAction AskStartMenuAction() {
@@ -27,12 +38,32 @@ namespace jolly_pirate
 
             int rawInput = AskForInt((input) => (input < min) || (input > max), (rawInputString) => "Try again.");
 
-            switch (rawInput) {
+            switch (rawInput) 
+            {
                 case 0: return StartMenuAction.Exit;
                 case 1: return StartMenuAction.Register;
                 case 2: return StartMenuAction.SelectMember;
                 case 3: return StartMenuAction.ViewCompactList;
                 case 4: return StartMenuAction.ViewVerboseList;
+                default: throw new ArgumentException("Invalid menu choice.");
+            }
+        }
+
+        public MemberMenuAction AskMemberMenuAction() 
+        {
+            const int min = 0;
+            const int max = 5;
+
+            int rawInput = AskForInt((input) => (input < min) || (input > max), (rawInputString) => "Try again.");
+
+            switch (rawInput) 
+            {
+                case 0: return MemberMenuAction.Exit;
+                case 1: return MemberMenuAction.AddBoat;
+                case 2: return MemberMenuAction.ChangeBoat;
+                case 3: return MemberMenuAction.DeleteBoat;
+                case 4: return MemberMenuAction.ChangeMemberInfo;
+                case 5: return MemberMenuAction.DeleteMember;
                 default: throw new ArgumentException("Invalid menu choice.");
             }
         }
@@ -165,7 +196,7 @@ namespace jolly_pirate
 
         public void ShowDeleteMemberByID()
         {
-            Console.WriteLine("Choose your memberID:");
+            Console.WriteLine("Choose your ID:");
         }
 
         public void ShowBoatList(List<Boat> boatList)
@@ -216,18 +247,24 @@ namespace jolly_pirate
 
             foreach (Member member in members) {
                 rows.Add(new [] { member.Name, member.SSN, member.Id.ToString(), member.BoatList.Count.ToString() });
+                // System.Console.WriteLine(member.Name.GetType());
+                // System.Console.WriteLine(member.SSN.GetType());
+                // System.Console.WriteLine(member.Id.ToString().GetType());
+                // System.Console.WriteLine(member.BoatList.Count.ToString().GetType());
+                //System.Console.WriteLine(rows);
+                string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
+                Console.WriteLine(rendered[0]);
             };
 
-            string[] rendered = rows.Select(row => $"| {row[0],-15}| {row[1],-15}| {row[2],-15}| {row[3],-15}|").ToArray();
 
-            Console.WriteLine(rendered[0]);
 
-            Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
+
+            // Console.WriteLine("".PadLeft(rendered[0].Count(), '-'));
             
-            for (int i = 1; i < rendered.Count(); i++)
-            {
-                Console.WriteLine(rendered[i]);
-            }
+            // for (int i = 1; i < rendered.Count(); i++)
+            // {
+            //     Console.WriteLine(rendered[i]);
+            // }
         }
     }
 }

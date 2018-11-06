@@ -27,24 +27,34 @@ namespace jolly_pirate
             {
                 case View.StartMenuAction.Exit: 
                     return false;
+
                 case View.StartMenuAction.Register:
                     registerModel.CreateMember(view.GetInputSSN(), view.GetInputName());
                     //TODO: Show register confirm
                     memberDAL.SaveToFile();
                     view.ShowSuccessMessage();
-                     return true;
+
+                    return true;
+
                 case View.StartMenuAction.SelectMember:
                     view.ShowEnterID();
                     Member member = memberDAL.GetMemberByID(view.AskForInt());
-                    view.ShowMemberMenu();
-                    InitMemberMenu(member);
-                     return true;
+                    // view.ShowMemberMenu();
+                    //InitMemberMenu(member);
+                    while(InitMemberMenu(member)) 
+                    {
+                        Console.ReadKey(false);
+                    };
+                    
+                    return true;
                 case View.StartMenuAction.ViewCompactList:
                     view.ShowCompactListOfMembers(memberDAL.GetMemberList());
-                     return true;
+
+                    return true;
                 case View.StartMenuAction.ViewVerboseList:
                     view.ShowVerboseListOfMembers(memberDAL.GetMemberList());
-                     return true;
+
+                    return true;
                 default:
                     return false;
             }
@@ -52,81 +62,70 @@ namespace jolly_pirate
         }
 
 
-        public void InitMemberMenu(Member member)
+        public bool InitMemberMenu(Member member)
         {
-            int memberMenuInput;
-
-            try 
+            view.ShowMemberMenu();
+            View.MemberMenuAction input = view.AskMemberMenuAction();
+            switch (input) 
             {
-                if (int.TryParse(Console.ReadLine(), out memberMenuInput) && memberMenuInput >= 0 && memberMenuInput <= 5) 
-                {
-                    switch (memberMenuInput) 
-                    {
-                        case 0: 
-                            return;
+                case View.MemberMenuAction.Exit: 
 
-                        case 1:
-                            view.ShowGetBoatTypes();
-                            int givenBoatType = view.AskForIntBetween(0,3);
-                            view.ShowGetBoatLength();
-                            int givenBoatLength = view.AskForIntBetween(1,20);
+                    return false;
 
-                            member.AddBoat(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
-                            memberDAL.SaveToFile();
-                            view.ShowBoatIsSaved(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
+                case View.MemberMenuAction.AddBoat:
+                    view.ShowGetBoatTypes();
+                    int givenBoatType = view.AskForIntBetween(0,3);
+                    view.ShowGetBoatLength();
+                    int givenBoatLength = view.AskForIntBetween(1,20);
 
-                            break;
+                    member.AddBoat(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
+                    memberDAL.SaveToFile();
+                    view.ShowBoatIsSaved(registerModel.CreateBoat(member, givenBoatType, givenBoatLength));
 
-                        case 2:
-                            // Case Change Boat
-                            view.ShowBoatList(member.BoatList);
-                            view.ShowGetBoatByID();
+                    return true;
 
-                            int givenBoatID = view.AskForInt();
-                            view.ShowGetBoatTypes();
-                            int boatType = view.AskForIntBetween(0,3);
-                            view.ShowGetBoatLength();
-                            int boatLength = view.AskForIntBetween(1,20);
+                case View.MemberMenuAction.ChangeBoat:
+                    view.ShowBoatList(member.BoatList);
+                    view.ShowGetBoatByID();
 
-                            registerModel.ChangeBoat(member, givenBoatID, boatType, boatLength);
-                            memberDAL.SaveToFile();
-                            view.ShowBoatIsSaved(registerModel.CreateBoat(member, boatType, boatLength));
+                    int givenBoatID = view.AskForInt();
+                    view.ShowGetBoatTypes();
+                    int boatType = view.AskForIntBetween(0,3);
+                    view.ShowGetBoatLength();
+                    int boatLength = view.AskForIntBetween(1,20);
 
-                            break;
+                    registerModel.ChangeBoat(member, givenBoatID, boatType, boatLength);
+                    memberDAL.SaveToFile();
+                    view.ShowBoatIsSaved(registerModel.CreateBoat(member, boatType, boatLength));
 
-                        case 3:
-                            view.ShowBoatList(member.BoatList);
-                            view.ShowDeleteBoatByID();
-                            int boatID = view.AskForInt();
-                            member.DeleteBoat(boatID);
-                            memberDAL.SaveToFile();
+                    return true;
 
-                            break;
-                        case 4:
-                            view.ShowEnterID();
-                            int oldMemberID = view.AskForInt();
-                            Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
-                            memberDAL.UpdateMember(member,this.view.GetInputName(), this.view.GetInputSSN());
-                            memberDAL.SaveToFile();
-                            view.ShowSuccessMessage();
+                case View.MemberMenuAction.DeleteBoat:
+                    view.ShowBoatList(member.BoatList);
+                    view.ShowDeleteBoatByID();
+                    int boatID = view.AskForInt();
+                    member.DeleteBoat(boatID);
+                    memberDAL.SaveToFile();
 
-                            break;
-                        case 5:
-                            view.ShowDeleteMemberByID();
-                            memberDAL.DeleteMember(view.AskForInt());
-                            memberDAL.SaveToFile();   
+                    return true;
 
-                            break;
-                    }
-                } 
-                else 
-                {
-                    view.ShowErrorMessageMenu();
-                }
-            } 
-            catch (Exception e) 
-            {
-                Console.WriteLine("{0} Exception caught.", e.Message);
+                case View.MemberMenuAction.ChangeMemberInfo:
+                    view.ShowEnterID();
+                    int oldMemberID = view.AskForInt();
+                    Member memberToUpdate = memberDAL.GetMemberByID(oldMemberID);
+                    memberDAL.UpdateMember(member,this.view.GetInputName(), this.view.GetInputSSN());
+                    memberDAL.SaveToFile();
+                    view.ShowSuccessMessage();
+
+                    return true;
+
+                case View.MemberMenuAction.DeleteMember:
+                    view.ShowDeleteMemberByID();
+                    memberDAL.DeleteMember(view.AskForInt());
+                    memberDAL.SaveToFile();   
+
+                    return true;
+                    default: return false;
             }
         }
     }
