@@ -9,9 +9,6 @@ namespace jolly_pirate
     class View
     {
 
-        private int min;
-        private int max;
-
         public enum StartMenuAction 
         {
             Exit,
@@ -68,6 +65,7 @@ namespace jolly_pirate
             }
         }
 
+
         public void ShowStartMenu()
         {
             Console.WriteLine("╔════════════════════════════════════════════════╗\n" +
@@ -81,6 +79,7 @@ namespace jolly_pirate
             Console.Write("Enter your choice [0-4]:");
         }
 
+
         public string GetInputSSN()
         {
             Console.WriteLine("Enter Social security number (yymmddxxxx):"); 
@@ -89,6 +88,7 @@ namespace jolly_pirate
             return inputNumber;
         }
 
+
         public string GetInputName()
         {
             Console.WriteLine("Enter a full name, between 3-16 charecters:");
@@ -96,6 +96,8 @@ namespace jolly_pirate
 
             return inputName;
         }
+
+
         public void ShowSuccessMessage()
         {
             Console.BackgroundColor = ConsoleColor.Green;
@@ -110,97 +112,11 @@ namespace jolly_pirate
             Console.WriteLine("Enter your ID:");
         }
 
-        public void ShowErrorMessageMenu()
-        {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("You need to enter a number between the given options!\nPress any key to continue, ESC exits ");
-            Console.ResetColor();
-        }
-
-///////////////////////////////////// Member Menu ////////////////////////////////////////////////////
-
-        public void ShowMemberMenu()
-        {
-            Console.ResetColor();
-            Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member\n" +
-                              "==================================================\n" +
-                              "Enter your choice [0-5]:");
-        }
-
-        public void ShowBoatIsSaved(Boat boat)
-        {
-            Console.WriteLine("Saved:\n" +
-                                "type:  " + boat.Type + " | " +
-                                "length:  " + boat.Length + " | " +
-                                "id:  " + boat.Id);
-        }
-
-        public void ShowGetBoatTypes() 
-        {
-            Console.WriteLine("Choose a boat type:\n" +
-                              " 0 - Kayak/Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
-        }
-
-        public int AskForInt(Func<int,bool> IsInvalid, Func<string,string> GenerateErrorMessage)
-        {
-            int input;
-            string rawStringInput = Console.ReadLine();
-            while (!int.TryParse(rawStringInput, out input) || IsInvalid(input))
-            {
-                Console.WriteLine(GenerateErrorMessage(rawStringInput));
-                rawStringInput = Console.ReadLine();
-            }
-            return input;
-        }
-
-        public int AskForIntBetween(int min, int max) 
-        {
-            return AskForInt(
-                (input) => (input < min) || (input > max), 
-                (rawString) => $"{rawString} is not valid. Please enter an integer between {min} and {max}");
-        }
-
-        public int AskForInt()
-        {
-            return AskForInt((input) => false, (rawString) => "Not an integer. Try again.");
-        }
-
-        public void ShowGetBoatLength()
-        {
-            Console.WriteLine("Type in length of boat, between 1-20 m :");
-        }
-
-        public void ShowGetBoatByID()
-        {
-            Console.WriteLine("Choose the ID of boat you would like to change:");
-        }
-
-        public void ShowDeleteBoatByID()
-        {
-            Console.WriteLine("Enter the ID of the boat to delete it:");
-        }
-
-        public void ShowDeleteMemberByID()
-        {
-            Console.WriteLine("Choose your ID:");
-        }
-
-        public void ShowBoatList(List<Boat> boatList)
-        {
-            foreach (Boat boat in boatList)
-            {
-                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
-                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
-            }
-        }
-
-        public void ShowVerboseListOfMembers (List<Member> memberList) 
+           public void ShowVerboseListOfMembers (List<Member> memberList) 
         {
 
               List<string[]> rows = new List<string[]>(new [] {
-                new [] { "NAME", "SSN", "ID", "BOATS" },
-            });
+                new [] { "NAME", "SSN", "ID", "BOATS" }, });
 
             foreach (Member member in memberList) 
             {
@@ -244,6 +160,92 @@ namespace jolly_pirate
             for (int i = 1; i < rendered.Count(); i++)
             {
                 Console.WriteLine(rendered[i]);
+            }
+        }
+
+        public void ShowErrorMessageMenu()
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("You need to enter a number between the given options!\nPress any key to continue, ESC exits ");
+            Console.ResetColor();
+        }
+
+
+///////////////////////////////////////////////////// Member Menu /////////////////////////////////////////////////////////////////////////
+
+        public void ShowMemberMenu()
+        {
+            Console.ResetColor();
+            Console.WriteLine(" 0 - Exit\n 1 - Add Boat\n 2 - Change Boat \n 3 - Delete Boat\n 4 - Change Memberinfo\n 5 - Delete Member\n" +
+                              "==================================================\n" +
+                              "Enter your choice [0-5]:");
+        }
+
+        public void ShowBoatIsSaved(Boat boat)
+        {
+            Console.WriteLine("Saved:\n" +
+                                "type:  " + boat.Type + " | " +
+                                "length:  " + boat.Length + " | " +
+                                "id:  " + boat.Id);
+        }
+
+        public void ShowGetBoatTypes() 
+        {
+            Console.WriteLine("Choose a boat type:\n" +
+                              " 0 - Kayak/Canoe\n 1 - Motorsailer\n 2 - Sailboat\n 3 - Other");
+        }
+
+        public int AskForInt(Func<int,bool> IsInvalid, Func<string,string> GenerateErrorMessage)
+        {
+            int input;
+            string rawStringInput = Console.ReadLine();
+            
+            while (!int.TryParse(rawStringInput, out input) || IsInvalid(input))
+            {
+                Console.WriteLine(GenerateErrorMessage(rawStringInput));
+                rawStringInput = Console.ReadLine();
+            }
+            return input;
+        }
+
+        public int AskForIntBetween(int min, int max) 
+        {
+            return AskForInt( (input) => (input < min) || (input > max), 
+                (rawString) => $"{rawString} is not valid. Please enter an integer between {min} and {max}");
+        }
+
+        public int AskForInt()
+        {
+            return AskForInt((input) => false, (rawString) => "Not an integer. Try again.");
+        }
+
+        public void ShowGetBoatLength()
+        {
+            Console.WriteLine("Type in length of boat, between 1-20 m :");
+        }
+
+        public void ShowGetBoatByID()
+        {
+            Console.WriteLine("Choose the ID of boat you would like to change:");
+        }
+
+        public void ShowDeleteBoatByID()
+        {
+            Console.WriteLine("Enter the ID of the boat to delete it:");
+        }
+
+        public void ShowDeleteMemberByID()
+        {
+            Console.WriteLine("Choose your ID:");
+        }
+
+        public void ShowBoatList(List<Boat> boatList)
+        {
+            foreach (Boat boat in boatList)
+            {
+                Console.Write(" {0} - " + "Id: {1} " + "Type: {2} " + "Length: {3}\n",
+                boatList.IndexOf(boat), boat.Id, boat.Type, boat.Length);
             }
         }
     }
